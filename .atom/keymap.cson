@@ -1,0 +1,140 @@
+# Your keymap
+#
+# Atom keymaps work similarly to style sheets. Just as style sheets use
+# selectors to apply styles to elements, Atom keymaps use selectors to associate
+# keystrokes with events in specific contexts. Unlike style sheets however,
+# each selector can only be declared once.
+#
+# You can create a new keybinding in this file by typing "key" and then hitting
+# tab.
+#
+# Here's an example taken from Atom's built-in keymap:
+#
+# 'atom-text-editor':
+#   'enter': 'editor:newline'
+#
+# 'atom-workspace':
+#   'ctrl-shift-p': 'core:move-up'
+#   'ctrl-p': 'core:move-down'
+#
+# You can find more information about keymaps in these guides:
+# * http://flight-manual.atom.io/using-atom/sections/basic-customization/#_customizing_keybindings
+# * http://flight-manual.atom.io/behind-atom/sections/keymaps-in-depth/
+#
+# If you're having trouble with your keybindings not working, try the
+# Keybinding Resolver: `Cmd+.` on macOS and `Ctrl+.` on other platforms. See the
+# Debugging Guide for more information:
+# * http://flight-manual.atom.io/hacking-atom/sections/debugging/#check-the-keybindings
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  'g d': 'user:use-selection-as-find-pattern'
+  't n': 'pane:show-next-item'
+  't p': 'pane:show-previous-item'
+  'ctrl-w t': 'tree-view:toggle-focus'
+  'ctrl-w b': 'user:toggle-tab-bar'
+  'ctrl-q n': 'user:close-notifications'
+  'cmd-shift-v': 'user:vim-command:toggle'
+  '/': 'find-and-replace:show'
+  'n': 'user:find-next'
+  'N': 'user:find-previous'
+  'ctrl-j': 'multi-cursor:expandDown'
+  'ctrl-k': 'multi-cursor:expandUp'
+
+'.platform-darwin':
+  'cmd-g': 'advanced-open-file:toggle'
+  'cmd-F': 'project-find:show'
+  'cmd-f': 'find-and-replace:show'
+  'cmd-alt-f': 'find-and-replace:show-replace'
+
+'.platform-darwin .find-and-replace':
+  'shift-enter': 'find-and-replace:show-previous'
+  'cmd-enter': 'find-and-replace:confirm'
+  'alt-enter': 'find-and-replace:find-all'
+  'cmd-alt-/': 'find-and-replace:toggle-regex-option'
+  'cmd-alt-c': 'find-and-replace:toggle-case-option'
+  'cmd-alt-s': 'find-and-replace:toggle-selection-option'
+  'cmd-alt-w': 'find-and-replace:toggle-whole-word-option'
+
+'.platform-darwin .project-find':
+  'cmd-enter': 'project-find:confirm'
+  'cmd-alt-/': 'project-find:toggle-regex-option'
+  'cmd-alt-c': 'project-find:toggle-case-option'
+  'cmd-alt-w': 'project-find:toggle-whole-word-option'
+
+'.find-and-replace, .project-find, .project-find .results-view':
+  'tab': 'find-and-replace:focus-next'
+  'shift-tab': 'find-and-replace:focus-previous'
+
+'atom-text-editor.vim-mode.insert-mode':
+  'ctrl-h': 'core:backspace'
+
+'atom-text-editor.mini':
+  'ctrl-h': 'core:backspace'
+
+'.tree-view':
+  'ctrl-w t': 'tree-view:toggle-focus'
+  'q': 'tree-view:toggle'
+
+'body':
+  'ctrl-p': 'unset!'
+  'ctrl-n': 'unset!'
+
+'atom-workspace':
+  'ctrl-p': 'unset!'
+  'cmd-ctrl-c': 'choose-pane:start'
+
+'.select-list atom-text-editor':
+  'escape': 'core:cancel'
+  'ctrl-c': 'core:cancel' # Vimっぽくキャンセルしたい
+  'ctrl-[': 'core:cancel'
+  'ctrl-n': 'core:move-down'
+  'ctrl-p': 'core:move-up'
+  'tab': 'core:move-down' # Tab, Shift-Tabで順送り逆送りしたい
+  'shift-tab': 'core:move-up'
+  'ctrl-w': 'user:delete-to-slash'
+
+'.advanced-open-file atom-text-editor':
+  'escape': 'core:cancel'
+  'ctrl-c': 'core:cancel' # Vimっぽくキャンセルしたい
+  'ctrl-[': 'core:cancel'
+  'ctrl-k': 'advanced-open-file:move-cursor-up'
+  'ctrl-j': 'advanced-open-file:move-cursor-down'
+  # 'tab': 'core:move-down' # Tab, Shift-Tabで順送り逆送りしたい
+  # 'shift-tab': 'core:move-up'
+  'ctrl-w': 'user:delete-to-slash'
+
+'.find-and-replace, .project-find':
+  'escape': 'core:cancel'
+  'ctrl-c': 'core:cancel'
+  'ctrl-[': 'core:cancel'
+
+'.find-and-replace .find-container':
+  'enter': 'user:go-found'
+
+'.atom-make-runner':
+  'escape': 'atom-make-runner:toggle'
+  'q': 'atom-make-runner:toggle'
+
+# 'atom-text-editor:not(mini) .autocomplete-plus.autocomplete-suggestion-list':
+#   'ctrl-p': 'autocomplete-plus:select-previous'
+#   'ctrl-n': 'autocomplete-plus:select-next'
+
+'.command-mode-input atom-text-editor':
+  'escape': 'core:cancel'
+  'ctrl-c': 'core:cancel'
+  'ctrl-[': 'core:cancel'
+
+'.silver-bullet.editor-container atom-text-editor':
+  'ctrl-w': 'user:delete-to-slash'
+
+'atom-text-editor.autocomplete-active':
+  'down': 'core:move-down'
+  'ctrl-n': 'core:move-down'
+  'up': 'core:move-up'
+  'ctrl-p': 'core:move-up'
+  # 'tab': 'autocomplete-plus:confirm'
+  'escape': 'autocomplete-plus:cancel'

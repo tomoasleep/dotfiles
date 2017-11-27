@@ -1,0 +1,259 @@
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+
+[[plugins]]
+repo = 'vim-scripts/alex.vim'
+
+[[plugins]]
+repo = 'dag/vim-fish'
+
+[[plugins]]
+repo = 'tomoasleep/codelabel.vim'
+
+[[plugins]]
+repo = 'jvoorhis/coq.vim'
+lazy = 1
+on_ft = ['coq']
+
+[[plugins]]
+repo = 'tauli/CoqIDE'
+lazy = 1
+rev = 'patch-1'
+on_ft = ['coq']
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+
+[[plugins]]
+repo = 'vim-scripts/endwise.vim'
+
+[[plugins]]
+repo = 'mattn/googletranslate-vim'
+
+[[plugins]]
+repo = 'kelan/gyp.vim'
+
+[[plugins]]
+repo = 'vim-scripts/matchit.zip'
+
+[[plugins]]
+repo = 'sousu/neco-googlesuggest'
+
+[[plugins]]
+repo = 'vim-scripts/neco-look'
+
+[[plugins]]
+repo = 'neomake/neomake'
+
+[[plugins]]
+repo = 'vim-scripts/nginx.vim'
+
+[[plugins]]
+repo = 'vim-scripts/pyte'
+
+[[plugins]]
+repo = 'tyru/restart.vim'
+
+[[plugins]]
+repo = 'vim-scripts/rfc-syntax'
+
+[[plugins]]
+repo = 'vim-scripts/surround.vim'
+
+[[plugins]]
+repo = 'vim-scripts/The-NERD-tree'
+
+[[plugins]]
+repo = 'OCamlPro/ocp-indent'
+
+[[plugins]]
+repo = 'Quramy/tsuquyomi'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+rev = 'ver.6.0'
+
+[[plugins]]
+repo = 'haya14busa/unite-ghq'
+
+[[plugins]]
+repo = 'Sixeight/unite-grep'
+
+[[plugins]]
+repo = 'tsukkee/unite-help'
+
+[[plugins]]
+repo = 'tacroe/unite-mark'
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+
+[[plugins]]
+repo = 'tsukkee/unite-tag'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'mtscout6/vim-cjsx'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+lazy = 1
+on_ft = ['coffee']
+
+[[plugins]]
+repo = 'lifepillar/vim-solarized8'
+
+[[plugins]]
+repo = 'Jagua/vim-denite-ghq'
+
+[[plugins]]
+repo = 'alpicola/vim-egison'
+
+[[plugins]]
+repo = 'isRuslan/vim-es6'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+
+[[plugins]]
+repo = 'digitaltoad/vim-jade'
+
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+lazy = 1
+on_ft = ['javascript']
+
+[[plugins]]
+repo = 'briancollins/vim-jst'
+lazy = 1
+on_ft = ['javascript']
+
+[[plugins]]
+repo = 'mxw/vim-jsx'
+
+[[plugins]]
+repo = 'groenewege/vim-less'
+
+[[plugins]]
+repo = 'thinca/vim-localrc'
+
+[[plugins]]
+repo = 'xolox/vim-misc'
+
+[[plugins]]
+repo = 'tomoasleep/vim-open-atom'
+
+[[plugins]]
+repo = 'kana/vim-operator-replace'
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'greyblake/vim-preview'
+lazy = 1
+on_ft = ['rdoc', 'ruby', 'markdown']
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+repo = 'mhinz/vim-rfc'
+
+[[plugins]]
+repo = 'airblade/vim-rooter'
+
+[[plugins]]
+repo = 'derekwyatt/vim-scala'
+
+[[plugins]]
+repo = 'xolox/vim-session'
+
+[[plugins]]
+repo = 'slim-template/vim-slim'
+lazy = 1
+on_ft = ['slim']
+
+[[plugins]]
+repo = 'mhinz/vim-startify'
+
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+
+[[plugins]]
+repo = 'kmnk/vim-unite-giti'
+
+[[plugins]]
+repo = 'thinca/vim-unite-history'
+
+
+[[plugins]]
+repo = 'markcornick/vim-vagrant'
+
+[[plugins]]
+repo = 'rainux/vim-vala'
+
+[[plugins]]
+repo = 'def-lkb/vimbufsync'
+
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc'
+hook_post_update = '''
+  if dein#util#_is_windows()
+    let cmd = 'tools\\update-dll-mingw'
+  elseif dein#util#_is_cygwin()
+    let cmd = 'make -f make_cygwin.mak'
+  elseif dein#util#_is_mac()
+    let cmd = 'make -f make_mac.mak'
+  elseif executable('gmake')
+    let cmd = 'gmake'
+  else
+    let cmd = 'make'
+  endif
+  let g:dein#plugin.build = cmd
+'''
+
+[[plugins]]
+repo = 'Shougo/vinarise'
+
+[[plugins]]
+repo = 'vim-jp/vital.vim'
+
+[[plugins]]
+repo = 'vim-scripts/ZenCoding.vim'
+

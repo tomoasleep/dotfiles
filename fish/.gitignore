@@ -1,0 +1,5 @@
+fishd.*
+completions/fisher.fish
+completions/get.fish
+functions/fisher.fish
+functions/get.fish

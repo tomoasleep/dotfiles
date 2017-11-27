@@ -1,0 +1,53 @@
+set -g fish_prompt_pwd_dir_length 0
+set -U FZF_TMUX 1
+
+set -x EDITOR nvim
+set -x VISUAL nvim
+
+set -x GOPATH $HOME/.go
+set PATH $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH 
+
+source (anyenv init - | psub)
+eval (direnv hook fish)
+eval (hub alias -s)
+source '/Users/tomoya/google-cloud-sdk/path.fish.inc'
+
+function git_action_prompt
+  if git_is_repo
+		set -l git_action_value (git_action_status)
+
+		if test $status -eq 0
+			printf " +%s" $git_action_value
+		end
+	end
+end
+
+function git_prompt
+  if git_is_repo
+    printf "(%s%s %s%s%s%s)" (set_color --bold black) (git_branch_name) (set_color white) (string sub -l 7 (git rev-parse HEAD 2> /dev/null)) (git_action_prompt) (set_color normal)
+  else
+    printf ""
+  end
+end
+
+function terraform_prompt
+  if terraform_is_repo
+    printf "(Workspace: %s%s%s)" (set_color --bold black) (terraform_workspace 2> /dev/null) (set_color normal)
+  else
+    printf ""
+  end
+end
+
+function fish_prompt
+  if test $status -eq 0
+    set prompt_character "(ρ _-)ノ"
+    set character_color "green"
+  else
+    set prompt_character "_(:3」[＿]"
+    set character_color "red"
+  end
+
+
+  printf "\n%s %s %s\n%s%s%s " (prompt_pwd) (git_prompt) (terraform_prompt) (set_color $character_color) $prompt_character (set_color normal)
+end
+

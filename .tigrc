@@ -1,0 +1,15 @@
+# bind generic S :source ~/.tigrc
+bind generic g move-first-line
+bind generic G move-last-line
+
+bind status   C   !git commit -v
+
+bind main f ?!git commit --fixup %(commit)
+bind main S ?!git commit --squash %(commit)
+
+# [tig "bind"]
+# ==================
+bind main B @hub browse -- commit/%(commit)
+bind diff B @hub browse -- commit/%(commit)
+bind tree B @hub browse -- tree/%(commit)/%(dicectory)
+bind blob B @hub browse -- tree/%(commit)/%(file)

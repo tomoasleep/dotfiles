@@ -1,0 +1,30 @@
+[core]
+  editor = nvim
+[rebase]
+  autosquash = true
+[alias]
+  co = checkout
+  current-branch = rev-parse --abbrev-ref HEAD
+  branch-root = "!git merge-base ${GIT_BASE_BRANCH:=master} HEAD"
+  review = !tig --no-walk --reverse -w $(git branch-root)..HEAD
+  review-rebase = !git rebase -i $(git branch-root)
+  amend = commit --amend -C HEAD
+  see = browse
+  empty-commit = commit --allow-empty
+  sync = pull origin master:master
+  pc = !git push origin $(git current-branch)
+  new-feature = "!f(){ git back-master &&  git checkout -b $1 master;};f"
+  back-master = !git checkout master && git pull origin master
+  back-base = "!git checkout ${GIT_BASE_BRANCH:master} && git pull origin ${GIT_BASE_BRANCH:master}"
+  root = rev-parse --show-toplevel
+[user]
+  name = Tomoya Chiba
+  email = tomo.asleep@gmail.com
+[include]
+  path = .gitconfig.local
+[color]
+  ui = auto
+[url "git@github.com:"]
+  insteadof = https://github.com/
+[credential]
+	helper = osxkeychain

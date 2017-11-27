@@ -1,0 +1,28 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - file:
+        path: '~/.config'
+        state: directory
+
+    - file:
+        src: '~/dotfiles/{{ item }}'
+        dest: '~/.config/{{ item }}'
+        state: link
+      with_items:
+        - nvim
+        - fish
+        - git
+
+    - file:
+        src: '~/dotfiles/{{ item.src }}'
+        dest: '~/{{ item.dest }}'
+        state: link
+      with_items:
+        - { src: '.atom', dest: '.atom' }
+        - { src: '.gitconfig', dest: '.gitconfig' }
+        - { src: '.tmux.conf', dest: '.tmux.conf' }
+        - { src: '.tigrc', dest: '.tigrc' }
+        - { src: '.zazurc.json', dest: '.zazurc.json' }
+

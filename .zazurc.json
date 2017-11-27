@@ -1,0 +1,27 @@
+{
+  "hotkey": "alt+space",
+  "theme": "danielbayerlein/zazu-simple-theme",
+  "displayOn": "detect",
+  "plugins": [
+    "tinytacoteam/zazu-chrome-bookmarks",
+    "gabrielpoca/zazu-github-repos",
+    "danielbayerlein/zazu-devdocs",
+    "tinytacoteam/zazu-calculator",
+    "tinytacoteam/zazu-file-finder",
+    "tinytacoteam/zazu-template",
+    "tinytacoteam/zazu-system",
+    "tinytacoteam/zazu-package-manager",
+    {
+      "name": "tinytacoteam/zazu-fallback",
+      "variables": {
+        "rootSearches": ["google"]
+      }
+    },
+    {
+      "name": "tinytacoteam/zazu-clipboard",
+      "variables": {
+        "ClipboardKey": "cmd+shift+v"
+      }
+    }
+  ]
+}

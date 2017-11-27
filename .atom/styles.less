@@ -1,0 +1,205 @@
+/*
+ * Your Stylesheet
+ *
+ * This stylesheet is loaded when Atom starts up and is reloaded automatically
+ * when it is changed and saved.
+ *
+ * Add your own CSS or Less to fully customize Atom.
+ * If you are unfamiliar with Less, you can read more about it here:
+ * http://lesscss.org
+ */
+
+
+/*
+ * Examples
+ * (To see them, uncomment and save)
+ */
+
+body:not(.disable-user-style){
+  // style the background color of the tree view
+  .tree-view {
+    // background-color: whitesmoke;
+  }
+
+  // style the background and foreground colors on the atom-text-editor-element itself
+  atom-text-editor {
+    // color: white;
+    // background-color: hsl(180, 24%, 12%);
+  }
+
+  // style UI elements inside atom-text-editor
+  atom-text-editor .cursor {
+    // border-color: red;
+  }
+
+  @tab-width-mini: 100px;
+  @tab-width: 140px;
+  @tab-width-hover: 300px;
+
+  .tree-view {
+
+  }
+
+  .editor {
+
+  }
+
+  .editor .cursor {
+
+  }
+
+  /*
+  atom-pane.pane {
+      -webkit-flex-direction: row;
+      -webkit-flex-wrap: wrap;
+
+      &:before {
+          content: 'Open Files';
+          color: #787878;
+          padding: 5px 10px;
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+      }
+
+      .item-views {
+          box-shadow: -1px 0 0 0 rgba(0,0,0,.5)
+      }
+
+      .tab-bar {
+          width: @tab-width-mini;
+          &:hover {
+              width: @tab-width-hover;
+          }
+      }
+
+      &.active {
+          .tab-bar {
+              width: @tab-width;
+              &:hover {
+                  width: @tab-width-hover;
+              }
+          }
+      }
+
+      &:not(.active) {
+          .tab-bar {
+              display: none;
+          }
+      }
+  }
+
+  .tab-bar {
+      height: auto;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-flex-direction: column;
+      padding: 0;
+      margin-top: 26px;
+      box-shadow: inset 0 -8px 8px -4px rgba(0, 0, 0, 0.15), 0 -1px 0 0 rgba(0,0,0,.5);
+      &:after {
+          display: none;
+      }
+      &.list-inline > li:first-child {
+          padding-left: 10px;
+      }
+      .placeholder {
+          position: relative;
+          height: 1px;
+          width: auto;
+          margin: 0;
+          box-shadow: none;
+          &:after {
+              display: none;
+          }
+      }
+      .tab {
+          max-width: @tab-width-hover;
+          -webkit-flex: 0 0 auto;
+          margin: 0 0 0px 0;
+          top: 0;
+          padding: 0 2px 0 2px;
+          background: rgba(255,255,255,.05);
+          box-shadow: 0 -1px 0 0 rgba(0,0,0,.3) inset;
+          height: auto;
+          &.is-dragging {
+              background: rgba(0,0,0, .65);
+          }
+          &:before, &:after {
+              display: none;
+          }
+          &.is-dragging {
+              box-shadow: 0 0 0 1px #484848;
+          }
+          &:not(.is-dragging):hover {
+              background: rgba(255,255,255,.1);
+              box-shadow: 0 0 6px 0 #000, 0 -1px 0 0 rgba(0,0,0,.5) inset;
+          }
+          &.active {
+              -webkit-flex: 0 0 auto;
+              width: auto;
+              background: none;
+              box-shadow: 0 0 6px 0 #000;
+          }
+          .title {
+              line-height: 250%;
+              margin-left: 1px;
+              margin-right: 1px;
+              padding-right: 2px;
+              padding-left: 2px;
+              &:not(:hover) {
+                text-align: left;
+                padding-left: 5px;
+              }
+          }
+          .close-icon {
+              left: 10px;
+              text-align: left;
+              line-height: 200%;
+              width: 12px;
+          }
+          &.modified:not(:hover) {
+              .close-icon {
+                  left: 10px;
+                  text-align: left;
+                  width: 12px;
+              }
+          }
+      }
+  }
+  */
+
+  atom-workspace.disable-tab-bar {
+    .tab-bar {
+      display: none;
+    }
+  }
+
+  atom-text-editor,
+  atom-text-editor::shadow {
+    .find-result .region {
+      background-color: @ui-site-color-3;
+      opacity: 0.4;
+    }
+    .current-result .region {
+      background-color: @background-color-highlight;
+      opacity: 0.6;
+    }
+  }
+
+  atom-text-editor::shadow {
+    .ide-flow-error {
+      background-color: rgba(255, 0, 0, 0.2);
+      z-index: 3;
+    }
+
+    .highlight {
+      &.ide-flow-error .region {
+        background: none;
+        z-index: 3;
+      }
+    }
+  }
+
+}

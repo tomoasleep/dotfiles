@@ -1,0 +1,103 @@
+"*":
+  "atom-ide-ui":
+    "atom-ide-code-format": {}
+    "atom-ide-diagnostics-ui": {}
+    "atom-ide-outline-view": {}
+    use: {}
+  "autocomplete-plus":
+    minimumWordLength: 0
+  "bracket-matcher":
+    autocompleteBrackets: false
+  build:
+    buildOnSave: true
+    saveOnBuild: true
+    stealFocus: false
+  core:
+    closeDeletedFileTabs: true
+    customFileTypes:
+      "source.ini": [
+        ".buckconfig"
+        ".hgrc"
+        ".flowconfig"
+      ]
+      "source.json": [
+        "BUCK.autodeps"
+      ]
+      "source.python": [
+        "BUCK"
+      ]
+    debugLSP: true
+    disabledPackages: [
+      "symbols-view"
+      "ide-flow"
+      "github-utils"
+      "language-elixir"
+      "linter-elixirc"
+      "linter-write-good"
+      "vim-mode"
+      "linter-scss-lint"
+      "autocomplete-elixir"
+      "build"
+      "language-javascript-better"
+      "linter-eslint"
+      "react"
+      "vim-cmdline-mode"
+      "flow"
+      "nuclide"
+      "autocomplete-ruby"
+      "linter"
+    ]
+    packagesWithKeymapsDisabled: [
+      "multi-cursor"
+      "find-and-replace"
+    ]
+    telemetryConsent: "limited"
+    themes: [
+      "one-light-ui"
+      "solarized-light-syntax"
+    ]
+    titleBar: "custom"
+  "custom-title":
+    template: "<%= relativeFilePath %> (<%= projectName %>) - Atom <%= atom.getVersion() %>"
+  editor:
+    fontFamily: "Consolas, Ricty"
+    fontSize: 11
+  "exception-reporting":
+    userId: "447dd7d0-6388-b4d1-ea86-afa4e6149e5a"
+  "go-plus":
+    panel:
+      currentHeight: "17.1875vh"
+  "ide-flowtype":
+    tryFlowBin: true
+  linter: {}
+  "linter-rubocop":
+    disableWhenNoConfigFile: true
+  "linter-ui-default": {}
+  minimap:
+    plugins:
+      "git-diff": true
+      "git-diffDecorationsZIndex": 0
+      pigments: true
+      pigmentsDecorationsZIndex: 0
+  nuclide:
+    installRecommendedPackages: true
+    "nuclide-flow":
+      canUseFlowBin: true
+      enableReferencesHighlight: true
+      lazyServer: true
+    "nuclide-home":
+      showHome: false
+    use:
+      "atom-ide-diagnostics-ui": false
+      "nuclide-diagnostics-extras": false
+      "nuclide-file-tree": false
+    useLocalRpc: true
+  "rails-transporter":
+    controllerSpecType: "requests"
+  "tool-bar":
+    visible: false
+  user:
+    maxPaneLength: 20
+  "vim-mode-plus": {}
+  welcome:
+    showOnStartup: false
