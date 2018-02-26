@@ -4,6 +4,8 @@
     "atom-ide-diagnostics-ui": {}
     "atom-ide-outline-view": {}
     use: {}
+  "autocomplete-look":
+    maxSuggestions: 5
   "autocomplete-plus":
     minimumWordLength: 0
   "bracket-matcher":
@@ -31,21 +33,21 @@
       "symbols-view"
       "ide-flow"
       "github-utils"
-      "language-elixir"
-      "linter-elixirc"
       "linter-write-good"
       "vim-mode"
       "linter-scss-lint"
-      "autocomplete-elixir"
       "build"
       "language-javascript-better"
       "linter-eslint"
       "react"
       "vim-cmdline-mode"
       "flow"
-      "nuclide"
       "autocomplete-ruby"
       "linter"
+      "omnisharp-atom"
+      "ide-ruby"
+      "atom-autocomplete-php"
+      "tab-smart-sort"
     ]
     packagesWithKeymapsDisabled: [
       "multi-cursor"
@@ -53,7 +55,7 @@
     ]
     telemetryConsent: "limited"
     themes: [
-      "one-light-ui"
+      "solarized-one-light-ui"
       "solarized-light-syntax"
     ]
     titleBar: "custom"
@@ -61,7 +63,7 @@
     template: "<%= relativeFilePath %> (<%= projectName %>) - Atom <%= atom.getVersion() %>"
   editor:
     fontFamily: "Consolas, Ricty"
-    fontSize: 11
+    fontSize: 10
   "exception-reporting":
     userId: "447dd7d0-6388-b4d1-ea86-afa4e6149e5a"
   "go-plus":
@@ -94,10 +96,22 @@
     useLocalRpc: true
   "rails-transporter":
     controllerSpecType: "requests"
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    scrollSyncType: "Vertical + Horizontal"
   "tool-bar":
     visible: false
+  "tree-view":
+    hideVcsIgnoredFiles: true
   user:
     maxPaneLength: 20
+  "vertical-tabs-plus":
+    general:
+      tabsPlacement: "left"
+    tab: {}
   "vim-mode-plus": {}
   welcome:
     showOnStartup: false

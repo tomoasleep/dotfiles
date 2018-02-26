@@ -16,10 +16,9 @@ lazy = 1
 on_ft = ['coq']
 
 [[plugins]]
-repo = 'tauli/CoqIDE'
-lazy = 1
-rev = 'patch-1'
-on_ft = ['coq']
+repo  = 'autozimu/LanguageClient-neovim'
+rev   = 'next'
+build = 'bash install.sh'
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'

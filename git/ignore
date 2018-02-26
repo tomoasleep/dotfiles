@@ -1,2 +1,5 @@
 .DS_Store
 .local
+.yoda/
+.idea/
+git-worktrees/
