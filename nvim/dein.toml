@@ -42,9 +42,6 @@ repo = 'kelan/gyp.vim'
 repo = 'vim-scripts/matchit.zip'
 
 [[plugins]]
-repo = 'sousu/neco-googlesuggest'
-
-[[plugins]]
 repo = 'vim-scripts/neco-look'
 
 [[plugins]]
