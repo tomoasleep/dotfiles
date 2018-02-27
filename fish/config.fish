@@ -51,3 +51,5 @@ function fish_prompt
   printf "\n%s %s %s\n%s%s%s " (prompt_pwd) (git_prompt) (terraform_prompt) (set_color $character_color) $prompt_character (set_color normal)
 end
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/tomoya/google-cloud-sdk/path.fish.inc' ]; if type source > /dev/null; source '/Users/tomoya/google-cloud-sdk/path.fish.inc'; else; . '/Users/tomoya/google-cloud-sdk/path.fish.inc'; end; end
