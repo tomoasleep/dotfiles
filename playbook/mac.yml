@@ -1,0 +1,19 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - file:
+        src: '~/dotfiles/{{ item.src }}'
+        dest: '~/{{ item.dest }}'
+        state: link
+      with_items:
+        - { src: '.tmux.conf.osx', dest: '.tmux.conf.osx' }
+    - name: Make packages latest
+      package:
+        name: '{{ item }}'
+        state: latest
+      with_items:
+        - neovim
+        - tmux
+        - fish
+
