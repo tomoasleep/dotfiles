@@ -12,6 +12,7 @@
         state: link
       with_items:
         - nvim
+        - nyaovim
         - fish
         - git
         - karabiner
