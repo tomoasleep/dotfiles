@@ -1,0 +1,22 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - git:
+        repo: https://github.com/riywo/anyenv
+        dest: ~/.anyenv
+        update: yes
+
+    - name: Install envs
+      shell: '(~/.anyenv/bin/anyenv version | grep {{ item }}) || ~/.anyenv/bin/anyenv install {{ item }}'
+      with_items:
+        - rbenv
+        - nodenv
+        
+    - git:
+        repo: https://github.com/nodenv/nodenv-package-rehash
+        dest: ~/.anyenv/envs/nodenv/plugins/nodenv-package-rehash
+        update: yes
+
+    - name: Install rehash hooks for nodenv
+      shell: '~/.anyenv/envs/nodenv/bin/nodenv package-hooks install'
