@@ -34,7 +34,6 @@
       "ide-flow"
       "github-utils"
       "linter-write-good"
-      "vim-mode"
       "linter-scss-lint"
       "build"
       "language-javascript-better"
@@ -55,15 +54,15 @@
     ]
     telemetryConsent: "limited"
     themes: [
-      "solarized-one-light-ui"
-      "solarized-light-syntax"
+      "qiita-light-ui"
+      "qiita-light-syntax"
     ]
     titleBar: "custom"
   "custom-title":
     template: "<%= relativeFilePath %> (<%= projectName %>) - Atom <%= atom.getVersion() %>"
   editor:
     fontFamily: "Consolas, Ricty"
-    fontSize: 10
+    fontSize: 12
   "exception-reporting":
     userId: "447dd7d0-6388-b4d1-ea86-afa4e6149e5a"
   "go-plus":
