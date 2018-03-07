@@ -14,7 +14,6 @@
         state: latest
       with_items:
         - direnv
-        - docker
         - fzf
         - neovim
         - tmux
@@ -38,6 +37,7 @@
       with_items:
         - atom
         - atom-beta
+        - docker
         - dropbox
         - google-japanese-ime
         - hyperswitch
