@@ -16,4 +16,26 @@
         - neovim
         - tmux
         - fish
+        - ghq
+        - jq
+
+    - name: Make homebrew cask packages installed
+      homebrew_cask:
+        name: '{{ item }}'
+        state: present
+      with_items:
+        - atom
+        - atom-beta
+        - dropbox
+        - google-japanese-ime
+        - hyperswitch
+        - iterm2
+        - karabiner-elements
+        - keeweb
+        - oni
+        - sequel-pro
+        - spectacle
+        - slack
+        - xquartz
+        - zazu
 
