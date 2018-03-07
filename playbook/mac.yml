@@ -20,6 +20,10 @@
         - ghq
         - jq
 
+    - homebrew_tap:
+        name: caskroom/cask
+        state: present
+
     - name: Make homebrew cask packages installed
       homebrew_cask:
         name: '{{ item }}'
