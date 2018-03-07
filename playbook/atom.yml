@@ -1,0 +1,16 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Install Atom packages
+      shell: '(apm ls -i | grep {{ item }}) || apm install {{ item }}'
+      with_items:
+        - advanced-open-file
+        - atom-ide-ui
+        - editorconfig
+        - teletype
+        - vim-mode-plus
+        - increments/atom-qiita-light-syntax
+        - increments/atom-qiita-light-ui
+        - tomoasleep/vim-cmdline-mode
+        - tomoasleep/yoda
