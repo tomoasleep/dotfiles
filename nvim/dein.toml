@@ -21,6 +21,9 @@ rev   = 'next'
 build = 'bash install.sh'
 
 [[plugins]]
+repo = 'ervandew/supertab'
+
+[[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
 
 [[plugins]]
