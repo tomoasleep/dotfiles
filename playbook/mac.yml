@@ -13,13 +13,16 @@
         name: '{{ item }}'
         state: latest
       with_items:
+        - direnv
         - docker
+        - fzf
         - neovim
         - tmux
         - fish
         - ghq
         - jq
         - go
+        - hub
 
     - homebrew_tap:
         name: '{{ item }}'
