@@ -48,7 +48,9 @@ function fish_prompt
   end
 
 
-  printf "\n%s %s %s\n%s%s%s " (prompt_pwd) (git_prompt) (terraform_prompt) (set_color $character_color) $prompt_character (set_color normal)
+  echo
+  echo (prompt_pwd) (git_prompt) (terraform_prompt)
+  echo (set_color $character_color)(echo $prompt_character)(set_color normal)' '
 end
 
 # The next line updates PATH for the Google Cloud SDK.
