@@ -21,8 +21,11 @@
         - jq
 
     - homebrew_tap:
-        name: caskroom/cask
+        name: '{{ item }}'
         state: present
+      with_items:
+        - caskroom/cask
+        - caskroom/versions
 
     - name: Make homebrew cask packages installed
       homebrew_cask:
