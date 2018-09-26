@@ -28,3 +28,6 @@
   insteadof = https://github.com/
 [credential]
 	helper = osxkeychain
+[ghq]
+	root = ~/.ghq
+	root = ~/.go/src
