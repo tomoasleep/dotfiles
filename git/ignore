@@ -3,3 +3,5 @@
 .yoda/
 .idea/
 git-worktrees/
+worktrees/
+project.cson

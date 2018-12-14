@@ -4,6 +4,12 @@ atom.commands.add 'atom-workspace',
     @classList.toggle('disable-tab-bar')
 
 atom.commands.add 'atom-workspace',
+  'user:disable-tab-bar', ->
+    @classList.add('disable-tab-bar')
+
+atom.commands.dispatch(atom.views.getView(atom.workspace), 'user:disable-tab-bar')
+
+atom.commands.add 'atom-workspace',
   'user:toggle-user-style', ->
     document.body.classList.toggle('toggle-user-style')
 

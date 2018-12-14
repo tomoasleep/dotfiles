@@ -179,6 +179,9 @@ let g:javascript_plugin_flow = 1
 
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['yoda', 'server'],
+    \ }
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 " nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
@@ -186,3 +189,7 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" For embulk
+command -nargs=0 ToJson ruby cn = VIM::Buffer.current.name; VIM.command("vs #{File.expand_path('../schema/' + File.basename(cn).gsub(/\..+$/, '') + '.json', cn)}")
+command -nargs=0 ToLiquid ruby cn = VIM::Buffer.current.name; VIM.command("vs #{File.expand_path('../../' + File.basename(cn).gsub(/\..+$/, '') + '.yml.liquid', cn)}")

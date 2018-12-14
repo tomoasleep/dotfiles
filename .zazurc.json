@@ -1,16 +1,18 @@
 {
   "hotkey": "alt+space",
-  "theme": "danielbayerlein/zazu-simple-theme",
+  "theme": "marcpaul/zazu-solarized-light-theme",
   "displayOn": "detect",
   "plugins": [
     "tinytacoteam/zazu-chrome-bookmarks",
     "gabrielpoca/zazu-github-repos",
     "danielbayerlein/zazu-devdocs",
+    "danielbayerlein/zazu-rubygems",
+    "iansinnott/zazu-emoji",
     "tinytacoteam/zazu-calculator",
-    "tinytacoteam/zazu-file-finder",
     "tinytacoteam/zazu-template",
     "tinytacoteam/zazu-system",
     "tinytacoteam/zazu-package-manager",
+    "tinytacoteam/zazu-file-finder",
     {
       "name": "tinytacoteam/zazu-fallback",
       "variables": {
