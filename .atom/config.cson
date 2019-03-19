@@ -62,6 +62,7 @@
       "vertical-tabs"
       "linter"
       "github"
+      "editor-background"
     ]
     excludeVcsIgnoredPaths: false
     packagesWithKeymapsDisabled: [
@@ -84,6 +85,11 @@
     fontSize: 12
     invisibles: {}
     showInvisibles: true
+  "editor-background":
+    image:
+      backgroundSize: "cover"
+      overlayColor: "#000000"
+      url: "/Users/tomoya/Documents/desktops/1221.jpg"
   "exception-reporting":
     userId: "447dd7d0-6388-b4d1-ea86-afa4e6149e5a"
   "find-and-replace": {}
@@ -93,6 +99,8 @@
       "worktrees"
       "doc"
     ]
+  "git-blame":
+    columnWidth: 279
   "go-plus":
     panel:
       currentHeight: "17.1875vh"
