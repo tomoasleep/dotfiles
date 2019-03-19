@@ -34,3 +34,5 @@
 	root = ~/.go/src
 [push]
 	default = current
+[remind]
+  paths = /Users/tomoya/.ghq/github.com/**/*,/Users/tomoya/dotfiles
