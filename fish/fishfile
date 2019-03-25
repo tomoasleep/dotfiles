@@ -1,6 +1,6 @@
-fisherman/await
-fisherman/fzf
 fisherman/get
 fisherman/getopts
 fisherman/git_util
 fisherman/last_job_id
+fisherman/fzf
+~/.config/fish/ghq-tmux

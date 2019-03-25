@@ -30,7 +30,8 @@ repo = 'ctrlpvim/ctrlp.vim'
 repo = 'Shougo/denite.nvim'
 
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
+repo  = 'Shougo/deoplete.nvim'
+build = ':UpdateRemotePlugins'
 
 [[plugins]]
 repo = 'vim-scripts/endwise.vim'

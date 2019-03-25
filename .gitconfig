@@ -16,6 +16,7 @@
   new-feature = "!f(){ git back-master &&  git checkout -b $1 master;};f"
   back-master = !git checkout master && git pull origin master
   back-base = "!git checkout ${GIT_BASE_BRANCH:master} && git pull origin ${GIT_BASE_BRANCH:master}"
+  space = "!f(){ git worktree add worktrees/$1 $1 && cd worktrees/$1;};f"
   root = rev-parse --show-toplevel
 [user]
   name = Tomoya Chiba
@@ -31,3 +32,7 @@
 [ghq]
 	root = ~/.ghq
 	root = ~/.go/src
+[push]
+	default = current
+[remind]
+  paths = /Users/tomoya/.ghq/github.com/**/*,/Users/tomoya/dotfiles

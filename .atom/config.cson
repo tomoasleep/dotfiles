@@ -1,9 +1,21 @@
 "*":
+  Ensime:
+    ensimeServerVersion: "2.0.0"
+    sbtExec: "/usr/local/bin/sbt"
+  "advanced-open-file":
+    helmDirSwitch: true
   "atom-ide-ui":
     "atom-ide-code-format": {}
-    "atom-ide-diagnostics-ui": {}
+    "atom-ide-diagnostics-ui":
+      autoVisibility: true
+      showDiagnosticTraces: true
+      showDirectoryColumn: true
     "atom-ide-outline-view": {}
     use: {}
+  "atom-material-ui":
+    tabs: {}
+    ui:
+      panelShadows: true
   "autocomplete-look":
     maxSuggestions: 5
   "autocomplete-plus":
@@ -12,6 +24,7 @@
     autocompleteBrackets: false
   build:
     buildOnSave: true
+    panelVisibility: "Hidden"
     saveOnBuild: true
     stealFocus: false
   core:
@@ -35,41 +48,69 @@
       "github-utils"
       "linter-write-good"
       "linter-scss-lint"
-      "build"
       "language-javascript-better"
       "linter-eslint"
       "react"
-      "vim-cmdline-mode"
       "flow"
       "autocomplete-ruby"
-      "linter"
       "omnisharp-atom"
       "ide-ruby"
       "atom-autocomplete-php"
       "tab-smart-sort"
+      "ide-scala"
+      "go-plus"
+      "vertical-tabs"
+      "linter"
+      "github"
+      "editor-background"
     ]
+    excludeVcsIgnoredPaths: false
     packagesWithKeymapsDisabled: [
       "multi-cursor"
       "find-and-replace"
     ]
+    projectHome: "/Users/tomoya/src/github.com/tomoasleep"
     telemetryConsent: "limited"
     themes: [
-      "qiita-light-ui"
-      "qiita-light-syntax"
+      "northem-dark-atom-ui"
+      "solarized-light-syntax"
     ]
     titleBar: "custom"
   "custom-title":
     template: "<%= relativeFilePath %> (<%= projectName %>) - Atom <%= atom.getVersion() %>"
+  docblockr:
+    align_tags: "shallow"
   editor:
-    fontFamily: "Consolas, Ricty"
+    fontFamily: "Fira Font, Hack, Consolas, Ricty"
     fontSize: 12
+    invisibles: {}
+    showInvisibles: true
+  "editor-background":
+    image:
+      backgroundSize: "cover"
+      overlayColor: "#000000"
+      url: "/Users/tomoya/Documents/desktops/1221.jpg"
   "exception-reporting":
     userId: "447dd7d0-6388-b4d1-ea86-afa4e6149e5a"
+  "find-and-replace": {}
+  "fuzzy-finder":
+    ignoredNames: [
+      "node_modules"
+      "worktrees"
+      "doc"
+    ]
+  "git-blame":
+    columnWidth: 279
   "go-plus":
     panel:
       currentHeight: "17.1875vh"
+  "gruvbox-plus-syntax":
+    contrast: "Soft"
   "ide-flowtype":
     tryFlowBin: true
+  "ide-go":
+    customServerPath: "go-langserver"
+    diagnosticsEnabled: true
   linter: {}
   "linter-rubocop":
     disableWhenNoConfigFile: true
@@ -80,6 +121,9 @@
       "git-diffDecorationsZIndex": 0
       pigments: true
       pigmentsDecorationsZIndex: 0
+  narrow:
+    notifiedVimModePlusSpecificDefaultKeymap: true
+  "nord-atom-ui": {}
   nuclide:
     installRecommendedPackages: true
     "nuclide-flow":
@@ -95,18 +139,24 @@
     useLocalRpc: true
   "rails-transporter":
     controllerSpecType: "requests"
+  "ruby-test":
+    rspecAllCommand: "docker-compose exec spring rspec --tty spec"
+    rspecFileCommand: "docker-compose exec spring rspec --tty {relative_path}"
+    rspecSingleCommand: "docker-compose exec spring rspec --tty {relative_path}:{line_number}"
+    specFramework: "rspec"
   "split-diff":
     diffWords: true
     ignoreWhitespace: true
     leftEditorColor: "red"
     rightEditorColor: "green"
     scrollSyncType: "Vertical + Horizontal"
+  tabs: {}
   "tool-bar":
     visible: false
   "tree-view":
     hideVcsIgnoredFiles: true
   user:
-    maxPaneLength: 20
+    maxPaneLength: 80
   "vertical-tabs-plus":
     general:
       tabsPlacement: "left"

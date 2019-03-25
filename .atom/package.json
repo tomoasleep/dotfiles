@@ -4,8 +4,10 @@
   "description": "My atom descriptions",
   "main": "index.js",
   "dependencies": {
+    "atom-languageclient": "^0.9.9",
     "atom-space-pen-views": "^2.0.5",
     "bluebird": "^2.9.34",
+    "js-yaml": "^3.12.0",
     "preact": "^6.4.0",
     "ps-node": "^0.1.4",
     "underscore-plus": "^1.6.6"

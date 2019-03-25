@@ -51,6 +51,14 @@ consumeService 'vim-cmdline-mode', '>=0.1.0', ->
       'close the current buffer': ->
         process.nextTick =>
           triggerEvent('core:close', atom.views.getView(this))
+    'vs':
+      'split vertical': ->
+        process.nextTick =>
+          triggerEvent('pane:split-right', atom.views.getView(atom.workspace))
+    'sp':
+      'split horizontal': ->
+        process.nextTick =>
+          triggerEvent('pane:split-down', atom.views.getView(atom.workspace))
     'make':
       'execute make': ->
         process.nextTick =>
