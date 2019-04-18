@@ -5,6 +5,7 @@ set -x EDITOR nvim
 set -x VISUAL nvim
 
 set PATH $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH 
+set AWS_SDK_LOAD_CONFIG true
 
 set GO111MODULE on
 
