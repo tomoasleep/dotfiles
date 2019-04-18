@@ -4,13 +4,16 @@ set -U FZF_TMUX 1
 set -x EDITOR nvim
 set -x VISUAL nvim
 
-set -x GOPATH $HOME/.go
 set PATH $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH 
+
+set GO111MODULE on
 
 source (anyenv init - | psub)
 eval (direnv hook fish)
 eval (hub alias -s)
 source '/Users/tomoya/google-cloud-sdk/path.fish.inc'
+
+set PATH $GOROOT/bin $GOPATH/bin $PATH
 
 function git_action_prompt
   if git_is_repo
