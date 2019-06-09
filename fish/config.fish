@@ -5,12 +5,14 @@ set -x EDITOR nvim
 set -x VISUAL nvim
 
 set -x GOPATH $HOME/.go
+set PATH /snap/bin $PATH 
+set PATH $HOME/.cargo/bin $PATH 
 set PATH $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH 
 
-source (anyenv init - | psub)
+which anyenv > /dev/null; and source (anyenv init - | psub)
+which pyenv > /dev/null; and source (pyenv virtualenv-init - | psub)
 eval (direnv hook fish)
 eval (hub alias -s)
-source '/Users/tomoya/google-cloud-sdk/path.fish.inc'
 
 function git_action_prompt
   if git_is_repo
@@ -24,7 +26,7 @@ end
 
 function git_prompt
   if git_is_repo
-    printf "(%s%s %s%s%s%s)" (set_color --bold black) (git_branch_name) (set_color white) (string sub -l 7 (git rev-parse HEAD 2> /dev/null)) (git_action_prompt) (set_color normal)
+    printf "(%s%s %s%s%s%s)" (set_color yellow) (git_branch_name) (set_color white) (string sub -l 7 (git rev-parse HEAD 2> /dev/null)) (git_action_prompt) (set_color normal)
   else
     printf ""
   end
@@ -54,4 +56,4 @@ function fish_prompt
 end
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/tomoya/google-cloud-sdk/path.fish.inc' ]; if type source > /dev/null; source '/Users/tomoya/google-cloud-sdk/path.fish.inc'; else; . '/Users/tomoya/google-cloud-sdk/path.fish.inc'; end; end
+if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; if type source > /dev/null; source "$HOME/google-cloud-sdk/path.fish.inc"; else; . "$HOME/google-cloud-sdk/path.fish.inc"; end; end
