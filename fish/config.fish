@@ -8,11 +8,16 @@ set -x GOPATH $HOME/.go
 set PATH /snap/bin $PATH 
 set PATH $HOME/.cargo/bin $PATH 
 set PATH $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH 
+set AWS_SDK_LOAD_CONFIG true
+
+set GO111MODULE on
 
 which anyenv > /dev/null; and source (anyenv init - | psub)
 which pyenv > /dev/null; and source (pyenv virtualenv-init - | psub)
 eval (direnv hook fish)
 eval (hub alias -s)
+
+set PATH $GOROOT/bin $GOPATH/bin $PATH
 
 function git_action_prompt
   if git_is_repo
@@ -40,6 +45,15 @@ function terraform_prompt
   end
 end
 
+function kubernetes_prompt
+  if type -q kubectl
+    set -l namespace (kubectl config view -o "jsonpath={.contexts[?(@.name==\"$context\")].context.namespace}")
+    printf "(⎈ %s/%s)" (kubectl config current-context 2>/dev/null) (string length -q $namespace && echo $namespace || echo 'default')
+  else
+    printf ""
+  end
+end
+
 function fish_prompt
   if test $status -eq 0
     set prompt_character "(ρ _-)ノ"
@@ -51,9 +65,11 @@ function fish_prompt
 
 
   echo
-  echo (prompt_pwd) (git_prompt) (terraform_prompt)
+  echo (prompt_pwd) (git_prompt) (terraform_prompt) (kubernetes_prompt)
   echo (set_color $character_color)(echo $prompt_character)(set_color normal)' '
 end
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; if type source > /dev/null; source "$HOME/google-cloud-sdk/path.fish.inc"; else; . "$HOME/google-cloud-sdk/path.fish.inc"; end; end
+
+test -f "$HOME/.config/fish/config.local.fish"; and source $HOME/.config/fish/config.local.fish
