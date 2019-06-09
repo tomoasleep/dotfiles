@@ -25,6 +25,7 @@
         - { src: '.atom', dest: '.atom' }
         - { src: '.gitconfig', dest: '.gitconfig' }
         - { src: '.tmux.conf', dest: '.tmux.conf' }
+        - { src: '.tmux', dest: '.tmux' }
         - { src: '.tigrc', dest: '.tigrc' }
         - { src: '.zazurc.json', dest: '.zazurc.json' }
         - { src: '.hotel', dest: '.hotel' }
