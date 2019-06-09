@@ -5,6 +5,7 @@ set -x EDITOR nvim
 set -x VISUAL nvim
 
 set -x GOPATH $HOME/.go
+set PATH /home/linuxbrew/.linuxbrew/bin $PATH 
 set PATH /snap/bin $PATH 
 set PATH $HOME/.cargo/bin $PATH 
 set PATH $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH 
@@ -12,10 +13,10 @@ set AWS_SDK_LOAD_CONFIG true
 
 set GO111MODULE on
 
-which anyenv > /dev/null; and source (anyenv init - | psub)
-which pyenv > /dev/null; and source (pyenv virtualenv-init - | psub)
-eval (direnv hook fish)
-eval (hub alias -s)
+type -q anyenv; and source (anyenv init - | psub)
+type -q pyenv; and source (pyenv virtualenv-init - | psub)
+type -q direnv; and eval (direnv hook fish)
+type -q hub; and eval (hub alias -s)
 
 set PATH $GOROOT/bin $GOPATH/bin $PATH
 
@@ -48,7 +49,7 @@ end
 function kubernetes_prompt
   if type -q kubectl
     set -l namespace (kubectl config view -o "jsonpath={.contexts[?(@.name==\"$context\")].context.namespace}")
-    printf "(⎈ %s/%s)" (kubectl config current-context 2>/dev/null) (string length -q $namespace && echo $namespace || echo 'default')
+    printf "(⎈ %s/%s)" (kubectl config current-context 2>/dev/null) (string length -q $namespace; and echo $namespace or echo 'default')
   else
     printf ""
   end
