@@ -10,6 +10,11 @@ endif
 let s:dein_dir = s:config_dir . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
+"" for only neovim. in pyenv virtualenv named 'nvim-python3'
+if has('nvim') && isdirectory( $PYENV_ROOT."/versions/nvim-python3" )
+  let g:python3_host_prog = $PYENV_ROOT.'/versions/nvim-python3/bin/python'
+endif
+
 if !isdirectory(s:dein_repo_dir)
   execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   let s:dein_install_command = '!' . s:dein_repo_dir . '/bin/installer.sh' . ' ' . s:dein_dir
