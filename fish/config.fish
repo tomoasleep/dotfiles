@@ -16,6 +16,11 @@ source '/Users/tomoya/google-cloud-sdk/path.fish.inc'
 
 set PATH $GOROOT/bin $GOPATH/bin $PATH
 
+function history-merge --on-event fish_preexec
+  history save
+  history merge
+end
+
 function git_action_prompt
   if git_is_repo
 		set -l git_action_value (git_action_status)
