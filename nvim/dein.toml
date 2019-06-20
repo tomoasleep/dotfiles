@@ -1,7 +1,4 @@
 [[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-
-[[plugins]]
 repo = 'vim-scripts/alex.vim'
 
 [[plugins]]

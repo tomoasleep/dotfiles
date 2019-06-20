@@ -10,6 +10,11 @@ endif
 let s:dein_dir = s:config_dir . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
+"" for only neovim. in pyenv virtualenv named 'nvim-python3'
+if has('nvim') && isdirectory( $PYENV_ROOT."/versions/nvim-python3" )
+  let g:python3_host_prog = $PYENV_ROOT.'/versions/nvim-python3/bin/python'
+endif
+
 if !isdirectory(s:dein_repo_dir)
   execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   let s:dein_install_command = '!' . s:dein_repo_dir . '/bin/installer.sh' . ' ' . s:dein_dir
@@ -48,6 +53,8 @@ set number
 set expandtab
 set shiftwidth=2
 set tabstop=2
+
+set ambiwidth=double
 
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -159,6 +166,22 @@ call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'nor
 " When writing a buffer, and on normal mode changes (after 750ms).
 call neomake#configure#automake('nw', 750)
 let g:neomake_javascript_enabled_makers = ['jshint', 'jscs', 'eslint', 'flow']
+let g:neomake_error_sign = {
+   \ 'text': 'x',
+   \ 'texthl': 'NeomakeErrorSign',
+   \ }
+let g:neomake_warning_sign = {
+   \   'text': '!',
+   \   'texthl': 'NeomakeWarningSign',
+   \ }
+let g:neomake_message_sign = {
+    \   'text': 'M',
+    \   'texthl': 'NeomakeMessageSign',
+    \ }
+let g:neomake_info_sign = {
+    \ 'text': 'ℹ',
+    \ 'texthl': 'NeomakeInfoSign'
+    \ }
 
 " File
 command! -nargs=* Df DeniteBufferDir -buffer-name=files file_rec
@@ -179,10 +202,43 @@ let g:javascript_plugin_flow = 1
 
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_diagnosticsDisplay = {
+      \     1: {
+      \         "name": "Error",
+      \         "texthl": "ALEError",
+      \         "signText": "x",
+      \         "signTexthl": "ALEErrorSign",
+      \         "virtualTexthl": "Error",
+      \     },
+      \     2: {
+      \         "name": "Warning",
+      \         "texthl": "ALEWarning",
+      \         "signText": "!",
+      \         "signTexthl": "ALEWarningSign",
+      \         "virtualTexthl": "Todo",
+      \     },
+      \     3: {
+      \         "name": "Information",
+      \         "texthl": "ALEInfo",
+      \         "signText": "ℹ",
+      \         "signTexthl": "ALEInfoSign",
+      \         "virtualTexthl": "Todo",
+      \     },
+      \     4: {
+      \         "name": "Hint",
+      \         "texthl": "ALEInfo",
+      \         "signText": "H",
+      \         "signTexthl": "ALEInfoSign",
+      \         "virtualTexthl": "Todo",
+      \     },
+      \ }
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 " nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+let g:LanguageClient_loggingLevel = 'DEBUG'
+let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
 
 " supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"

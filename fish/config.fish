@@ -4,15 +4,19 @@ set -U FZF_TMUX 1
 set -x EDITOR nvim
 set -x VISUAL nvim
 
+set -x GOPATH $HOME/.go
+set PATH /home/linuxbrew/.linuxbrew/bin $PATH 
+set PATH /snap/bin $PATH 
+set PATH $HOME/.cargo/bin $PATH 
 set PATH $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH 
 set AWS_SDK_LOAD_CONFIG true
 
 set GO111MODULE on
 
-source (anyenv init - | psub)
-eval (direnv hook fish)
-eval (hub alias -s)
-source '/Users/tomoya/google-cloud-sdk/path.fish.inc'
+type -q anyenv; and source (anyenv init - | psub)
+type -q pyenv; and source (pyenv virtualenv-init - | psub)
+type -q direnv; and eval (direnv hook fish)
+type -q hub; and eval (hub alias -s)
 
 set PATH $GOROOT/bin $GOPATH/bin $PATH
 
@@ -33,7 +37,7 @@ end
 
 function git_prompt
   if git_is_repo
-    printf "(%s%s %s%s%s%s)" (set_color --bold black) (git_branch_name) (set_color white) (string sub -l 7 (git rev-parse HEAD 2> /dev/null)) (git_action_prompt) (set_color normal)
+    printf "(%s%s %s%s%s%s)" (set_color yellow) (git_branch_name) (set_color white) (string sub -l 7 (git rev-parse HEAD 2> /dev/null)) (git_action_prompt) (set_color normal)
   else
     printf ""
   end
@@ -50,7 +54,7 @@ end
 function kubernetes_prompt
   if type -q kubectl
     set -l namespace (kubectl config view -o "jsonpath={.contexts[?(@.name==\"$context\")].context.namespace}")
-    printf "(⎈ %s/%s)" (kubectl config current-context 2>/dev/null) (string length -q $namespace && echo $namespace || echo 'default')
+    printf "(⎈ %s/%s)" (kubectl config current-context 2>/dev/null) (string length -q $namespace; and echo $namespace or echo 'default')
   else
     printf ""
   end
@@ -72,6 +76,6 @@ function fish_prompt
 end
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/tomoya/google-cloud-sdk/path.fish.inc' ]; if type source > /dev/null; source '/Users/tomoya/google-cloud-sdk/path.fish.inc'; else; . '/Users/tomoya/google-cloud-sdk/path.fish.inc'; end; end
+if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; if type source > /dev/null; source "$HOME/google-cloud-sdk/path.fish.inc"; else; . "$HOME/google-cloud-sdk/path.fish.inc"; end; end
 
 test -f "$HOME/.config/fish/config.local.fish"; and source $HOME/.config/fish/config.local.fish
