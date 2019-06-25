@@ -23,17 +23,3 @@
     - name: Install rehash hooks for nodenv
       shell: '~/.anyenv/envs/nodenv/bin/nodenv package-hooks install'
 
-    - git:
-        repo: https://github.com/pyenv/pyenv-virtualenv
-        dest: ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
-        update: yes
-
-    - name: Check if nvim-python3 virtualenv is exists
-      shell: pyenv virtualenvs | grep nvim-python3
-      register: nvimCheckResult
-      changed_when: False
-      ignore_errors: True
-
-    - command: pyenv virtualenv 3.7.3 nvim-python3
-      when: nvimCheckResult is failed
-

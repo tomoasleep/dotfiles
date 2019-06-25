@@ -14,7 +14,6 @@ set AWS_SDK_LOAD_CONFIG true
 set GO111MODULE on
 
 type -q anyenv; and source (anyenv init - | psub)
-type -q pyenv; and source (pyenv virtualenv-init - | psub)
 type -q direnv; and eval (direnv hook fish)
 type -q hub; and eval (hub alias -s)
 
