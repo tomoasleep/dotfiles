@@ -192,9 +192,6 @@ repo = 'airblade/vim-rooter'
 repo = 'derekwyatt/vim-scala'
 
 [[plugins]]
-repo = 'xolox/vim-session'
-
-[[plugins]]
 repo = 'slim-template/vim-slim'
 lazy = 1
 on_ft = ['slim']
