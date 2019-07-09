@@ -29,4 +29,5 @@
         - { src: '.tigrc', dest: '.tigrc' }
         - { src: '.zazurc.json', dest: '.zazurc.json' }
         - { src: '.hotel', dest: '.hotel' }
+        - { src: '.hyper.js', dest: '.hyper.js' }
 
