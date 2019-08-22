@@ -1,0 +1,6 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Install Shan.code-settings-sync
+      shell: 'code --install-extension Shan.code-settings-sync'
