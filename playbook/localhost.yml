@@ -7,6 +7,11 @@
         state: directory
 
     - file:
+        src: '~/.ghq/github.com/tomoasleep/dotfiles'
+        dest: '~/dotfiles'
+        state: link
+
+    - file:
         src: '~/dotfiles/{{ item }}'
         dest: '~/.config/{{ item }}'
         state: link
