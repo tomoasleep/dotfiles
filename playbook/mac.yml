@@ -8,6 +8,10 @@
         state: link
       with_items:
         - { src: '.tmux.conf.osx', dest: '.tmux.conf.osx' }
+
+    - name: Make ensure homebrew is installed
+      shell: 'which brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+
     - name: Make packages latest
       package:
         name: '{{ item }}'
