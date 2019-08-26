@@ -48,6 +48,7 @@
         - dropbox
         - google-japanese-ime
         - google-backup-and-sync
+        - google-cloud-sdk
         - hyperswitch
         - hyper
         - iterm2
