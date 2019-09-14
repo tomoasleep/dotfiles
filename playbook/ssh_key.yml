@@ -1,0 +1,7 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - user:
+        name: tomoya
+        generate_ssh_key: true
