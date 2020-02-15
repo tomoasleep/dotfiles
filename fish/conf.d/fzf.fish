@@ -1,0 +1,1 @@
+/home/tomoya/.config/fisherman/fzf/conf.d/fzf.fish
