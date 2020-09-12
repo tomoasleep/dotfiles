@@ -7,8 +7,25 @@
         dest: ~/.anyenv
         update: yes
 
+    - name: Ensure plugins directory of anyenv
+      file:
+        path: ~/.anyenv/plugins
+        state: directory
+        mode: 0755
+        
     - name: Install envs
       shell: '(~/.anyenv/bin/anyenv version | grep {{ item }}) || ~/.anyenv/bin/anyenv install {{ item }}'
+      with_items:
+        - rbenv
+        - nodenv
+        - pyenv
+        - goenv
+
+    - name: Ensure plugin directories of envs
+      file:
+        path: ~/.anyenv/envs/{{ item }}/plugins
+        state: directory
+        mode: 0755
       with_items:
         - rbenv
         - nodenv
