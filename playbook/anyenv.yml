@@ -45,6 +45,28 @@
         repo: https://github.com/nodenv/nodenv-package-rehash
         dest: ~/.anyenv/envs/nodenv/plugins/nodenv-package-rehash
         update: yes
+        
+    - name: Configure rbenv default gems
+      block:
+        - git:
+            repo: https://github.com/rbenv/rbenv-default-gems
+            dest: ~/.anyenv/envs/rbenv/plugins/rbenv-default-gems
+            update: yes
+        - file:
+            src: ~/dotfiles/rbenv-default-gems
+            dest: ~/.anyenv/envs/rbenv/default-gems
+            state: link
+
+    - name: Configure pyenv default packages
+      block:
+        - git:
+            repo: https://github.com/jawshooah/pyenv-default-packages
+            dest: ~/.anyenv/envs/pyenv/plugins/pyenv-default-packages
+            update: yes
+        - file:
+            src: ~/dotfiles/pyenv-default-packages
+            dest: ~/.anyenv/envs/pyenv/default-packages
+            state: link
 
 #    - name: Install rehash hooks for nodenv
 #      shell: '~/.anyenv/envs/nodenv/bin/nodenv package-hooks install'
