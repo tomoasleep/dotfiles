@@ -46,6 +46,6 @@
         dest: ~/.anyenv/envs/nodenv/plugins/nodenv-package-rehash
         update: yes
 
-    - name: Install rehash hooks for nodenv
-      shell: '~/.anyenv/envs/nodenv/bin/nodenv package-hooks install'
+#    - name: Install rehash hooks for nodenv
+#      shell: '~/.anyenv/envs/nodenv/bin/nodenv package-hooks install'
 
