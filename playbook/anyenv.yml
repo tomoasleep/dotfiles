@@ -35,6 +35,11 @@
         - nodenv
         - pyenv
         - goenv
+
+    - git:
+        repo: https://github.com/znz/anyenv-update
+        dest: ~/.anyenv/plugins/anyenv-update
+        update: yes
         
     - git:
         repo: https://github.com/nodenv/nodenv-package-rehash
