@@ -3,7 +3,7 @@
   gather_facts: no
   tasks:
     - git:
-        repo: https://github.com/riywo/anyenv
+        repo: https://github.com/anyenv/anyenv
         dest: ~/.anyenv
         update: yes
 
