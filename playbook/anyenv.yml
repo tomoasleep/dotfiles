@@ -7,6 +7,10 @@
         dest: ~/.anyenv
         update: yes
 
+    - name: Initialize anyenv
+      shell: '(yes | ~/.anyenv/bin/anyenv install --init)'
+      ignore_errors: yes
+
     - name: Ensure plugins directory of anyenv
       file:
         path: ~/.anyenv/plugins
