@@ -41,10 +41,20 @@
         dest: ~/.anyenv/plugins/anyenv-update
         update: yes
         
-    - git:
-        repo: https://github.com/nodenv/nodenv-package-rehash
-        dest: ~/.anyenv/envs/nodenv/plugins/nodenv-package-rehash
-        update: yes
+    - name: Configure nodenv plugins
+      block:
+        - git:
+            repo: https://github.com/nodenv/nodenv-package-rehash
+            dest: ~/.anyenv/envs/nodenv/plugins/nodenv-package-rehash
+            update: yes
+        - git:
+            repo: https://github.com/nodenv/nodenv-default-packages
+            dest: ~/.anyenv/envs/nodenv/plugins/nodenv-default-packages
+            update: yes
+        - file:
+            src: ~/dotfiles/nodenv-default-packages
+            dest: ~/.anyenv/envs/nodenv/default-packages
+            state: link
         
     - name: Configure rbenv default gems
       block:
