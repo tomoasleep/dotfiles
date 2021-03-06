@@ -2,7 +2,8 @@
 
 set -eux
 
-ansible --version > /dev/null
+# Check if ansible is executable
+ansible --version
 
 DOTFILES_DIR=$HOME/.ghq/github.com/tomoasleep/dotfiles
 
