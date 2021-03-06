@@ -1,0 +1,13 @@
+- name: Install fisher
+  block:
+    - name: Ensure fish is a shell candidate
+      lineinfile:
+        path: /etc/shells
+        line: /usr/local/bin/fish
+        regexp: '^/usr/local/bin/fish$'
+        state: present
+
+    - user:
+        name: '{{ ansible_user_id }}'
+        shell: /usr/local/bin/fish
+  become: true

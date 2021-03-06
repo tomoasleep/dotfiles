@@ -21,4 +21,4 @@ fi
 
 cd $DOTFILES_DIR
 
-ansible-playbook $DOTFILES_DIR/playbook/localhost.yml
+ansible-playbook $DOTFILES_DIR/playbook/setup.yml --ask-become-pass
