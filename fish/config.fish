@@ -24,6 +24,16 @@ if uname -a | grep -q 'microsoft'
   alias mpaste "powershell.exe get-clipboard"
 end
 
+function git_is_repo -d "Check if directory is a repository"
+  test -d .git; or command git rev-parse --git-dir >/dev/null ^/dev/null
+end
+
+function git_branch_name -d "Get current branch name"
+  git_is_repo; and begin
+    command git symbolic-ref --short HEAD
+  end
+end
+
 function git_action_prompt
   if git_is_repo
 		set -l git_action_value (git_action_status)
