@@ -86,6 +86,7 @@ set -U __done_exclude 'git (?!push|pull)'  # default: all git commands, except p
 set -U __done_notify_sound 1
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; if type source > /dev/null; source "$HOME/google-cloud-sdk/path.fish.inc"; else; . "$HOME/google-cloud-sdk/path.fish.inc"; end; end
+if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; . "$HOME/google-cloud-sdk/path.fish.inc"; end
 
 test -f "$HOME/.config/fish/config.local.fish"; and source $HOME/.config/fish/config.local.fish
+
