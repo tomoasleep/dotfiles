@@ -65,7 +65,7 @@ function fish_prompt
 
 
   echo
-  echo (prompt_pwd) (git_prompt) (terraform_prompt) (kubernetes_prompt)
+  echo (prompt_pwd) (date "+[%Y/%m/%d %H:%M:%S]") (git_prompt) (kubernetes_prompt)
   echo (set_color $character_color)(echo $prompt_character)(set_color normal)' '
 end
 
