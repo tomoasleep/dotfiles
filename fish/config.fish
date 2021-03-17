@@ -52,6 +52,10 @@ function kubernetes_prompt
   else
     printf ""
   end
+  if test -n "$KUBE_FORK_TARGET_ENV"
+    printf "(🍴 %s)" (echo $KUBE_FORK_TARGET_ENV)
+  end
+
 end
 
 function fish_prompt
