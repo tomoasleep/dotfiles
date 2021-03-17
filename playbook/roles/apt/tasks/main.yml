@@ -1,0 +1,64 @@
+- name: Install apt packages
+  become: yes
+  block:
+
+    - name: Add key for https://cli.github.com/packages
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: C99B11DEB97541F0
+        state: present
+
+    - apt_repository:
+        repo: '{{ item }}'
+        state: present
+        update_cache: true
+      with_items:
+        - "deb https://cli.github.com/packages {{ ansible_distribution_release }} stable"
+
+    - apt:
+        name:
+          - ansible
+          - gh
+          - gnome-keyring # https://github.com/microsoft/vscode/issues/92972#issuecomment-625751232
+          - software-properties-common
+          - ssh
+          - automake
+          - autoconf
+          - libreadline-dev
+          - libncurses-dev
+          - libssl-dev
+          - libyaml-dev
+          - libxslt-dev
+          - libffi-dev
+          - libtool
+          - unixodbc-dev
+        state: present
+
+    - name: Install packages for non WSL environment
+      when: "'WSL_INTEROP' not in ansible_env"
+      block: 
+        - name: Add key for docker engine
+          apt_key:
+            url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+            state: present
+
+        - name: Add key for vscode
+          apt_key:
+            url: https://packages.microsoft.com/keys/microsoft.asc
+            state: present
+
+        - apt_repository:
+            repo: '{{ item }}'
+            state: present
+            update_cache: true
+          with_items:
+            - "deb https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
+            - "deb https://packages.microsoft.com/repos/code stable main"
+
+        - apt:
+            name:
+              - code
+              - containerd.io
+              - docker-ce
+              - docker-ce-cli
+            state: present

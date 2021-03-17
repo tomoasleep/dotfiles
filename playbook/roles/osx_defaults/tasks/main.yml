@@ -1,0 +1,8 @@
+- include_tasks: battery.yml
+- include_tasks: clock.yml
+- include_tasks: dock.yml
+- include_tasks: finder.yml
+- include_tasks: hyper_switch.yml
+- include_tasks: screencapture.yml
+- include_tasks: trackpad.yml
+- include_tasks: vscode.yml

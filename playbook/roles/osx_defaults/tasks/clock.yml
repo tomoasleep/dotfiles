@@ -1,0 +1,9 @@
+- name: Configure Menubar Clock
+  osx_defaults:
+    domain: com.apple.menuextra.clock
+    state: present
+    key: '{{ item.key }}'
+    type: '{{ item.type }}'
+    value: '{{ item.value }}'
+  with_items:
+    - { key: DateFormat, type: string, value: 'M\u6708d\u65e5(EEE)  H:mm:ss' }

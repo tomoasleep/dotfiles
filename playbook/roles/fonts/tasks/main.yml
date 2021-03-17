@@ -1,0 +1,9 @@
+- name: Copy fonts
+  shell: 'cp ~/GoogleDrive/personal/fonts/* ~/Library/fonts'
+
+# - copy:
+    # src: '{{item}}}'
+    # dest: '~/Library/fonts'
+    # force: false
+  # with_fileglob:
+    # - '~/GoogleDrive/personal/fonts/*'

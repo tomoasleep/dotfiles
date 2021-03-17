@@ -1,14 +1,9 @@
 #!/bin/sh
 
-set -ex
+set -eux
 
-if which pip; then
-  curl -kL https://bootstrap.pypa.io/get-pip.py | python - --user
-fi
-
-if python -c 'import pkgutil; exit(1 if pkgutil.find_loader("ansible") else 0)'; then
-  pip install ansible --user
-fi
+# Check if ansible is executable
+ansible --version
 
 DOTFILES_DIR=$HOME/.ghq/github.com/tomoasleep/dotfiles
 
@@ -21,4 +16,4 @@ fi
 
 cd $DOTFILES_DIR
 
-ansible-playbook $DOTFILES_DIR/playbook/localhost.yml
+ansible-playbook $DOTFILES_DIR/playbook/setup.yml --ask-become-pass
