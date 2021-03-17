@@ -76,6 +76,11 @@ end
 
 complete -f -c tmux-look -n "type -q ghq" -a "(ghq list | string match -r '(?<=github\.com/).+')"
 
+## settings of done
+set -U __done_min_cmd_duration 8000  # default: 5000 ms
+set -U __done_exclude 'git (?!push|pull)'  # default: all git commands, except push and pull. accepts a regex.
+set -U __done_notify_sound 1
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; if type source > /dev/null; source "$HOME/google-cloud-sdk/path.fish.inc"; else; . "$HOME/google-cloud-sdk/path.fish.inc"; end; end
 
