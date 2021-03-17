@@ -68,6 +68,10 @@ function fish_prompt
     set character_color "red"
   end
 
+  if test -n "$REC_MODE"
+    echo '$ '
+    return
+  end
 
   echo
   echo (prompt_pwd) (date "+[%Y/%m/%d %H:%M:%S]") (git_prompt) (kubernetes_prompt)
