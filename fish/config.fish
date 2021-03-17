@@ -9,6 +9,7 @@ set PATH /home/linuxbrew/.linuxbrew/bin $PATH
 set PATH /snap/bin $PATH 
 set PATH $HOME/.cargo/bin $PATH 
 set PATH $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH 
+set PATH $PATH $HOME/.krew/bin
 set -x AWS_SDK_LOAD_CONFIG true
 
 set GO111MODULE on
