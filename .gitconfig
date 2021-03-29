@@ -14,8 +14,8 @@
   sync = pull origin master:master
   pc = !git push origin $(git current-branch)
   new-feature = "!f(){ git back-master &&  git checkout -b $1 master;};f"
-  back-master = !git checkout master && git pull origin master
-  back-base = "!git checkout ${GIT_BASE_BRANCH:master} && git pull origin ${GIT_BASE_BRANCH:master}"
+  back-master = !git checkout $(git head-branch) && git fetch origin && git pull origin $(git head-branch)
+  head-branch = "!git remote show origin | awk '/HEAD branch/ {print $NF}'"
   root = rev-parse --show-toplevel
 [user]
   name = Tomoya Chiba
