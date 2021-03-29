@@ -4,7 +4,7 @@ set -U FZF_TMUX 1
 set -x EDITOR nvim
 set -x VISUAL nvim
 
-set -x GOPATH $HOME/.go
+# set -x GOPATH $HOME/.go
 set PATH /home/linuxbrew/.linuxbrew/bin $PATH 
 set PATH /snap/bin $PATH 
 set PATH $HOME/.cargo/bin $PATH 
@@ -18,6 +18,8 @@ type -q direnv; and eval (direnv hook fish)
 type -q hub; and eval (hub alias -s)
 
 set PATH $GOROOT/bin $GOPATH/bin $PATH
+
+test -f "$HOME/.asdf/asdf.fish"; and source ~/.asdf/asdf.fish
 
 if uname -a | grep -q 'microsoft'
   alias mcopy clip.exe
