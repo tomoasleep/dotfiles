@@ -4,7 +4,7 @@ set -U FZF_TMUX 1
 set -x EDITOR nvim
 set -x VISUAL nvim
 
-set -x GOPATH $HOME/.go
+# set -x GOPATH $HOME/.go
 set PATH /home/linuxbrew/.linuxbrew/bin $PATH 
 set PATH /snap/bin $PATH 
 set PATH $HOME/.cargo/bin $PATH 
@@ -14,6 +14,7 @@ set -x AWS_SDK_LOAD_CONFIG true
 
 set GO111MODULE on
 
+which brew > /dev/null; and source (brew --prefix asdf)/asdf.fish
 type -q anyenv; and source (anyenv init - | psub)
 type -q direnv; and eval (direnv hook fish)
 type -q hub; and eval (hub alias -s)
@@ -74,6 +75,10 @@ function kubernetes_prompt
 
 end
 
+function date_prompt
+  echo (date "+[%Y/%m/%d %H:%M:%S]")
+end
+
 function fish_prompt
   if test $status -eq 0
     set prompt_character "(ρ _-)ノ"
@@ -89,11 +94,30 @@ function fish_prompt
   end
 
   echo
-  echo (prompt_pwd) (date "+[%Y/%m/%d %H:%M:%S]") (git_prompt) (kubernetes_prompt)
+  echo (prompt_pwd) (date_prompt) (git_prompt) (kubernetes_prompt)
   echo (set_color $character_color)(echo $prompt_character)(set_color normal)' '
 end
 
+set -U async_prompt_functions date_prompt kubernetes_prompt git_prompt terraform_prompt
+
+function date_prompt_loading_indicator -a last_prompt 
+  echo -n "$last_prompt" | sed -r 's/\x1B\[[0-9;]*[JKmsu]//g' | read -zl uncolored_last_prompt
+  echo -n (set_color brblack)"$uncolored_last_prompt"(set_color normal)
+end
+
+function git_prompt_loading_indicator -a last_prompt 
+  echo -n "$last_prompt" | sed -r 's/\x1B\[[0-9;]*[JKmsu]//g' | read -zl uncolored_last_prompt
+  echo -n (set_color brblack)"$uncolored_last_prompt"(set_color normal)
+end
+
+function kubernetes_prompt_loading_indicator -a last_prompt 
+  echo -n "$last_prompt" | sed -r 's/\x1B\[[0-9;]*[JKmsu]//g' | read -zl uncolored_last_prompt
+  echo -n (set_color brblack)"$uncolored_last_prompt"(set_color normal)
+end
+
+
 complete -f -c tmux-look -n "type -q ghq" -a "(ghq list | string match -r '(?<=github\.com/).+')"
+
 
 ## settings of done
 set -U __done_min_cmd_duration 8000  # default: 5000 ms
@@ -104,4 +128,3 @@ set -U __done_notify_sound 1
 if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; . "$HOME/google-cloud-sdk/path.fish.inc"; end
 
 test -f "$HOME/.config/fish/config.local.fish"; and source $HOME/.config/fish/config.local.fish
-
