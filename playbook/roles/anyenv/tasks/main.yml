@@ -18,8 +18,6 @@
   with_items:
     - rbenv
     - nodenv
-    - pyenv
-    - goenv
 
 - name: Ensure plugin directories of envs
   file:
@@ -29,8 +27,6 @@
   with_items:
     - rbenv
     - nodenv
-    - pyenv
-    - goenv
 
 - git:
     repo: https://github.com/znz/anyenv-update
@@ -61,17 +57,6 @@
     - file:
         src: ~/dotfiles/rbenv-default-gems
         dest: ~/.anyenv/envs/rbenv/default-gems
-        state: link
-
-- name: Configure pyenv default packages
-  block:
-    - git:
-        repo: https://github.com/jawshooah/pyenv-default-packages
-        dest: ~/.anyenv/envs/pyenv/plugins/pyenv-default-packages
-        update: yes
-    - file:
-        src: ~/dotfiles/pyenv-default-packages
-        dest: ~/.anyenv/envs/pyenv/default-packages
         state: link
 
 #    - name: Install rehash hooks for nodenv

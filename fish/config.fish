@@ -21,6 +21,8 @@ type -q hub; and eval (hub alias -s)
 
 set PATH $GOROOT/bin $GOPATH/bin $PATH
 
+test -f "$HOME/.asdf/asdf.fish"; and source ~/.asdf/asdf.fish
+
 if uname -a | grep -q 'microsoft'
   alias mcopy clip.exe
   alias mpaste "powershell.exe get-clipboard"
