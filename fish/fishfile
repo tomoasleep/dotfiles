@@ -3,3 +3,4 @@ fisherman/getopts
 fisherman/git_util
 franciscolourenco/done
 acomagu/fish-async-prompt
+oh-my-fish/plugin-foreign-env
