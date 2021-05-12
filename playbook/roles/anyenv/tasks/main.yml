@@ -48,11 +48,15 @@
         dest: ~/.anyenv/envs/nodenv/default-packages
         state: link
     
-- name: Configure rbenv default gems
+- name: Configure rbenv plugins
   block:
     - git:
         repo: https://github.com/rbenv/rbenv-default-gems
         dest: ~/.anyenv/envs/rbenv/plugins/rbenv-default-gems
+        update: yes
+    - git:
+        repo: https://github.com/rbenv/rbenv-each
+        dest: ~/.anyenv/envs/rbenv/plugins/rbenv-each
         update: yes
     - file:
         src: ~/dotfiles/rbenv-default-gems
