@@ -9,3 +9,4 @@ storage
 node_modules/
 packages/
 .package-cop.json
+package-lock.json
