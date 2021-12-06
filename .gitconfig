@@ -15,8 +15,11 @@
   pc = !git push origin $(git current-branch)
   new-feature = "!f(){ git back-master &&  git checkout -b $1 master;};f"
   back-master = !git checkout $(git head-branch) && git fetch origin && git pull origin $(git head-branch)
+  track-master = !git fetch origin master:master
   head-branch = "!git remote show origin | awk '/HEAD branch/ {print $NF}'"
   root = rev-parse --show-toplevel
+  ft = "!f() { (git rev-parse --verify $1 > /dev/null 2>&1 && git switch -c $1) || git switch $1; }; f"
+  cleanup-merged = "!git branch --merged | xargs git branch -d"
 [user]
   name = Tomoya Chiba
   email = tomo.asleep@gmail.com
@@ -29,5 +32,8 @@
 [credential]
 	helper = osxkeychain
 [ghq]
-	root = ~/.go/src
+	root = ~/g/src
 	root = ~/.ghq
+  # root = ~/.go/src
+[diff "sopsdiffer"]
+	textconv = sops -d
