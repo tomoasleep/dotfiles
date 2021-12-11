@@ -1,0 +1,35 @@
+#!/bin/sh
+
+set -eu
+
+ROOT_DIR=$(cd $(dirname $(dirname $0)); pwd)
+
+VERSION=v1.12.7
+BIN_DIR=$ROOT_DIR/.install/mitamae/$VERSION
+
+cpuarch() {
+  case `uname -m` in
+    "x86_64" )
+      echo "x86_64"
+      ;;
+    "aarch64" )
+      echo "aarch64"
+      ;;
+  esac
+}
+
+download_mitamae() {
+  local tempdir=$(mktemp -d)
+  local OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+  local ARCH=$(cpuarch)
+
+  echo "Downloading mitamae $VERSION ..."
+  curl -L https://github.com/itamae-kitchen/mitamae/releases/latest/download/mitamae-${ARCH}-${OS} > $tempdir/mitamae
+  test -d $BIN_DIR || mkdir -p $BIN_DIR
+  mv $tempdir/mitamae $BIN_DIR/mitamae
+  chmod +x $BIN_DIR/mitamae
+  echo "Downloaded mitamae $VERSION"
+}
+
+test -x $BIN_DIR/mitamae || download_mitamae
+$BIN_DIR/mitamae $@
