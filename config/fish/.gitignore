@@ -1,10 +1,10 @@
 fishd.*
-completions/
+/completions/
 completions/fisher.fish
 completions/get.fish
 functions/fisher.fish
 functions/get.fish
-functions/
+/functions/
 fish_variables
 conf.d/
 config.local.fish
