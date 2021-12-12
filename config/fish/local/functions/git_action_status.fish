@@ -1,9 +1,9 @@
 # Defined in /Users/tomoya/.config/fish/config.fish @ line 35
 function git_action_status
-  # disable temporary
-  print 0
-
 	if git_is_repo
+    # disable temporary
+    return 0
+
     set -l git_dir (git rev-parse --git-dir 2> /dev/null)
 
     set -l rebase_dir $git_dir/rebase-apply $git_dir/rebase $git_dir/../.dotest
