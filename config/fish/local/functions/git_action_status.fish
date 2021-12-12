@@ -1,5 +1,8 @@
 # Defined in /Users/tomoya/.config/fish/config.fish @ line 35
 function git_action_status
+  # disable temporary
+  print 0
+
 	if git_is_repo
     set -l git_dir (git rev-parse --git-dir 2> /dev/null)
 

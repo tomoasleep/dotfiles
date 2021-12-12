@@ -18,4 +18,8 @@ MItamae::RecipeContext.class_eval do
     root_dir = File.expand_path('../..', __FILE__)
     File.expand_path(path, root_dir)
   end
+
+  def from_home(path)
+    File.expand_path(path, ENV['HOME'])
+  end
 end

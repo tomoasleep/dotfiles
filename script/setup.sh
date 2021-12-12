@@ -2,18 +2,21 @@
 
 set -eux
 
-# Check if ansible is executable
-ansible --version
+ROOT_DIR=$(cd $(dirname $0)/.. && pwd)
+cd $ROOT_DIR
 
-DOTFILES_DIR=$HOME/.ghq/github.com/tomoasleep/dotfiles
+if [ -x "DOTFILES_NO_CLONE" ]; then
+  DOTFILES_DIR=$HOME/.ghq/github.com/tomoasleep/dotfiles
+  if [ ! -d $DOTFILES_DIR ]; then
+    mkdir -p $(dirname $DOTFILES_DIR)
+    git clone https://github.com/tomoasleep/dotfiles.git $DOTFILES_DIR
+  fi
 
-# TODO: ensure git
-
-if [ ! -d $DOTFILES_DIR ]; then
-  mkdir -p $(dirname $DOTFILES_DIR)
-  git clone https://github.com/tomoasleep/dotfiles.git $DOTFILES_DIR
+  cd $DOTFILES_DIR
 fi
 
-cd $DOTFILES_DIR
+cd mitamae && $ROOT_DIR/bin/mitamae local recipe.rb
 
-ansible-playbook $DOTFILES_DIR/playbook/setup.yml --ask-become-pass
+# Check if ansible is executable
+# ansible --version
+# ansible-playbook $DOTFILES_DIR/playbook/setup.yml --ask-become-pass
