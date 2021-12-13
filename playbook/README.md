@@ -1,8 +1,8 @@
-## Ansible playbook (deprecated)
+# Ansible playbook (deprecated)
 
 :warning: I'm migrating to mitamae.
 
-### Run
+## Run
 
 ```
 ansible-playbook playbook/setup.yml -K
