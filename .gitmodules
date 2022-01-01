@@ -1,3 +1,6 @@
 [submodule "ext/solarized"]
 	path = ext/solarized
 	url = https://github.com/altercation/solarized
+[submodule "ext/tmux-colors-solarized"]
+	path = ext/tmux-colors-solarized
+	url = https://github.com/seebi/tmux-colors-solarized
