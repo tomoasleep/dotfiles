@@ -2,6 +2,10 @@ node.reverse_merge!(
   os: run_command('uname').stdout.strip.downcase,
 )
 
+directory File.expand_path("~/.config") do
+  action :create
+end
+
 define :dotconfig, source: nil do
   source = params[:source] || params[:name]
   link File.join(ENV['HOME'], '.config', params[:name]) do
