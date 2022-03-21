@@ -1,4 +1,5 @@
 set -g fish_prompt_pwd_dir_length 0
+set -g fish_prompt_pwd_full_dirs 3
 set -U FZF_TMUX 1
 
 set -x EDITOR nvim
@@ -96,9 +97,16 @@ function fish_prompt
   end
 
   echo
-  echo (prompt_pwd) (date_prompt) (git_prompt) (kubernetes_prompt)
+  echo (prompt_pwd) (date_prompt)(fish_git_prompt) (kubernetes_prompt)
   echo (set_color $character_color)(echo $prompt_character)(set_color normal)' '
 end
+
+set -g __fish_git_prompt_show_informative_status true
+set -g __fish_git_prompt_showcolorhints true
+set -g __fish_git_prompt_color normal
+set -g __fish_git_prompt_color_prefix normal
+set -g __fish_git_prompt_color_suffix normal
+set -g __fish_git_prompt_showupstream auto
 
 set -U async_prompt_functions date_prompt kubernetes_prompt terraform_prompt
 
