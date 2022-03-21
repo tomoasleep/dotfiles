@@ -5,7 +5,7 @@ set -eux
 ROOT_DIR=$(cd $(dirname $0)/.. && pwd)
 cd $ROOT_DIR
 
-if [ ! -v DOTFILES_NO_CLONE ]; then
+if [ -z "${DOTFILES_NO_CLONE:-""}" ]; then
   DOTFILES_DIR=$HOME/.ghq/github.com/tomoasleep/dotfiles
   if [ ! -d $DOTFILES_DIR ]; then
     mkdir -p $(dirname $DOTFILES_DIR)
