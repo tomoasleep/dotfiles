@@ -30,7 +30,7 @@ if uname -a | grep -q 'microsoft'
 end
 
 function git_is_repo -d "Check if directory is a repository"
-  test -d .git; or command git rev-parse --git-dir >/dev/null ^/dev/null
+  git rev-parse --is-inside-work-tree 2>/dev/null >/dev/null
 end
 
 function git_branch_name -d "Get current branch name"
@@ -51,7 +51,7 @@ end
 
 function git_prompt
   if git_is_repo
-    printf "(%s%s %s%s%s%s)" (set_color yellow) (git_branch_name) (set_color white) (string sub -l 7 (git rev-parse HEAD 2> /dev/null)) (git_action_prompt) (set_color normal)
+    printf " (%s %s%s%s) " (fish_git_prompt "%s") (set_color black) (string sub -l 7 (git rev-parse HEAD 2> /dev/null)) (set_color normal)
   else
     printf ""
   end
@@ -97,7 +97,7 @@ function fish_prompt
   end
 
   echo
-  echo (prompt_pwd) (date_prompt)(fish_git_prompt) (kubernetes_prompt)
+  echo (prompt_pwd) (date_prompt)(git_prompt)(kubernetes_prompt)
   echo (set_color $character_color)(echo $prompt_character)(set_color normal)' '
 end
 
