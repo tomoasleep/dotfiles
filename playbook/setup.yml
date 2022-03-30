@@ -2,13 +2,10 @@
   connection: local
   gather_facts: yes
   roles:
-    - dotfiles
     - role: apt
       when: ansible_pkg_mgr == "apt"
     - role: mac
       when: ansible_os_family == "Darwin"
-    - homebrew
-    - anyenv
     # - atom
     # - fish
     # - fonts
