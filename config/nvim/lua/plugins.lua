@@ -4,7 +4,14 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-return require('packer').startup(function(use)
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
+return require('packer').startup({ function(use)
   -- My plugins here
   -- use 'foo1/bar1.nvim'
   -- use 'foo2/bar2.nvim'
@@ -37,7 +44,9 @@ return require('packer').startup(function(use)
   use 'vim-scripts/matchit.zip'
   use 'vim-scripts/neco-look'
   use 'vim-scripts/surround.vim'
+  use 'mcchrish/nnn.vim'
 
+  use 'sheerun/vim-polyglot'
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
   use 'lifepillar/vim-solarized8'
@@ -45,9 +54,16 @@ return require('packer').startup(function(use)
   use 'mhinz/vim-startify'
   use 'neovim/nvim-lspconfig'
 
+  use { 'Shougo/unite.vim', tag = 'ver.6.0'}
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
     require('packer').sync()
   end
-end)
+end,
+config = {
+  display = {
+    open_fn = require('packer.util').float,
+  },
+}})
