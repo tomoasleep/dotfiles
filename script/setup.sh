@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 set -eux
 
 ROOT_DIR=$(cd $(dirname $0)/.. && pwd)
 cd $ROOT_DIR
 
-if [ -x "DOTFILES_NO_CLONE" ]; then
+if [ -z "${DOTFILES_NO_CLONE:-""}" ]; then
   DOTFILES_DIR=$HOME/.ghq/github.com/tomoasleep/dotfiles
   if [ ! -d $DOTFILES_DIR ]; then
     mkdir -p $(dirname $DOTFILES_DIR)
@@ -15,7 +15,7 @@ if [ -x "DOTFILES_NO_CLONE" ]; then
   cd $DOTFILES_DIR
 fi
 
-cd mitamae && $ROOT_DIR/bin/mitamae local recipe.rb
+cd mitamae && ../bin/mitamae local recipe.rb
 
 # Check if ansible is executable
 # ansible --version

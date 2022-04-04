@@ -4,39 +4,45 @@ endif
 
 if has('nvim')
   let s:config_dir = expand('~/.config/nvim')
+  lua <<EOF
+  require('start')
+EOF
 else
   let s:config_dir = expand('~/.vim')
 endif
-let s:dein_dir = s:config_dir . '/dein'
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-if !isdirectory(s:dein_repo_dir)
-  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  let s:dein_install_command = '!' . s:dein_repo_dir . '/bin/installer.sh' . ' ' . s:dein_dir
-  execute s:dein_install_command
-endif
-execute 'set runtimepath^=' . s:dein_repo_dir
+if !has('nvim')
+  let s:dein_dir = s:config_dir . '/dein'
+  let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    let s:dein_install_command = '!' . s:dein_repo_dir . '/bin/installer.sh' . ' ' . s:dein_dir
+    execute s:dein_install_command
+  endif
+  execute 'set runtimepath^=' . s:dein_repo_dir
 
-  call dein#add(s:dein_repo_dir)
+  if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
 
-  let s:toml = s:config_dir . '/dein.toml'
-  call dein#load_toml(s:toml, {'lazy': 0})
+    call dein#add(s:dein_repo_dir)
 
-  " let s:lazy_toml = s:config_dir . '/dein_lazy.toml'
-  " call dein#load_toml(s:lazy_toml, {'lazy': 1})
+    let s:toml = s:config_dir . '/dein.toml'
+    call dein#load_toml(s:toml, {'lazy': 0})
 
-  call dein#end()
-  call dein#save_state()
-endif
+    " let s:lazy_toml = s:config_dir . '/dein_lazy.toml'
+    " call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-if dein#check_install(['vimproc'])
-  call dein#install(['vimproc'])
-endif
-if dein#check_install()
-  call dein#install()
+    call dein#end()
+    call dein#save_state()
+  endif
+
+  if dein#check_install(['vimproc'])
+    call dein#install(['vimproc'])
+  endif
+  if dein#check_install()
+    call dein#install()
+  endif
 endif
 
 filetype plugin indent on
@@ -153,37 +159,39 @@ command! UTW Utw
 " all
 command! Ua UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file/async
 
-"" Denite.nvim
-call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+if !has('nvim')
+  "" Denite.nvim
+  call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+  call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
 
-"" Neomake
-" When writing a buffer, and on normal mode changes (after 750ms).
-call neomake#configure#automake('nw', 750)
-let g:neomake_javascript_enabled_makers = ['jshint', 'jscs', 'eslint', 'flow']
-let g:neomake_error_sign = {
-   \ 'text': 'x',
-   \ 'texthl': 'NeomakeErrorSign',
-   \ }
-let g:neomake_warning_sign = {
-   \   'text': '!',
-   \   'texthl': 'NeomakeWarningSign',
-   \ }
-let g:neomake_message_sign = {
-    \   'text': 'M',
-    \   'texthl': 'NeomakeMessageSign',
-    \ }
-let g:neomake_info_sign = {
-    \ 'text': 'ℹ',
-    \ 'texthl': 'NeomakeInfoSign'
-    \ }
+  "" Neomake
+  " When writing a buffer, and on normal mode changes (after 750ms).
+  call neomake#configure#automake('nw', 750)
+  let g:neomake_javascript_enabled_makers = ['jshint', 'jscs', 'eslint', 'flow']
+  let g:neomake_error_sign = {
+     \ 'text': 'x',
+     \ 'texthl': 'NeomakeErrorSign',
+     \ }
+  let g:neomake_warning_sign = {
+     \   'text': '!',
+     \   'texthl': 'NeomakeWarningSign',
+     \ }
+  let g:neomake_message_sign = {
+      \   'text': 'M',
+      \   'texthl': 'NeomakeMessageSign',
+      \ }
+  let g:neomake_info_sign = {
+      \ 'text': 'ℹ',
+      \ 'texthl': 'NeomakeInfoSign'
+      \ }
 
-" File
-command! -nargs=* Df DeniteBufferDir -buffer-name=files file_rec
-command! -nargs=* DF Df
-" Buffer
-command! Db Dnite buffer
-command! DB Db
+  " File
+  command! -nargs=* Df DeniteBufferDir -buffer-name=files file_rec
+  command! -nargs=* DF Df
+  " Buffer
+  command! Db Dnite buffer
+  command! DB Db
+endif
 
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
@@ -192,48 +200,50 @@ nnoremap tt :<C-u>tabnew<CR>
 nnoremap tn :<C-u>tabnext<CR>
 nnoremap tp :<C-u>tabprevious<CR>
 
-" javascript
-let g:javascript_plugin_flow = 1
+if !has('nvim')
+  " javascript
+  let g:javascript_plugin_flow = 1
 
-" Automatically start language servers.
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_diagnosticsDisplay = {
-      \     1: {
-      \         "name": "Error",
-      \         "texthl": "ALEError",
-      \         "signText": "x",
-      \         "signTexthl": "ALEErrorSign",
-      \         "virtualTexthl": "Error",
-      \     },
-      \     2: {
-      \         "name": "Warning",
-      \         "texthl": "ALEWarning",
-      \         "signText": "!",
-      \         "signTexthl": "ALEWarningSign",
-      \         "virtualTexthl": "Todo",
-      \     },
-      \     3: {
-      \         "name": "Information",
-      \         "texthl": "ALEInfo",
-      \         "signText": "ℹ",
-      \         "signTexthl": "ALEInfoSign",
-      \         "virtualTexthl": "Todo",
-      \     },
-      \     4: {
-      \         "name": "Hint",
-      \         "texthl": "ALEInfo",
-      \         "signText": "H",
-      \         "signTexthl": "ALEInfoSign",
-      \         "virtualTexthl": "Todo",
-      \     },
-      \ }
+  " Automatically start language servers.
+  let g:LanguageClient_autoStart = 1
+  let g:LanguageClient_diagnosticsDisplay = {
+        \     1: {
+        \         "name": "Error",
+        \         "texthl": "ALEError",
+        \         "signText": "x",
+        \         "signTexthl": "ALEErrorSign",
+        \         "virtualTexthl": "Error",
+        \     },
+        \     2: {
+        \         "name": "Warning",
+        \         "texthl": "ALEWarning",
+        \         "signText": "!",
+        \         "signTexthl": "ALEWarningSign",
+        \         "virtualTexthl": "Todo",
+        \     },
+        \     3: {
+        \         "name": "Information",
+        \         "texthl": "ALEInfo",
+        \         "signText": "ℹ",
+        \         "signTexthl": "ALEInfoSign",
+        \         "virtualTexthl": "Todo",
+        \     },
+        \     4: {
+        \         "name": "Hint",
+        \         "texthl": "ALEInfo",
+        \         "signText": "H",
+        \         "signTexthl": "ALEInfoSign",
+        \         "virtualTexthl": "Todo",
+        \     },
+        \ }
 
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+  nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+  " nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
-let g:LanguageClient_loggingLevel = 'DEBUG'
-let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
+  let g:LanguageClient_loggingLevel = 'DEBUG'
+  let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
 
-" supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
+  " supertab
+  let g:SuperTabDefaultCompletionType = "<c-n>"
+endif
