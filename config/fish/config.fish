@@ -12,6 +12,8 @@ set PATH $HOME/.local/bin $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./nod
 set PATH $PATH $HOME/.krew/bin
 set -x AWS_SDK_LOAD_CONFIG true
 
+which ghq > /dev/null; and set PATH (ghq root)/github.com/tomoasleep/private-utils/bin $PATH
+
 set GO111MODULE on
 
 which brew > /dev/null; and source (brew --prefix asdf)/asdf.fish
