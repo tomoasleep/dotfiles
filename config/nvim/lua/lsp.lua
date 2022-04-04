@@ -7,21 +7,10 @@ vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', op
 vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
 --- lsp-installer
-local lspconfig = require('lspconfig')
-local configs = require('lspconfig.configs')
-local server = require('nvim-lsp-installer.server')
-local installerServers = require('nvim-lsp-installer.servers')
+local yoda = require('yoda')
 
-configs["yoda"] = {
-  default_config = {
-    cmd = { "yoda", "server" },
-    filetypes = { "ruby" },
-    root_dir = lspconfig.util.root_pattern('Gemfile', '.git'),
-  }
-}
-
-local root_dir = server.get_server_root_path("yoda")
-installerServers.register(require('yoda')("yoda", root_dir))
+require('lspconfig.configs')["yoda"] = yoda.config()
+require('nvim-lsp-installer.servers').register(yoda.server("yoda"))
 
 --- Launch language server
 local lsp_installer = require('nvim-lsp-installer')

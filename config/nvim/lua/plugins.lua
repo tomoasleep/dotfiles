@@ -40,6 +40,13 @@ return require('packer').startup({ function(use)
 
   use 'Shougo/ddu-commands.vim'
 
+  use 'Shougo/ddc.vim'
+  use 'Shougo/ddc-nvim-lsp'
+  use 'Shougo/ddc-matcher_head'
+  use 'Shougo/ddc-sorter_rank'
+  use 'matsui54/denops-signature_help'
+  use 'matsui54/denops-popup-preview.vim'
+
   use 'vim-scripts/endwise.vim'
   use 'vim-scripts/matchit.zip'
   use 'vim-scripts/neco-look'
