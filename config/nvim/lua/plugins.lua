@@ -52,7 +52,9 @@ return require('packer').startup({ function(use)
   use 'lifepillar/vim-solarized8'
   use 'nathanaelkane/vim-indent-guides'
   use 'mhinz/vim-startify'
+
   use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
 
   use { 'Shougo/unite.vim', tag = 'ver.6.0'}
 

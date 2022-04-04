@@ -13,6 +13,9 @@ set PATH $HOME/.local/bin $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./nod
 set PATH $PATH $HOME/.krew/bin
 set -x AWS_SDK_LOAD_CONFIG true
 
+set -x NNN_FIFO /tmp/nnn.fifo
+set -x NNN_PLUG 'p:preview-tui'
+
 which ghq > /dev/null; and set PATH (ghq root)/github.com/tomoasleep/private-utils/bin $PATH
 
 set GO111MODULE on

@@ -6,6 +6,26 @@ vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', op
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
+--- lsp-installer
+local lspconfig = require('lspconfig')
+local configs = require('lspconfig.configs')
+local server = require('nvim-lsp-installer.server')
+local installerServers = require('nvim-lsp-installer.servers')
+
+configs["yoda"] = {
+  default_config = {
+    cmd = { "yoda", "server" },
+    filetypes = { "ruby" },
+    root_dir = lspconfig.util.root_pattern('Gemfile', '.git'),
+  }
+}
+
+local root_dir = server.get_server_root_path("yoda")
+installerServers.register(require('yoda')("yoda", root_dir))
+
+--- Launch language server
+local lsp_installer = require('nvim-lsp-installer')
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -29,15 +49,22 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver' }
-for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
-    on_attach = on_attach,
-    flags = {
+-- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
+-- or if the server is already installed).
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+
+    -- (optional) Customize the options passed to the server
+    -- if server.name == "tsserver" then
+    --     opts.root_dir = function() ... end
+    -- end
+
+    -- This setup() function will take the provided server configuration and decorate it with the necessary properties
+    -- before passing it onwards to lspconfig.
+    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    server:setup({
+      on_attach = on_attach,
       -- This will be the default in neovim 0.7+
       debounce_text_changes = 150,
-    }
-  }
-end
+    })
+end)
