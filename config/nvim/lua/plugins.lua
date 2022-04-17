@@ -60,10 +60,14 @@ return require('packer').startup({ function(use)
   use 'lifepillar/vim-solarized8'
   use 'nathanaelkane/vim-indent-guides'
   use 'mhinz/vim-startify'
+  use 'rcarriga/nvim-notify'
+
+  use 'github/copilot.vim'
 
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
 
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons'}
   use { 'Shougo/unite.vim', tag = 'ver.6.0'}
 
   -- Automatically set up your configuration after cloning packer.nvim
