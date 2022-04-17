@@ -52,6 +52,7 @@ return require('packer').startup({ function(use)
   use 'vim-scripts/neco-look'
   use 'vim-scripts/surround.vim'
   use 'mcchrish/nnn.vim'
+  use 'ntpeters/vim-better-whitespace'
 
   use 'sheerun/vim-polyglot'
   use 'vim-airline/vim-airline'
