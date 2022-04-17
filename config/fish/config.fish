@@ -102,7 +102,7 @@ function fish_prompt
   end
 
   echo
-  echo (prompt_pwd) (date_prompt)(git_prompt)(kubernetes_prompt)
+  echo (prompt_pwd) (date_prompt)(git_prompt) (kubernetes_prompt)
   echo (set_color $character_color)(echo $prompt_character)(set_color normal)' '
 end
 
