@@ -101,8 +101,6 @@ return require('packer').startup({ function(use)
   use {'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons'}
   use { 'Shougo/unite.vim', tag = 'ver.6.0'}
 
-  use '~/.ghq/github.com/tomoasleep/dps-ft'
-
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
