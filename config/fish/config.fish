@@ -71,6 +71,10 @@ function terraform_prompt
 end
 
 function kubernetes_prompt
+  if test -n "$NO_KUBERNETES_PROMPT"
+    return
+  end
+
   if type -q kubectl
     set -l namespace (kubectl config view -o "jsonpath={.contexts[?(@.name==\"$context\")].context.namespace}")
     printf "(⎈ %s/%s)" (kubectl config current-context 2>/dev/null) (string length -q $namespace; and echo $namespace or echo 'default')
