@@ -12,6 +12,12 @@ local yoda = require('yoda')
 require('lspconfig.configs')["yoda"] = yoda.config()
 require('nvim-lsp-installer.servers').register(yoda.server("yoda"))
 
+require('lspconfig.configs')["yoda-dev"] = yoda.config()
+require('nvim-lsp-installer.servers').register(yoda.dev_server("yoda-dev"))
+
+require('lspconfig.configs')["yoda-local"] = yoda.config()
+require('nvim-lsp-installer.servers').register(yoda.local_server("yoda-local"))
+
 --- Launch language server
 local lsp_installer = require('nvim-lsp-installer')
 
