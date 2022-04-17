@@ -23,6 +23,11 @@ return require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
   use 'vim-denops/denops.vim'
 
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
   use { 'Shougo/ddu.vim', config = get_config("ddu") }
   use 'Shougo/ddu-ui-ff'
   use 'Shougo/ddu-ui-filer'
@@ -52,6 +57,16 @@ return require('packer').startup({ function(use)
   use { 'matsui54/denops-signature_help', config = get_config("denops-signature_help") }
   use { 'matsui54/denops-popup-preview.vim', config = get_config("denops-popup-preview") }
 
+  use {
+  "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+  }
+
   use 'vim-scripts/endwise.vim'
   use 'vim-scripts/matchit.zip'
   use 'vim-scripts/neco-look'
@@ -65,15 +80,28 @@ return require('packer').startup({ function(use)
   use 'lifepillar/vim-solarized8'
   use 'nathanaelkane/vim-indent-guides'
   use 'mhinz/vim-startify'
+  use { 'petertriho/nvim-scrollbar', config = get_config("scrollbar") }
   use { 'rcarriga/nvim-notify', config = get_config("notify") }
 
   use 'github/copilot.vim'
 
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
+  use { 'tamago324/nlsp-settings.nvim', config = get_config("nlsp-settings") }
+  use { 'j-hui/fidget.nvim', config = get_config("fidget") }
+  use { 'folke/lsp-colors.nvim', config = get_config("lsp-colors") }
+  use { 'tami5/lspsaga.nvim' }
+
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = get_config("trouble"),
+  }
 
   use {'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons'}
   use { 'Shougo/unite.vim', tag = 'ver.6.0'}
+
+  use '~/.ghq/github.com/tomoasleep/dps-ft'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
