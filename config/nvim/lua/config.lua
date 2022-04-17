@@ -97,7 +97,7 @@ require("nnn").setup({
 
 -- ddc.vim
 
-vim.cmd [[ 
+vim.cmd [[
   call ddc#custom#patch_global('sourceOptions', {
         \ '_': {
         \   'matchers': ['matcher_head'],
@@ -110,7 +110,7 @@ vim.cmd [[
         \   'mark': 'lsp',
         \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
         \ })
-  
+
   call ddc#enable()
 ]]
 
