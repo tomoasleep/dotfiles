@@ -2,7 +2,7 @@ local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 function get_config(name)
-  return string.format('require("config/%s")', name)
+  return string.format('require("config.%s")', name)
 end
 
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -12,8 +12,7 @@ end
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile  augroup end
 ]])
 
 return require('packer').startup({ function(use)
@@ -26,11 +25,16 @@ return require('packer').startup({ function(use)
     config = get_config('telescope'),
   }
 
-  use 'hrsh7th/cmp-nvim-lsp'
+  use {
+    'hrsh7th/cmp-nvim-lsp',
+    requires = {
+      'neovim/nvim-lspconfig',
+    },
+  }
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
+  use { 'hrsh7th/nvim-cmp', config = get_config('cmp') }
 
   use {
   "nvim-neo-tree/neo-tree.nvim",
@@ -70,7 +74,7 @@ return require('packer').startup({ function(use)
   use { 'tamago324/nlsp-settings.nvim', config = get_config("nlsp-settings") }
   use { 'j-hui/fidget.nvim', config = get_config("fidget") }
   use { 'folke/lsp-colors.nvim', config = get_config("lsp-colors") }
-  use { 'tami5/lspsaga.nvim', config = get_config("lspsaga") }
+  use { 'tami5/lspsaga.nvim', after = "nvim-lspconfig", config = get_config("lspsaga-vim") }
 
   use {
     "folke/trouble.nvim",
