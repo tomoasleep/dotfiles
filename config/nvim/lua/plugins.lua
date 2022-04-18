@@ -17,15 +17,13 @@ vim.cmd([[
 ]])
 
 return require('packer').startup({ function(use)
-  -- My plugins here
-  -- use 'foo1/bar1.nvim'
-  -- use 'foo2/bar2.nvim'
   use 'wbthomason/packer.nvim'
   use 'vim-denops/denops.vim'
 
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { {'nvim-lua/plenary.nvim'} },
+    config = get_config('telescope'),
   }
 
   use { 'Shougo/ddu.vim', config = get_config("ddu") }
@@ -67,6 +65,8 @@ return require('packer').startup({ function(use)
     },
   }
 
+  use { "aserowy/tmux.nvim", config = get_config("tmux") }
+
   use 'vim-scripts/endwise.vim'
   use 'vim-scripts/matchit.zip'
   use 'vim-scripts/neco-look'
@@ -77,7 +77,9 @@ return require('packer').startup({ function(use)
   use 'sheerun/vim-polyglot'
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
-  use 'lifepillar/vim-solarized8'
+  use { 'lifepillar/vim-solarized8', config = get_config("solarized8") }
+  use 'morhetz/gruvbox'
+  use { 'shaunsingh/solarized.nvim', config = get_config("solarized") }
   use 'nathanaelkane/vim-indent-guides'
   use 'mhinz/vim-startify'
   use { 'petertriho/nvim-scrollbar', config = get_config("scrollbar") }
@@ -90,7 +92,7 @@ return require('packer').startup({ function(use)
   use { 'tamago324/nlsp-settings.nvim', config = get_config("nlsp-settings") }
   use { 'j-hui/fidget.nvim', config = get_config("fidget") }
   use { 'folke/lsp-colors.nvim', config = get_config("lsp-colors") }
-  use { 'tami5/lspsaga.nvim' }
+  use { 'tami5/lspsaga.nvim', config = get_config("lspsaga") }
 
   use {
     "folke/trouble.nvim",
