@@ -26,34 +26,11 @@ return require('packer').startup({ function(use)
     config = get_config('telescope'),
   }
 
-  use { 'Shougo/ddu.vim', config = get_config("ddu") }
-  use 'Shougo/ddu-ui-ff'
-  use 'Shougo/ddu-ui-filer'
-
-  use 'Shougo/ddu-kind-file'
-  use 'Shougo/ddu-kind-word'
-
-  use 'Shougo/ddu-filter-matcher_substring'
-
-  use 'Shougo/ddu-source-file_rec'
-  use 'Shougo/ddu-source-file'
-  use 'matsui54/ddu-source-help'
-  use 'matsui54/ddu-source-command_history'
-  use 'Shougo/ddu-source-buffer'
-  use 'Shougo/ddu-source-line'
-  use 'Bakudankun/ddu-source-package'
-  use '4513ECHO/ddu-source-colorscheme'
-  use '4513ECHO/ddu-source-emoji'
-  use 'Shougo/ddu-source-action'
-
-  use 'Shougo/ddu-commands.vim'
-
-  use { 'Shougo/ddc.vim', config = get_config("ddc") }
-  use 'Shougo/ddc-nvim-lsp'
-  use 'Shougo/ddc-matcher_head'
-  use 'Shougo/ddc-sorter_rank'
-  use { 'matsui54/denops-signature_help', config = get_config("denops-signature_help") }
-  use { 'matsui54/denops-popup-preview.vim', config = get_config("denops-popup-preview") }
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
 
   use {
   "nvim-neo-tree/neo-tree.nvim",
