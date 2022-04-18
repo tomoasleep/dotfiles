@@ -74,7 +74,8 @@ return require('packer').startup({ function(use)
   use { 'mcchrish/nnn.vim', config = get_config("nnn") }
   use { 'ntpeters/vim-better-whitespace', config = get_config("better-whitespace") }
 
-  use 'sheerun/vim-polyglot'
+  use { 'nvim-treesitter/nvim-treesitter', config = get_config("treesitter") }
+  -- use 'sheerun/vim-polyglot'
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
   use { 'lifepillar/vim-solarized8', config = get_config("solarized8") }
