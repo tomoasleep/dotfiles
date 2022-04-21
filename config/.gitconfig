@@ -5,7 +5,7 @@
 [alias]
   co = checkout
   current-branch = rev-parse --abbrev-ref HEAD
-  branch-root = "!git merge-base ${GIT_BASE_BRANCH:=master} HEAD"
+  branch-root = "!git merge-base $(git head-branch) HEAD"
   review = !tig --no-walk --reverse -w $(git branch-root)..HEAD
   review-rebase = !git rebase -i $(git branch-root)
   amend = commit --amend -C HEAD
