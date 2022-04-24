@@ -62,3 +62,7 @@ cmp.setup.cmdline(':', {
   })
 })
 
+cmp.setup.filetype('unite', {
+  enabled = false,
+})
+
