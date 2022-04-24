@@ -1,7 +1,7 @@
 local lspconfig = require('lspconfig')
 local server = require "nvim-lsp-installer.server"
 local installers = require "nvim-lsp-installer.installers"
-local gem = require "nvim-lsp-installer.installers.gem"
+local gem = require "nvim-lsp-installer.core.managers.gem"
 local gitgem = require "git-gem"
 
 local M = {}
@@ -12,6 +12,7 @@ function M.server(name)
   return server.Server:new {
     name = name,
     root_dir = root_dir,
+    async = true,
     languages = { "ruby" },
     homepage = "https://github.com/tomoasleep/yoda",
     installer = gem.packages { "yoda-language-server" },
@@ -27,6 +28,7 @@ function M.dev_server(name)
   return server.Server:new {
     name = name,
     root_dir = root_dir,
+    async = true,
     languages = { "ruby" },
     homepage = "https://github.com/tomoasleep/yoda",
     installer = gitgem.package("https://github.com/tomoasleep/yoda"),
