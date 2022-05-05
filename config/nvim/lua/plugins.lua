@@ -57,7 +57,7 @@ return require('packer').startup({ function(use)
 
   use { 'nvim-treesitter/nvim-treesitter', config = get_config("treesitter") }
   -- use 'sheerun/vim-polyglot'
-  use 'vim-airline/vim-airline'
+  use { 'vim-airline/vim-airline', config = get_config("airline") }
   use 'vim-airline/vim-airline-themes'
   use { 'lifepillar/vim-solarized8', config = get_config("solarized8") }
   use 'morhetz/gruvbox'
