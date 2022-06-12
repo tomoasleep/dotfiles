@@ -1,0 +1,56 @@
+#!/bin/sh
+
+set -eu
+
+ROOT_DIR=$(cd $(dirname $(dirname $0)); pwd)
+
+VERSION=v2.4.1
+BIN_NAME=op
+BIN_DIR=$ROOT_DIR/.install/$BIN_NAME/$VERSION
+BIN_PATH=$BIN_DIR/$BIN_NAME
+
+cpuarch() {
+  if [ "$(os)" = "apple" ]; then
+    echo "universal"
+    return
+  fi
+
+  case `uname -m` in
+    "x86_64" )
+      echo "amd64"
+      ;;
+    "aarch64" )
+      echo "arm64"
+      ;;
+  esac
+}
+
+os() {
+  case `uname -s | tr '[:upper:]' '[:lower:]'` in
+    "linux" )
+      echo "linux"
+      ;;
+    "darwin" )
+      echo "apple"
+      ;;
+  esac
+}
+
+
+download_bin() {
+  local tempdir=$(mktemp -d)
+  local OS=$(os)
+  local ARCH=$(cpuarch)
+
+  echo "Downloading $BIN_NAME $VERSION ..."
+  curl -fL https://cache.agilebits.com/dist/1P/op2/pkg/${VERSION}/op_${OS}_${ARCH}_${VERSION}.zip > $tempdir/op.zip
+  unzip -d $tempdir/op $tempdir/op.zip
+  test -d $BIN_DIR || mkdir -p $BIN_DIR
+
+  mv $tempdir/op/op $BIN_PATH
+  chmod +x $BIN_PATH
+  echo "Downloaded $BIN_NAME $VERSION"
+}
+
+test -x $BIN_PATH || download_bin
+$BIN_PATH $@
