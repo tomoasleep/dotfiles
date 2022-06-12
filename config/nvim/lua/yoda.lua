@@ -1,10 +1,14 @@
 local lspconfig = require('lspconfig')
 local server = require "nvim-lsp-installer.server"
-local installers = require "nvim-lsp-installer.installers"
 local gem = require "nvim-lsp-installer.core.managers.gem"
 local gitgem = require "git-gem"
 
 local M = {}
+
+function noop(pkg)
+  return function()
+  end
+end
 
 function M.server(name)
   local root_dir = server.get_server_root_path(name)
@@ -46,7 +50,7 @@ function M.local_server(name)
     root_dir = root_dir,
     languages = { "ruby" },
     homepage = "https://github.com/tomoasleep/yoda",
-    installer = installers.noop,
+    installer = noop,
     default_options = {},
   }
 end

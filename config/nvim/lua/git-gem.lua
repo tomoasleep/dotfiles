@@ -1,9 +1,8 @@
-local process = require "nvim-lsp-installer.process"
-local fs = require "nvim-lsp-installer.fs"
-local path = require "nvim-lsp-installer.path"
-local installers = require "nvim-lsp-installer.installers"
 local std = require "nvim-lsp-installer.core.managers.std"
 local git = require "nvim-lsp-installer.core.managers.git"
+local fs = require "nvim-lsp-installer.core.fs"
+local path = require "nvim-lsp-installer.core.path"
+local process = require "nvim-lsp-installer.core.process"
 local result = require "nvim-lsp-installer.core.result"
 
 local M = {}
