@@ -1,0 +1,50 @@
+#!/bin/sh
+
+set -eu
+
+ROOT_DIR=$(cd $(dirname $(dirname $0)); pwd)
+
+VERSION=4.4.0
+BIN_NAME=code-server
+BIN_DIR=$ROOT_DIR/.install/$BIN_NAME/$VERSION
+PKG_PATH=$ROOT_DIR/.install/$BIN_NAME/$VERSION/$BIN_NAME
+BIN_PATH=$PKG_PATH/bin/$BIN_NAME
+
+cpuarch() {
+  case `uname -m` in
+    "x86_64" )
+      echo "amd64"
+      ;;
+    "aarch64" )
+      echo "arm64"
+      ;;
+  esac
+}
+
+os() {
+  case `uname -s | tr '[:upper:]' '[:lower:]'` in
+    "linux" )
+      echo "linux"
+      ;;
+    "darwin" )
+      echo "macos"
+      ;;
+  esac
+}
+
+
+download_bin() {
+  local tempdir=$(mktemp -d)
+  local OS=$(os)
+  local ARCH=$(cpuarch)
+
+  echo "Downloading $BIN_NAME $VERSION ..."
+  curl -fL https://github.com/coder/code-server/releases/download/v$VERSION/code-server-${VERSION}-${OS}-${ARCH}.tar.gz | tar -C $tempdir -xz
+  test -d $BIN_DIR || mkdir -p $BIN_DIR
+
+  mv $tempdir/code-server-${VERSION}-${OS}-${ARCH} $PKG_PATH
+  echo "Downloaded $BIN_NAME $VERSION"
+}
+
+test -x $BIN_PATH || download_bin
+$BIN_PATH $@
