@@ -27,8 +27,6 @@
   path = .gitconfig.local
 [color]
   ui = auto
-[url "git@github.com:"]
-  insteadof = https://github.com/
 [credential]
 	helper = osxkeychain
 [ghq]
