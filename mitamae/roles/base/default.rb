@@ -12,3 +12,7 @@ dotfile '.tmux'
 dotfile '.tmux.conf'
 dotfile '.tigrc'
 dotfile '.hyper.js'
+
+lineinfile '.bashrc' do
+  line "source ~/.bashrc.dotfiles"
+end

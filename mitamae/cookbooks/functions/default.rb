@@ -24,6 +24,16 @@ define :dotfile, source: nil do
   end
 end
 
+define :lineinfile, line: nil do
+  path = File.join(ENV['HOME'], params[:name])
+  content = Shellwords.shellescape(params[:line])
+
+  execute path do
+    command "printf '%s\n' #{content} >> #{path}"
+    not_if "grep -e #{content} #{path}"
+  end
+end
+
 # define :github_binary, version: nil, repository: nil, archive: nil, binary_path: nil do
 #   cmd = params[:name]
 #   bin_path = "#{ENV['HOME']}/bin/#{cmd}"
