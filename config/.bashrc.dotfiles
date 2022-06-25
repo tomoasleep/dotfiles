@@ -1,6 +1,1 @@
-export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH 
-
-export PATH="$HOME/.anyenv/bin:$PATH"
-if (which anyenv > /dev/null); then
-    eval "$(anyenv init - bash)"
-fi
+# nothing
