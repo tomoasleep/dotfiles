@@ -39,6 +39,9 @@
     name: '{{ item }}'
     state: present
   with_items:
+    - 1password
+    - 1password-cli
+    - alttab
     - atom
     - atom-beta
     - docker
@@ -50,12 +53,13 @@
     - iterm2
     - karabiner-elements
     - keeweb
+    - krisp
     - oni
     - postman
     - logitech-options
+    - ueli
     - sequel-pro
     - spectacle
     - slack
     - visual-studio-code
     - xquartz
-    - zazu
