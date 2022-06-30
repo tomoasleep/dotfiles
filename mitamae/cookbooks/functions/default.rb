@@ -1,3 +1,8 @@
+# Configure dash to load ~/.profile before each command.
+# See: https://manpages.ubuntu.com/manpages/trusty/man1/sh.1.html
+ENV['ENV'] = File.join(ENV['HOME'], '.profile')
+ENV['BASH_ENV'] = File.join(ENV['HOME'], '.profile')
+
 node.reverse_merge!(
   os: run_command('uname').stdout.strip.downcase,
 )

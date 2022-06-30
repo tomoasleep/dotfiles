@@ -15,7 +15,7 @@ if [ -z "${DOTFILES_NO_CLONE:-""}" ]; then
   cd $DOTFILES_DIR
 fi
 
-cd mitamae && ../bin/mitamae local recipe.rb
+cd mitamae && ../bin/mitamae local recipe.rb --shell /bin/bash
 
 # Check if ansible is executable
 # ansible --version
