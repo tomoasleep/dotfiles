@@ -1,6 +1,11 @@
+# Avoid loading `.profile` infinitely
+unset BASH_ENV
+
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH 
 
 export PATH="$HOME/.anyenv/bin:$PATH"
 if (which anyenv > /dev/null); then
     eval "$(anyenv init -)"
 fi
+
+test -f /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
