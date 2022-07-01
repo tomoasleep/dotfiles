@@ -6,10 +6,10 @@ set -x EDITOR nvim
 set -x VISUAL nvim
 
 # set -x GOPATH $HOME/.go
-set PATH /home/linuxbrew/.linuxbrew/bin $PATH 
-set PATH /snap/bin $PATH 
-set PATH $HOME/.cargo/bin $PATH 
-set PATH $HOME/.local/bin $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH 
+set PATH /home/linuxbrew/.linuxbrew/bin $PATH
+set PATH /snap/bin $PATH
+set PATH $HOME/.cargo/bin $PATH
+set PATH $HOME/.local/bin $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH
 set PATH $PATH $HOME/.krew/bin
 set -x AWS_SDK_LOAD_CONFIG true
 
@@ -119,25 +119,25 @@ set -g __fish_git_prompt_showupstream auto
 
 set -U async_prompt_functions date_prompt kubernetes_prompt terraform_prompt
 
-function date_prompt_loading_indicator -a last_prompt 
+function date_prompt_loading_indicator -a last_prompt
   # echo -n "$last_prompt" | sed -r 's/\x1B\[[0-9;]*[JKmsu]//g' | read -zl uncolored_last_prompt
   # echo -n (set_color brblack)"$uncolored_last_prompt"(set_color normal)
   echo (set_color '#aaa')' … '(set_color normal)
 end
 
-function git_prompt_loading_indicator -a last_prompt 
+function git_prompt_loading_indicator -a last_prompt
   # echo -n "$last_prompt" | sed -r 's/\x1B\[[0-9;]*[JKmsu]//g' | read -zl uncolored_last_prompt
   # echo -n (set_color brblack)"$uncolored_last_prompt"(set_color normal)
   echo (set_color '#aaa')' … '(set_color normal)
 end
 
-function kubernetes_prompt_loading_indicator -a last_prompt 
+function kubernetes_prompt_loading_indicator -a last_prompt
   # echo -n "$last_prompt" | sed -r 's/\x1B\[[0-9;]*[JKmsu]//g' | read -zl uncolored_last_prompt
   # echo -n (set_color brblack)"$uncolored_last_prompt"(set_color normal)
   echo (set_color '#aaa')' … '(set_color normal)
 end
 
-function terraform_prompt_loading_indicator -a last_prompt 
+function terraform_prompt_loading_indicator -a last_prompt
   # echo -n "$last_prompt" | sed -r 's/\x1B\[[0-9;]*[JKmsu]//g' | read -zl uncolored_last_prompt
   # echo -n (set_color brblack)"$uncolored_last_prompt"(set_color normal)
   echo (set_color '#aaa')' … '(set_color normal)
