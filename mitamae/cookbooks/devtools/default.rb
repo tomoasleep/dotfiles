@@ -1,6 +1,7 @@
 include_cookbook 'homebrew'
 
 homebrew "asdf"
+homebrew "deno"
 homebrew "direnv"
 homebrew "fish"
 homebrew "fzf"
@@ -13,5 +14,6 @@ homebrew "neovim"
 homebrew "tig"
 homebrew "tmux"
 homebrew "yarn"
+homebrew "ansible"
 
 include_cookbook 'anyenv'

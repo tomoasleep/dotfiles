@@ -1,65 +1,67 @@
-- name: 'Copy dotfiles'
-  file:
-    src: '~/dotfiles/{{ item.src }}'
-    dest: '~/{{ item.dest }}'
-    state: link
-  with_items:
-    - { src: '.tmux.conf.osx', dest: '.tmux.conf.osx' }
+# - name: 'Copy dotfiles'
+#   file:
+#     src: '~/dotfiles/{{ item.src }}'
+#     dest: '~/{{ item.dest }}'
+#     state: link
+#   with_items:
+#     - { src: '.tmux.conf.osx', dest: '.tmux.conf.osx' }
 
-- name: Make ensure homebrew is installed
-  shell: 'which brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+# - name: Make ensure homebrew is installed
+#   shell: 'which brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
 
-- name: Make packages latest
-  package:
-    name: '{{ item }}'
-    state: latest
-  with_items:
-    - ansible
-    - direnv
-    - fzf
-    - neovim
-    - tmux
-    - fish
-    - ghq
-    - jq
-    - go
-    - hub
-    - reattach-to-user-namespace
-    - tig
+# - name: Make packages latest
+#   package:
+#     name: '{{ item }}'
+#     state: latest
+#   with_items:
+#     - ansible
+#     - direnv
+#     - fzf
+#     - neovim
+#     - tmux
+#     - fish
+#     - ghq
+#     - jq
+#     - go
+#     - hub
+#     - reattach-to-user-namespace
+#     - tig
 
 - homebrew_tap:
     name: '{{ item }}'
     state: present
   with_items:
-    - caskroom/cask
-    - caskroom/versions
+    - homebrew/cask
+    - homebrew/cask-versions
+    - homebrew/cask-drivers
 
-- name: Make homebrew cask packages installed
-  homebrew_cask:
-    name: '{{ item }}'
-    state: present
-  with_items:
-    - 1password
-    - 1password-cli
-    - alttab
-    - atom
-    - atom-beta
-    - docker
-    - google-japanese-ime
-    - google-backup-and-sync
-    - google-cloud-sdk
-    - hyperswitch
-    - hyper
-    - iterm2
-    - karabiner-elements
-    - keeweb
-    - krisp
-    - oni
-    - postman
-    - logitech-options
-    - ueli
-    - sequel-pro
-    - spectacle
-    - slack
-    - visual-studio-code
-    - xquartz
+# - name: Make homebrew cask packages installed
+#   homebrew_cask:
+#     name: '{{ item }}'
+#     state: present
+#   with_items:
+#     - 1password
+#     - 1password-cli
+#     - alt-tab
+#     - atom
+#     - atom-beta
+#     - docker
+#     - google-japanese-ime
+#     # - google-backup-and-sync
+#     - google-cloud-sdk
+#     - google-drive
+#     - hyperswitch
+#     - hyper
+#     - iterm2
+#     - karabiner-elements
+#     - keeweb
+#     - krisp
+#     # - oni
+#     - postman
+#     - logitech-options
+#     - ueli
+#     - sequel-pro
+#     - spectacle
+#     - slack
+#     - visual-studio-code
+#     - xquartz
