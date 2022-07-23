@@ -25,7 +25,7 @@ set GO111MODULE on
 which brew > /dev/null; and source (brew --prefix asdf)/asdf.fish
 type -q anyenv; and source (anyenv init - | psub)
 type -q direnv; and eval (direnv hook fish)
-type -q hub; and eval (hub alias -s)
+# type -q hub; and eval (hub alias -s)
 
 set PATH $GOROOT/bin $GOPATH/bin $PATH
 
