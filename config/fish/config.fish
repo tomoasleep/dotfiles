@@ -77,7 +77,7 @@ function kubernetes_prompt
     return
   end
 
-  if type -q kubectl
+  if type -q kubectl && type -q jq && kubectl config view -o json | jq --exit-status .contexts > /dev/null
     set -l namespace (kubectl config view -o "jsonpath={.contexts[?(@.name==\"$context\")].context.namespace}")
     printf "(⎈ %s/%s)" (kubectl config current-context 2>/dev/null) (string length -q $namespace; and echo $namespace or echo 'default')
   else
