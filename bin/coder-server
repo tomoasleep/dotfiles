@@ -4,7 +4,7 @@ set -eu
 
 ROOT_DIR=$(cd $(dirname $(dirname $0)); pwd)
 
-VERSION=4.5.0
+VERSION=4.5.1
 BIN_NAME=code-server
 BIN_DIR=$ROOT_DIR/.install/$BIN_NAME/$VERSION
 PKG_PATH=$ROOT_DIR/.install/$BIN_NAME/$VERSION/$BIN_NAME
