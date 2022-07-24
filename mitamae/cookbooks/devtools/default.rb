@@ -15,5 +15,6 @@ homebrew "tig"
 homebrew "tmux"
 homebrew "yarn"
 homebrew "ansible"
+homebrew "wget"
 
 include_cookbook 'anyenv'
