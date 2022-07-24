@@ -51,6 +51,7 @@ anyenv_env :nodenv do
   plugins([
     "https://github.com/nodenv/nodenv-package-rehash",
     "https://github.com/nodenv/nodenv-default-packages",
+    "https://github.com/nodenv/nodenv-aliases",
   ])
 end
 
