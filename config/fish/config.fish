@@ -5,7 +5,11 @@ set -U FZF_TMUX 1
 set -x EDITOR nvim
 set -x VISUAL nvim
 
-test -f /opt/homebrew/bin/brew; and eval (/opt/homebrew/bin/brew shellenv)
+if test -f /opt/homebrew/bin/brew
+  eval (/opt/homebrew/bin/brew shellenv)
+  set -x CPATH $CPATH (brew --prefix)/include
+  set -x LIBRARY_PATH $LIBRARY_PATH (brew --prefix)/lib
+end
 
 # set -x GOPATH $HOME/.go
 set PATH /home/linuxbrew/.linuxbrew/bin $PATH
