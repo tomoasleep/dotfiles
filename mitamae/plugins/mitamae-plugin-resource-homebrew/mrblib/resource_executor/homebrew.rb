@@ -4,7 +4,7 @@ module ::MItamae
       class Homebrew < ::MItamae::ResourceExecutor::Base
         def apply
           if !current.exist && desired.exist
-            run_command(["brew", "install", *Array(desired.options), desired.target])
+            run_command(["brew", "install", *command_options, desired.target])
           end
 
           if current.exist && !desired.exist
@@ -13,6 +13,13 @@ module ::MItamae
         end
 
         private
+
+        def command_options
+          options = Array(desired.options)
+          options << "--cask" if desired.cask
+
+          options
+        end
 
         def set_current_attributes(current, action)
           result = run_command("#{brew_list} | grep '^#{desired.target}$'", error: false)
