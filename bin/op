@@ -4,7 +4,7 @@ set -eu
 
 ROOT_DIR=$(cd $(dirname $(dirname $0)); pwd)
 
-VERSION=v2.4.1
+VERSION=v2.7.1
 BIN_NAME=op
 BIN_DIR=$ROOT_DIR/.install/$BIN_NAME/$VERSION
 BIN_PATH=$BIN_DIR/$BIN_NAME
@@ -43,6 +43,7 @@ download_bin() {
   local ARCH=$(cpuarch)
 
   echo "Downloading $BIN_NAME $VERSION ..."
+
   curl -fL https://cache.agilebits.com/dist/1P/op2/pkg/${VERSION}/op_${OS}_${ARCH}_${VERSION}.zip > $tempdir/op.zip
   unzip -d $tempdir/op $tempdir/op.zip
   test -d $BIN_DIR || mkdir -p $BIN_DIR
@@ -52,5 +53,11 @@ download_bin() {
   echo "Downloaded $BIN_NAME $VERSION"
 }
 
-test -x $BIN_PATH || download_bin
-$BIN_PATH $@
+
+if [ "$(os)" = "apple" ]; then
+  /usr/local/bin/op $@
+else
+  test -x $BIN_PATH || download_bin
+  $BIN_PATH $@
+fi
+
