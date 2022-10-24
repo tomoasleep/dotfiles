@@ -52,6 +52,7 @@ anyenv_env :nodenv do
     "https://github.com/nodenv/nodenv-package-rehash",
     "https://github.com/nodenv/nodenv-default-packages",
     "https://github.com/nodenv/nodenv-aliases",
+    "https://github.com/manlao/nodenv-auto-install.git",
   ])
 end
 
