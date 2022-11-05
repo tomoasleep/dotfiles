@@ -26,14 +26,13 @@ which ghq > /dev/null; and set PATH (ghq root)/github.com/tomoasleep/private-uti
 
 set GO111MODULE on
 
-which brew > /dev/null; and source (brew --prefix asdf)/asdf.fish
 type -q anyenv; and source (anyenv init - | psub)
 type -q direnv; and eval (direnv hook fish)
 # type -q hub; and eval (hub alias -s)
 
 set PATH $GOROOT/bin $GOPATH/bin $PATH
 
-test -f "$HOME/.asdf/asdf.fish"; and source ~/.asdf/asdf.fish
+test -f "$HOME/.asdf/asdf.fish"; and source $HOME/.asdf/asdf.fish
 
 if uname -a | grep -q 'microsoft'
   alias mcopy clip.exe

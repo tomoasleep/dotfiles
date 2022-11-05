@@ -1,6 +1,6 @@
 include_cookbook 'functions'
 
-repo_root = File.expand_path("../../../../", __FILE__)
+repo_root = File.expand_path('../../..', File.dirname(__FILE__))
 
 link File.join(ENV['HOME'], 'dotfiles') do
   to repo_root
@@ -14,6 +14,7 @@ dotconfig 'fish'
 dotconfig 'git'
 
 dotfile '.atom'
+dotfile '.asdfrc'
 dotfile '.bashrc.dotfiles'
 dotfile '.profile.dotfiles'
 dotfile '.gitconfig'
@@ -23,9 +24,9 @@ dotfile '.tigrc'
 dotfile '.hyper.js'
 
 lineinfile '.bashrc' do
-  line "test -f ~/.bashrc.dotfiles && source ~/.bashrc.dotfiles"
+  line 'test -f ~/.bashrc.dotfiles && source ~/.bashrc.dotfiles'
 end
 
 lineinfile '.profile' do
-  line "test -f ~/.profile.dotfiles && source ~/.profile.dotfiles"
+  line 'test -f ~/.profile.dotfiles && source ~/.profile.dotfiles'
 end

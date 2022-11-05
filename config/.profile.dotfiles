@@ -19,3 +19,7 @@ if test -f /opt/homebrew/bin/brew; then
   export CPATH=$CPATH:$(brew --prefix)/lib
   export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix)/lib
 fi
+
+if test -f $HOME/.asdf/asdf.sh; then
+  . $HOME/.asdf/asdf.sh
+fi
