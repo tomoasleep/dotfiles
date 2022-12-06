@@ -56,7 +56,7 @@ return require('packer').startup({ function(use)
   use 'vim-scripts/neco-look'
   use 'vim-scripts/surround.vim'
   use { 'mcchrish/nnn.vim', config = get_config("nnn") }
-  use { 'ntpeters/vim-better-whitespace', config = get_config("better-whitespace") }
+  -- use { 'ntpeters/vim-better-whitespace', config = get_config("better-whitespace") }
 
   use { 'nvim-treesitter/nvim-treesitter', config = get_config("treesitter") }
   -- use 'sheerun/vim-polyglot'
@@ -68,7 +68,7 @@ return require('packer').startup({ function(use)
   use 'nathanaelkane/vim-indent-guides'
   use 'mhinz/vim-startify'
   use { 'petertriho/nvim-scrollbar', config = get_config("scrollbar") }
-  use { 'rcarriga/nvim-notify', config = get_config("notify") }
+  -- use { 'rcarriga/nvim-notify', config = get_config("notify") }
 
   use 'github/copilot.vim'
 
@@ -77,7 +77,7 @@ return require('packer').startup({ function(use)
   use { 'tamago324/nlsp-settings.nvim', config = get_config("nlsp-settings") }
   use { 'j-hui/fidget.nvim', config = get_config("fidget") }
   use { 'folke/lsp-colors.nvim', config = get_config("lsp-colors") }
-  use { 'tami5/lspsaga.nvim', after = "nvim-lspconfig", config = get_config("lspsaga-vim") }
+  -- use { 'tami5/lspsaga.nvim', after = "nvim-lspconfig", config = get_config("lspsaga-vim") }
 
   use {
     "folke/trouble.nvim",
