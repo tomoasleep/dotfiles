@@ -55,9 +55,9 @@ download_bin() {
 
 
 if [ "$(os)" = "apple" ]; then
-  /usr/local/bin/op $@
+  /usr/local/bin/op "$@"
 else
   test -x $BIN_PATH || download_bin
-  $BIN_PATH $@
+  $BIN_PATH "$@"
 fi
 
