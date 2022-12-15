@@ -17,10 +17,13 @@ set PATH /snap/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.local/bin $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH
 set PATH $PATH $HOME/.krew/bin
+fish_add_path /opt/homebrew/opt/openjdk/bin
+
 set -x AWS_SDK_LOAD_CONFIG true
 
 set -x NNN_FIFO /tmp/nnn.fifo
 set -x NNN_PLUG 'p:preview-tui'
+set -gx CPPFLAGS "-I/opt/homebrew/opt/openjdk/include"
 
 which ghq > /dev/null; and set PATH (ghq root)/github.com/tomoasleep/private-utils/bin $PATH
 
