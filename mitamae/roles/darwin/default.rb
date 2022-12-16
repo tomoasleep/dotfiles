@@ -12,6 +12,7 @@ homebrew '1password'
 homebrew '1password-cli'
 homebrew 'pam-reattach'
 homebrew 'alt-tab'
+homebrew 'ankerwork'
 homebrew 'atom'
 homebrew 'docker' do
   cask true
@@ -38,7 +39,6 @@ homebrew 'bartender'
 homebrew 'bing-wallpaper'
 homebrew 'microsoft-remote-desktop'
 
-homebrew 'homebrew/cask-drivers/logitech-options'
 homebrew 'homebrew/cask-drivers/logi-options-plus'
 
 homebrew 'homebrew/cask-fonts/font-hackgen'
