@@ -17,31 +17,41 @@ if which xcrun > /dev/null
   # set -x LIBRARY_PATH $CPATH (xcrun --sdk macosx --show-sdk-path)/usr/lib
 end
 
+# Wasmer
+set -gx WASMER_DIR /Users/tomoya/.wasmer
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+set -gx WASMTIME_HOME "$HOME/.wasmtime"
+fish_add_path $WASMTIME_HOME/bin
+
 # set -x GOPATH $HOME/.go
-set PATH /home/linuxbrew/.linuxbrew/bin $PATH
-set PATH /snap/bin $PATH
-set PATH $HOME/.cargo/bin $PATH
-set PATH $HOME/.local/bin $HOME/dotfiles/bin $HOME/.anyenv/bin $GOPATH/bin ./node_modules/.bin $PATH
-set PATH $PATH $HOME/.krew/bin
-fish_add_path /opt/homebrew/opt/openjdk/bin
+fish_add_path -p /home/linuxbrew/.linuxbrew/bin
+# https://github.com/WebAssembly/wasi-sdk/issues/172
+fish_add_path -p /opt/homebrew/opt/llvm/bin
+fish_add_path -p /snap/bin
+fish_add_path -p $HOME/.cargo/bin
+fish_add_path -p $HOME/.local/bin
+fish_add_path -p $HOME/dotfiles/bin
+fish_add_path -p $HOME/.anyenv/bin
+if test -n "$GOPATH"
+  fish_add_path -p $GOPATH/bin
+  fish_add_path -p $GOROOT/bin
+end
+fish_add_path -p ./node_modules/.bin
+fish_add_path -p $HOME/.krew/bin
+fish_add_path -p /opt/homebrew/opt/openjdk/bin
+
+which ghq > /dev/null; and fish_add_path (ghq root)/github.com/tomoasleep/private-utils/bin
+test -f "$HOME/.asdf/asdf.fish"; and source $HOME/.asdf/asdf.fish
 
 set -x AWS_SDK_LOAD_CONFIG true
-
-set -x NNN_FIFO /tmp/nnn.fifo
-set -x NNN_PLUG 'p:preview-tui'
 set -gx CPPFLAGS "-I/opt/homebrew/opt/openjdk/include"
-
-which ghq > /dev/null; and set PATH (ghq root)/github.com/tomoasleep/private-utils/bin $PATH
 
 set GO111MODULE on
 
 type -q anyenv; and source (anyenv init - | psub)
 type -q direnv; and eval (direnv hook fish)
 # type -q hub; and eval (hub alias -s)
-
-set PATH $GOROOT/bin $GOPATH/bin $PATH
-
-test -f "$HOME/.asdf/asdf.fish"; and source $HOME/.asdf/asdf.fish
 
 if uname -a | grep -q 'microsoft'
   alias mcopy clip.exe
@@ -166,13 +176,4 @@ set -U __done_notify_sound 1
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; . "$HOME/google-cloud-sdk/path.fish.inc"; end
-
 test -f "$HOME/.config/fish/config.local.fish"; and source $HOME/.config/fish/config.local.fish
-
-# Wasmer
-export WASMER_DIR="/Users/tomoya/.wasmer"
-[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
-
-set -gx WASMTIME_HOME "$HOME/.wasmtime"
-
-string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
