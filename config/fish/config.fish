@@ -11,6 +11,12 @@ if test -f /opt/homebrew/bin/brew
   set -x LIBRARY_PATH $LIBRARY_PATH (brew --prefix)/lib
 end
 
+if which xcrun > /dev/null
+  set -x SDKROOT (xcrun --sdk macosx --show-sdk-path)
+  # set -x CPATH $CPATH (xcrun --sdk macosx --show-sdk-path)/usr/include
+  # set -x LIBRARY_PATH $CPATH (xcrun --sdk macosx --show-sdk-path)/usr/lib
+end
+
 # set -x GOPATH $HOME/.go
 set PATH /home/linuxbrew/.linuxbrew/bin $PATH
 set PATH /snap/bin $PATH
@@ -162,3 +168,11 @@ set -U __done_notify_sound 1
 if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; . "$HOME/google-cloud-sdk/path.fish.inc"; end
 
 test -f "$HOME/.config/fish/config.local.fish"; and source $HOME/.config/fish/config.local.fish
+
+# Wasmer
+export WASMER_DIR="/Users/tomoya/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+set -gx WASMTIME_HOME "$HOME/.wasmtime"
+
+string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
