@@ -11,12 +11,6 @@ if test -f /opt/homebrew/bin/brew
   set -x LIBRARY_PATH $LIBRARY_PATH (brew --prefix)/lib
 end
 
-if which xcrun > /dev/null
-  set -x SDKROOT (xcrun --sdk macosx --show-sdk-path)
-  # set -x CPATH $CPATH (xcrun --sdk macosx --show-sdk-path)/usr/include
-  # set -x LIBRARY_PATH $CPATH (xcrun --sdk macosx --show-sdk-path)/usr/lib
-end
-
 # Wasmer
 set -gx WASMER_DIR /Users/tomoya/.wasmer
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
