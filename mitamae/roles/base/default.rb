@@ -12,6 +12,7 @@ dotconfig 'nvim'
 dotconfig 'nyaovim'
 dotconfig 'fish'
 dotconfig 'git'
+dotconfig 'zsh'
 
 dotfile '.atom'
 dotfile '.asdfrc'
@@ -22,6 +23,7 @@ dotfile '.tmux'
 dotfile '.tmux.conf'
 dotfile '.tigrc'
 dotfile '.hyper.js'
+dotfile '.zshrc'
 
 lineinfile '.bashrc' do
   line 'test -f ~/.bashrc.dotfiles && source ~/.bashrc.dotfiles'

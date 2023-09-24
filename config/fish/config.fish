@@ -38,8 +38,16 @@ fish_add_path -p /opt/homebrew/opt/openjdk/bin
 which ghq > /dev/null; and fish_add_path (ghq root)/github.com/tomoasleep/private-utils/bin
 test -f "$HOME/.asdf/asdf.fish"; and source $HOME/.asdf/asdf.fish
 
+# which yarn > /dev/null; and set PATH (yarn global bin) $PATH
+
 set -x AWS_SDK_LOAD_CONFIG true
-set -gx CPPFLAGS "-I/opt/homebrew/opt/openjdk/include"
+
+set -x NNN_FIFO /tmp/nnn.fifo
+set -x NNN_PLUG 'p:preview-tui'
+# set -gx CPPFLAGS "-I/opt/homebrew/opt/openjdk/include"
+
+which ghq > /dev/null; and set PATH (ghq root)/github.com/tomoasleep/private-utils/bin $PATH
+which shadowenv > /dev/null; and shadowenv init fish | source
 
 set GO111MODULE on
 
