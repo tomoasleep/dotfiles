@@ -1,4 +1,11 @@
-source ~/.zplug/init.zsh
+if [[ -d ~/.zplug ]]; then
+    export ZPLUG_HOME=~/.zplug
+    source $ZPLUG_HOME/init.zsh
+else
+    export ZPLUG_HOME=/opt/homebrew/opt/zplug
+    source $ZPLUG_HOME/init.zsh
+fi
+
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 

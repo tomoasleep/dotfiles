@@ -13,6 +13,7 @@ dotconfig 'nyaovim'
 dotconfig 'fish'
 dotconfig 'git'
 dotconfig 'zsh'
+dotconfig 'starship.toml'
 
 dotfile '.atom'
 dotfile '.asdfrc'

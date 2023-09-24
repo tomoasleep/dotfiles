@@ -40,7 +40,9 @@ homebrew 'bartender'
 homebrew 'bing-wallpaper'
 homebrew 'microsoft-remote-desktop'
 
-homebrew 'homebrew/cask-drivers/logi-options-plus'
+homebrew 'logi-options-plus' do
+  cask true
+end
 
 homebrew 'homebrew/cask-fonts/font-hackgen'
 homebrew 'homebrew/cask-fonts/font-hackgen-nerd'
