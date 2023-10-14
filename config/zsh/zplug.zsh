@@ -17,7 +17,7 @@ zplug "unixorn/fzf-zsh-plugin", as:plugin
 zplug "olets/zsh-abbr"
 zplug "modules/prompt", from:prezto
 
-zplug "~/.config/zsh/local", from:local
+zplug "~/.config/zsh/local", from:local, use:"*.zsh"
 
 # ----------------------------------------
 
