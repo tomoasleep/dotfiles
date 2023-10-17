@@ -1,0 +1,44 @@
+{
+  :layers {
+    :right-hand-mode {:key
+      :right_control :alone {:key :vk_none}
+    }
+  }
+  :main [
+    {
+      :des "Right Hand mode"
+      :rules [
+        :right-hand-mode
+        [:#CTOS1 :7]
+        [:#CTOS2 :8]
+        [:#CTOS3 :9]
+        [:#CTOS4 :0]
+        [:#CTOS5 :hyphen]
+        [:#CTOS6 :equal_sign]
+        [:#CTOSq :u]
+        [:#CTOSw :i]
+        [:#CTOSe :o]
+        [:#CTOSr :p]
+        [:#CTOSt :open_bracket]
+        [:#CTOSy :close_bracket]
+        [:#CTOSa :j]
+        [:#CTOSs :k]
+        [:#CTOSd :l]
+        [:#CTOSf :semicolon]
+        [:#CTOSg :return_or_enter]
+        [:#CTOSz :m]
+        [:#CTOSx :comma]
+        [:#CTOSc :period]
+        [:#CTOSv :slash]
+        [:#CTOSb :backslash]
+      ]
+    },
+    {
+      :des "Swap left control and caps lock"
+      :rules [
+        [:caps_lock :left_control]
+        [:left_control :caps_lock]
+      ]
+    },
+  ]
+}

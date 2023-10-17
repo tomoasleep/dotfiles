@@ -14,6 +14,7 @@ dotconfig 'fish'
 dotconfig 'git'
 dotconfig 'zsh'
 dotconfig 'starship.toml'
+dotconfig 'karabiner.edn'
 
 dotfile '.atom'
 dotfile '.asdfrc'
