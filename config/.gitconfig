@@ -17,6 +17,7 @@
   back-master = !git checkout $(git head-branch) && git fetch origin && git pull origin $(git head-branch)
   track-master = !git fetch origin master:master
   head-branch = "!git remote show origin | awk '/HEAD branch/ {print $NF}'"
+  default-branch = head-branch
   root = rev-parse --show-toplevel
   ft = "!f() { (git rev-parse --verify $1 > /dev/null 2>&1 && git switch -c $1) || git switch $1; }; f"
   cleanup-merged = "!git branch --merged | xargs git branch -d"
