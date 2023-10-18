@@ -11,11 +11,11 @@
   amend = commit --amend -C HEAD
   see = browse
   empty-commit = commit --allow-empty
-  sync = pull origin master:master
+  sync = pull origin $(git head-branch):$(git head-branch)
   pc = !git push origin $(git current-branch)
   new-feature = "!f(){ git back-master &&  git checkout -b $1 master;};f"
   back-master = !git checkout $(git head-branch) && git fetch origin && git pull origin $(git head-branch)
-  track-master = !git fetch origin master:master
+  track-master = !git fetch origin $(git head-branch):$(git head-branch)
   head-branch = "!git remote show origin | awk '/HEAD branch/ {print $NF}'"
   default-branch = head-branch
   root = rev-parse --show-toplevel
