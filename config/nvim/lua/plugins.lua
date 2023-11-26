@@ -74,6 +74,8 @@ return require('packer').startup({ function(use)
 
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
+  use "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim"
   use { 'tamago324/nlsp-settings.nvim', config = get_config("nlsp-settings") }
   use { 'j-hui/fidget.nvim', config = get_config("fidget") }
   use { 'folke/lsp-colors.nvim', config = get_config("lsp-colors") }

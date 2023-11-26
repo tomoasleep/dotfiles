@@ -48,23 +48,48 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 
 -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
 -- or if the server is already installed).
-lsp_installer.on_server_ready(function(server)
-    local opts = {}
 
+-- lsp_installer.on_server_ready(function(server)
+--     local opts = {}
+--
+--
+--     -- (optional) Customize the options passed to the server
+--     -- if server.name == "tsserver" then
+--     --     opts.root_dir = function() ... end
+--     -- end
+--
+--     -- This setup() function will take the provided server configuration and decorate it with the necessary properties
+--     -- before passing it onwards to lspconfig.
+--     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+--     server:setup({
+--       on_attach = on_attach,
+--       -- This will be the default in neovim 0.7+
+--       debounce_text_changes = 150,
+--       capabilities = capabilities
+--     })
+-- end)
 
-    -- (optional) Customize the options passed to the server
-    -- if server.name == "tsserver" then
-    --     opts.root_dir = function() ... end
-    -- end
+require("mason").setup()
+require("mason-lspconfig").setup {
+  ensure_installed = { "sorbet" },
 
-    -- This setup() function will take the provided server configuration and decorate it with the necessary properties
-    -- before passing it onwards to lspconfig.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup({
-      on_attach = on_attach,
-      -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150,
-      capabilities = capabilities
-    })
-end)
+  handlers = {
+    function (server_name) -- default handler (optional)
+      require("lspconfig")[server_name].setup({
+        on_attach = on_attach,
+        debounce_text_changes = 150,
+        capabilities = capabilities
+      })
+    end,
+    ["sorbet"] = function ()
+      require("lspconfig").sorbet.setup {
+        init_options = {
+          highlightUntyped = true
+        },
+        debounce_text_changes = 150,
+        capabilities = capabilities
+      }
+    end,
+  }
+}
 
