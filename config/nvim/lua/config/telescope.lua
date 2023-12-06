@@ -7,7 +7,18 @@ require('telescope').setup({
       results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
       preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     },
+  },
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+      }
+    }
   }
 })
 
 require('telescope').load_extension('ghq')
+require('telescope').load_extension('ui-select')
+
+local builtin = require('telescope.builtin')
+
+vim.keymap.set('n', '<Space>', builtin.commands, {})
