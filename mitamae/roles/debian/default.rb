@@ -10,4 +10,9 @@ when 'arm64', 'aarch64'
   include_cookbook 'devtools-apt'
 end
 
+# https://github.com/microsoft/WSL/issues/4071
+if File.read('/proc/version').include?('microsoft')
+  include_cookbook 'wsl'
+end
+
 include_cookbook 'anyenv'
