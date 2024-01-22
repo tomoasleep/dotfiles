@@ -2,7 +2,7 @@ if [[ -d ~/.zplug ]]; then
     export ZPLUG_HOME=~/.zplug
     source $ZPLUG_HOME/init.zsh
 else
-    export ZPLUG_HOME=/opt/homebrew/opt/zplug
+    export ZPLUG_HOME=$(brew --prefix)/opt/zplug
     source $ZPLUG_HOME/init.zsh
 fi
 
