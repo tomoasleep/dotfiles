@@ -66,6 +66,13 @@ return require('lazy').setup({
       },
     },
 
+    {
+      "ohakutsu/socks-copypath.nvim",
+      config = function()
+        require("socks-copypath").setup()
+      end,
+    },
+
     { "aserowy/tmux.nvim", config = get_config("tmux") },
 
     'vim-scripts/endwise.vim',
