@@ -82,7 +82,7 @@ return require('lazy').setup({
     { 'mcchrish/nnn.vim', config = get_config("nnn") },
     -- { 'ntpeters/vim-better-whitespace', config = get_config("better-whitespace") },
 
-    { 'nvim-treesitter/nvim-treesitter', version = "*", config = get_config("treesitter") },
+    { 'nvim-treesitter/nvim-treesitter', config = get_config("treesitter") },
     -- use 'sheerun/vim-polyglot'
     { 'vim-airline/vim-airline', config = get_config("airline") },
     'vim-airline/vim-airline-themes',
