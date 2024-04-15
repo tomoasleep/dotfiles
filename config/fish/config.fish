@@ -37,6 +37,7 @@ fish_add_path -p /opt/homebrew/opt/openjdk/bin
 
 which ghq > /dev/null; and fish_add_path (ghq root)/github.com/tomoasleep/private-utils/bin
 test -f "$HOME/.asdf/asdf.fish"; and source $HOME/.asdf/asdf.fish
+fish_add_path -p $HOME/.local/share/aquaproj-aqua/bin
 
 # which yarn > /dev/null; and set PATH (yarn global bin) $PATH
 
