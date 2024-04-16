@@ -37,7 +37,7 @@ homebrew 'visual-studio-code'
 homebrew 'xquartz'
 homebrew 'raycast'
 homebrew 'bartender'
-homebrew 'bing-wallpaper'
+# homebrew 'bing-wallpaper'
 homebrew 'microsoft-remote-desktop'
 
 homebrew 'logi-options-plus' do
