@@ -1,5 +1,4 @@
 include_cookbook 'functions'
-include_cookbook 'aqua'
 
 repo_root = File.expand_path('../../..', File.dirname(__FILE__))
 
@@ -38,3 +37,5 @@ end
 lineinfile '.profile' do
   line 'test -f ~/.profile.dotfiles && source ~/.profile.dotfiles'
 end
+
+include_cookbook 'aqua'
