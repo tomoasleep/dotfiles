@@ -5,10 +5,6 @@ include_cookbook 'asdf'
 apt 'tig'
 apt 'wget'
 
-# https://launchpad.net/~fish-shell/+archive/ubuntu/release-3
-apt_repository 'ppa:fish-shell/release-3'
-apt 'fish'
-
 asdf_plugin 'direnv' do
   install_latest true
 end
