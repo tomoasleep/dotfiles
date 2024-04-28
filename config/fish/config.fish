@@ -180,3 +180,5 @@ set -U __done_notify_sound 1
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; . "$HOME/google-cloud-sdk/path.fish.inc"; end
 test -f "$HOME/.config/fish/config.local.fish"; and source $HOME/.config/fish/config.local.fish
+
+starship init fish | source
