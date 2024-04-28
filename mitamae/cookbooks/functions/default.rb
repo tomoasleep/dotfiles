@@ -11,10 +11,12 @@ directory File.expand_path("~/.config") do
   action :create
 end
 
+path_from_dotfiles = -> (path) { dotfiles_path(path) }
+
 define :dotconfig, source: nil do
   source = params[:source] || params[:name]
   link File.join(ENV['HOME'], '.config', params[:name]) do
-    to File.expand_path("../../../../config/#{source}", __FILE__)
+    to path_from_dotfiles.call("config/#{source}")
     user node[:user]
     force true
   end
@@ -23,7 +25,7 @@ end
 define :dotfile, source: nil do
   source = params[:source] || params[:name]
   link File.join(ENV['HOME'], params[:name]) do
-    to File.expand_path("../../../../config/#{source}", __FILE__)
+    to path_from_dotfiles.call("config/#{source}")
     user node[:user]
     force true
   end
@@ -44,7 +46,7 @@ end
 #   bin_path = "#{ENV['HOME']}/bin/#{cmd}"
 #   archive = params[:archive]
 #   url = "https://github.com/#{params[:repository]}/releases/download/#{params[:version]}/#{archive}"
-# 
+#
 #   if archive.end_with?('.zip')
 #     extract = "unzip -o"
 #   elsif archive.end_with?('.tar.gz')
@@ -52,7 +54,7 @@ end
 #   else
 #     raise "unexpected ext archive: #{archive}"
 #   end
-# 
+#
 #   execute "curl -fSL -o /tmp/#{archive} #{url}" do
 #     not_if "test -f #{bin_path}"
 #   end
@@ -64,10 +66,10 @@ end
 #     not_if "test -f #{bin_path}"
 #   end
 # end
-# 
+#
 # define :user_service, action: [] do
 #   name = params[:name]
-# 
+#
 #   Array(params[:action]).each do |action|
 #     case action
 #     when :enable

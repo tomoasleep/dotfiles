@@ -15,11 +15,19 @@ MItamae::RecipeContext.class_eval do
   end
 
   def dotfiles_path(path)
+    File.expand_path(path, dotfiles_dir)
+  end
+
+  def dotfiles_dir
     root_dir = File.expand_path('../..', __FILE__)
-    File.expand_path(path, root_dir)
   end
 
   def from_home(path)
     File.expand_path(path, ENV['HOME'])
+  end
+
+  def devcontainer?
+    # https://github.com/microsoft/vscode-remote-release/issues/3517
+    (ENV['REMOTE_CONTAINERS'] || '').length > 0
   end
 end

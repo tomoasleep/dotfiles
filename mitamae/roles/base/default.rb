@@ -2,10 +2,12 @@ include_cookbook 'functions'
 
 repo_root = File.expand_path('../../..', File.dirname(__FILE__))
 
-link File.join(ENV['HOME'], 'dotfiles') do
-  to repo_root
-  user node[:user]
-  force true
+unless devcontainer?
+  link File.join(ENV['HOME'], 'dotfiles') do
+    to repo_root
+    user node[:user]
+    force true
+  end
 end
 
 dotconfig 'nvim'
