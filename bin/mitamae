@@ -4,8 +4,8 @@ set -eu
 
 ROOT_DIR=$(cd $(dirname $(dirname $0)); pwd)
 
-VERSION=v1.14.0
-BIN_DIR=$ROOT_DIR/.install/mitamae/$VERSION
+VERSION=v1.14.1
+BIN_DIR=$ROOT_DIR/.install/mitamae/$VERSION/$(uname -m)
 
 cpuarch() {
   case `uname -m` in
