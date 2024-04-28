@@ -5,6 +5,10 @@ set -eux
 ROOT_DIR=$(cd $(dirname $0)/.. && pwd)
 cd $ROOT_DIR
 
+if [ ! -z "${REMOTE_CONTAINERS:-""}" ] || [ ! -z "${CODESPACES:-""}" ] || [ $(whoami) == 'vscode' ]; then
+  DOTFILES_NO_CLONE=true
+fi
+
 if [ -z "${DOTFILES_NO_CLONE:-""}" ]; then
   DOTFILES_DIR=$HOME/.ghq/github.com/tomoasleep/dotfiles
   if [ ! -d $DOTFILES_DIR ]; then
