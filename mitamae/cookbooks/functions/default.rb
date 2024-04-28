@@ -12,12 +12,13 @@ directory File.expand_path("~/.config") do
 end
 
 path_from_dotfiles = -> (path) { dotfiles_path(path) }
+devcontainer = devcontainer?
 
 define :dotconfig, source: nil do
   source = params[:source] || params[:name]
   link File.join(ENV['HOME'], '.config', params[:name]) do
     to path_from_dotfiles.call("config/#{source}")
-    user node[:user]
+    user node[:user] unless devcontainer
     force true
   end
 end
@@ -26,7 +27,7 @@ define :dotfile, source: nil do
   source = params[:source] || params[:name]
   link File.join(ENV['HOME'], params[:name]) do
     to path_from_dotfiles.call("config/#{source}")
-    user node[:user]
+    user node[:user] unless devcontainer
     force true
   end
 end

@@ -32,7 +32,6 @@ define :anyenv_env, default_packages: nil, plugins: [] do
   if default_packages
     link from_home(".anyenv/envs/#{name}/#{default_packages}") do
       to File.expand_path("../../../../config/#{name}-#{default_packages}", __FILE__)
-      user node[:user]
       force true
     end
   end

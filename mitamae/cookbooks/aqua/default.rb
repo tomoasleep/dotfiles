@@ -4,5 +4,5 @@ execute "Make ensure aqua is installed" do
 end
 
 execute "Install aqua packages" do
-  command '/bin/bash -c "aqua install --all --only-link"'
+  command '/bin/bash -c "source ~/.bashrc.dotfiles && aqua install --all --only-link"'
 end
