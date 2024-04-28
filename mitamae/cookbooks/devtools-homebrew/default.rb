@@ -6,7 +6,6 @@ homebrew 'tig'
 homebrew 'tmux'
 homebrew 'wget'
 homebrew 'zsh'
-homebrew 'zplug'
 
 unless devcontainer?
   homebrew 'cmake'
