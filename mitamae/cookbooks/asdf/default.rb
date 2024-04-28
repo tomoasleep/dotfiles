@@ -1,5 +1,6 @@
 git from_home('.asdf') do
   repository 'https://github.com/asdf-vm/asdf'
+  revision 'master'
 end
 
 define :asdf_plugin, install_latest: false, url: nil do

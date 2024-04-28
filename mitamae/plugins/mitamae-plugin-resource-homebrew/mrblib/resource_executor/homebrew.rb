@@ -22,7 +22,7 @@ module ::MItamae
         end
 
         def set_current_attributes(current, action)
-          result = run_command("#{brew_list} | grep '^#{desired.target}$'", error: false)
+          result = run_command("#{brew_list} | grep -E '(^|/)#{desired.target}(@|$)'", error: false)
           current.exist = (result.exit_status == 0)
         end
 
