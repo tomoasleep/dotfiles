@@ -60,6 +60,11 @@ asdf_plugin 'yarn' do
   install_latest true
 end
 
+asdf_plugin 'deno' do
+  url 'https://github.com/asdf-community/asdf-deno.git'
+  install_latest true
+end
+
 # ansible-base requires direnv and pip
 asdf_plugin 'ansible-base' do
   install_latest true

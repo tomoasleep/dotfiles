@@ -25,6 +25,7 @@ homebrew 'ansible'
 homebrew 'wget'
 homebrew 'zsh'
 homebrew 'zplug'
+homebrew 'deno'
 
 include_cookbook 'anyenv'
 include_cookbook 'asdf'
