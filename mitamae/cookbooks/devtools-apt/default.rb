@@ -10,11 +10,11 @@ apt 'wget'
 #   install_latest true
 # end
 
-asdf_plugin 'tmux' do
-  install_latest true
-end
-
 unless devcontainer?
+  asdf_plugin 'tmux' do
+    install_latest true
+  end
+
   asdf_plugin 'golang' do
     install_latest true
   end
