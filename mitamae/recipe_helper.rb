@@ -28,6 +28,6 @@ MItamae::RecipeContext.class_eval do
 
   def devcontainer?
     # https://github.com/microsoft/vscode-remote-release/issues/3517
-    (ENV['REMOTE_CONTAINERS'] || '').length > 0
+    (ENV['REMOTE_CONTAINERS'] || '').length > 0 || (ENV['CODESPACES'] || '').length > 0 || (ENV['USER'] == 'vscode')
   end
 end
