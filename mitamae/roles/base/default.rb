@@ -1,4 +1,5 @@
 include_cookbook 'functions'
+include_cookbook 'aqua'
 
 repo_root = File.expand_path('../../..', File.dirname(__FILE__))
 
@@ -10,6 +11,7 @@ unless devcontainer?
   end
 end
 
+dotconfig 'aquaproj-aqua'
 dotconfig 'nvim'
 dotconfig 'nyaovim'
 dotconfig 'fish'
