@@ -25,7 +25,7 @@ function tmux-look() {
 function _tmux-look() {
   local -a completions
 
-  completions=($(ghq list | ggrep -Po "(?<=github\.com/).+"))
+  completions=($(ghq list | univ-grep -Po "(?<=github\.com/).+"))
   compadd $completions
 
   return 1;
