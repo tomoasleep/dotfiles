@@ -21,3 +21,4 @@ packages:
 - name: starship/starship@v1.18.2
 - name: sharkdp/fd@v9.0.0
 - name: BurntSushi/ripgrep@14.1.0
+- name: ast-grep/ast-grep@0.21.1
