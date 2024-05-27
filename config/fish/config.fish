@@ -39,6 +39,12 @@ which ghq > /dev/null; and fish_add_path (ghq root)/github.com/tomoasleep/privat
 test -f "$HOME/.asdf/asdf.fish"; and source $HOME/.asdf/asdf.fish
 fish_add_path -p $HOME/.local/share/aquaproj-aqua/bin
 
+if test -z "$XDG_CONFIG_HOME"
+  set -x AQUA_GLOBAL_CONFIG $AQUA_GLOBAL_CONFIG $HOME/.config/aquaproj-aqua/aqua.yaml
+else
+  set -x AQUA_GLOBAL_CONFIG $AQUA_GLOBAL_CONFIG $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml
+end
+
 # which yarn > /dev/null; and set PATH (yarn global bin) $PATH
 
 set -x AWS_SDK_LOAD_CONFIG true
