@@ -26,9 +26,4 @@ unless devcontainer?
   asdf_plugin 'rust' do
     install_latest true
   end
-
-  # ansible-base requires direnv and pip
-  asdf_plugin 'ansible-base' do
-    install_latest true
-  end
 end
