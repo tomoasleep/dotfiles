@@ -1,1 +1,4 @@
 .install/
+
+Dockerfile
+.dockerignore
