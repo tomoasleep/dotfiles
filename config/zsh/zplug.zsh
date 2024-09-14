@@ -5,7 +5,8 @@ if [[ ! -d $ZPLUG_HOME ]]; then
   printf "Install zplug? [y/N]"
   if read -q; then
     echo
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    git clone https://github.com/zplug/zplug.git $ZPLUG_HOME
+    # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
     sleep 1 # Wait init.zsh is prepared
   fi
 fi
