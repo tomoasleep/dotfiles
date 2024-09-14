@@ -1,5 +1,8 @@
 execute 'apt-get update -y' do
   user 'root'
+  # https://askubuntu.com/questions/410247/how-to-know-last-time-apt-get-update-was-executed
+  # https://stackoverflow.com/questions/5934394/subtract-1-hour-from-date-in-unix-shell-script
+  not_if 'test -f /var/cache/apt/pkgcache.bin && test $(stat /var/cache/apt/pkgcache.bin --format="%Z") -gt $(date -d "1 hour ago" +%s)'
 end
 
 define :apt do
