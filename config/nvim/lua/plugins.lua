@@ -36,6 +36,7 @@ return require('lazy').setup({
         'nvim-telescope/telescope-ghq.nvim',
         'nvim-tree/nvim-web-devicons',
         'nvim-telescope/telescope-ui-select.nvim',
+        'davvid/telescope-git-grep.nvim',
       },
       version = '*',
       config = get_config('telescope'),

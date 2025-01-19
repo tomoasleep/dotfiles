@@ -245,3 +245,4 @@ if !has('nvim')
   " supertab
   let g:SuperTabDefaultCompletionType = "<c-n>"
 endif
+
