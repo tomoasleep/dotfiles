@@ -28,6 +28,7 @@ dotfile '.tmux'
 dotfile '.tmux.conf'
 dotfile '.tigrc'
 dotfile '.hyper.js'
+dotfile '.wezterm.lua'
 dotfile '.zshrc'
 
 lineinfile '.bashrc' do

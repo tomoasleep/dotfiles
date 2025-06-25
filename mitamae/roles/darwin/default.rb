@@ -40,6 +40,7 @@ homebrew 'bartender'
 # homebrew 'bing-wallpaper'
 homebrew 'microsoft-remote-desktop'
 
+homebrew 'wezterm'
 homebrew 'logi-options-plus' do
   cask true
 end
