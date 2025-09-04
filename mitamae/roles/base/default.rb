@@ -19,6 +19,7 @@ dotconfig 'zed'
 dotconfig 'zsh'
 dotconfig 'starship.toml'
 dotconfig 'karabiner.edn'
+dotconfig 'ghostty'
 
 dotfile '.atom'
 dotfile '.asdfrc'
