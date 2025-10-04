@@ -22,3 +22,4 @@ packages:
 - name: sharkdp/fd@v10.3.0
 - name: BurntSushi/ripgrep@14.1.1
 - name: ast-grep/ast-grep@0.39.5
+- name: jdx/pitchfork@v0.1.5
