@@ -3,6 +3,10 @@
 /shell-snapshots/
 /statsig/
 /todos/
+/debug/
+/plugins/
+/file-history/
 /.claude.json
+/history.jsonl
 *.backup
 
