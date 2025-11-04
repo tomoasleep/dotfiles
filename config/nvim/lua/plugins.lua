@@ -49,7 +49,7 @@ return require('lazy').setup({
       'hrsh7th/nvim-cmp',
       enabled = not is_vscode,
       config = get_config('cmp'),
-      dependencies = {
+      specs = {
         {
           'hrsh7th/cmp-nvim-lsp', 
           dependencies = {
@@ -112,7 +112,22 @@ return require('lazy').setup({
       { 'morhetz/gruvbox', enabled = not is_vscode },
       { 'shaunsingh/solarized.nvim', config = get_config("solarized") },
       { 'nathanaelkane/vim-indent-guides', enabled = not is_vscode },
-      { 'mhinz/vim-startify', enabled = not is_vscode },
+
+      {
+        "goolord/alpha-nvim",
+        -- dependencies = { 'echasnovski/mini.icons' },
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+          local startify = require("alpha.themes.startify")
+          -- available: devicons, mini, default is mini
+          -- if provider not loaded and enabled is true, it will try to use another provider
+          startify.file_icons.provider = "devicons"
+          require("alpha").setup(
+            startify.config
+          )
+        end,
+      },
+
       { 'petertriho/nvim-scrollbar', config = get_config("scrollbar"), enabled = not is_vscode },
       -- { 'rcarriga/nvim-notify', config = get_config("notify") },
 
@@ -135,6 +150,16 @@ return require('lazy').setup({
 
       { 'akinsho/bufferline.nvim', version = "*", dependencies = 'kyazdani42/nvim-web-devicons', enabled = not is_vscode },
       { 'Shougo/unite.vim', tag = 'ver.6.0', enabled = not is_vscode },
+
+      {
+        "greggh/claude-code.nvim",
+        dependencies = {
+          "nvim-lua/plenary.nvim", -- Required for git operations
+        },
+        config = function()
+          require("claude-code").setup()
+        end
+      },
 
       {
         "yetone/avante.nvim",
