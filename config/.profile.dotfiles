@@ -23,3 +23,5 @@ fi
 if test -f $HOME/.asdf/asdf.sh; then
   . $HOME/.asdf/asdf.sh
 fi
+
+eval "$(mise activate --shims)"
