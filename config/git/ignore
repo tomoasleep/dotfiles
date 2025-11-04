@@ -10,3 +10,5 @@
 .env.local
 .vscode/settings.json
 .gitignore.local
+
+**/.claude/settings.local.json
