@@ -8,6 +8,7 @@
 // from the command palette or from `Zed` application menu.
 {
   "agent": {
+    "play_sound_when_agent_done": true,
     "default_model": {
       "provider": "copilot_chat",
       "model": "gpt-4.1"
@@ -23,9 +24,42 @@
   "terminal": {
     "dock": "right"
   },
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true
+  },
+  "lsp": {
+    "steep": {}
+  },
   "languages": {
     "Ruby": {
-      "language_servers": ["ruby-lsp", "rubocop", "!solargraph"]
+      "language_servers": ["ruby-lsp", "rubocop", "!solargraph", "steep"]
+    },
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true,
+        "source.organizeImports": true
+      }
+    },
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.fixAll.eslint": true,
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.fixAll.eslint": true,
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
     }
   }
 }
