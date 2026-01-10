@@ -27,3 +27,6 @@ plugin "mostafaqanbaryan/zellij-switch"
 plugin 'Nacho114/harpoon'
 plugin 'leakec/multitask'
 plugin 'yaroslavborbat/zellij-bookmarks'
+plugin 'laperlej/zellij-sessionizer'
+plugin 'cristiand391/zj-quit'
+plugin 'pirafrank/zellij-what-time'

@@ -6,7 +6,7 @@ keybinds {
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
-    }
+   }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
         bind "h" "Left" { Resize "Increase Left"; }
@@ -176,7 +176,12 @@ keybinds {
     }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
-        bind "Ctrl q" { Quit; }
+        bind "Ctrl Super q" { Quit; }
+        bind "Ctrl q" {
+          LaunchOrFocusPlugin "zj-quit" {
+            floating true
+          }
+        }
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt n" { NewPane; }
         bind "Alt i" { MoveTab "Left"; }
@@ -191,6 +196,21 @@ keybinds {
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
+
+        bind "Ctrl ;" "Ctrl :" {
+            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij-bookmarks.wasm" {
+                floating true
+                cwd "~/.config/zellij/"
+            }
+        }
+        bind "Ctrl k" {
+            LaunchOrFocusPlugin "zellij-sessionizer" {
+                floating true
+                move_to_focused_tab true
+                cwd "/"
+                root_dirs "~/.ghq"
+            }
+        }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
@@ -235,6 +255,15 @@ plugins {
     configuration location="zellij:configuration"
     plugin-manager location="zellij:plugin-manager"
     about location="zellij:about"
+
+    // Bundled plugins
+    zellij-switch location="file:~/.config/zellij/plugins/zellij-switch.wasm"
+    harpoon location="file:~/.config/zellij/plugins/harpoon.wasm"
+    multitask location="file:~/.config/zellij/plugins/multitask.wasm"
+    zellij-bookmarks location="file:~/.config/zellij/plugins/zellij-bookmarks.wasm"
+    zellij-sessionizer location="file:~/.config/zellij/plugins/zellij-sessionizer.wasm"
+    zj-quit location="file:~/.config/zellij/plugins/zj-quit.wasm"
+    zellij-what-time location="file:~/.config/zellij/plugins/zellij-what-time.wasm"
 }
 
 // Plugins to load in the background when a new session starts
