@@ -1,0 +1,3 @@
+*.wasm
+zellij-bundles.rb
+zellij-bundles-lock.yaml
