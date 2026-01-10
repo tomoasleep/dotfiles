@@ -20,6 +20,7 @@ dotconfig 'zsh'
 dotconfig 'starship.toml'
 dotconfig 'karabiner.edn'
 dotconfig 'ghostty'
+dotconfig 'zellij'
 
 dotfile '.atom'
 dotfile '.asdfrc'
