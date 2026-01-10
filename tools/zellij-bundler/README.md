@@ -108,7 +108,7 @@ zellij-bundler update leakec/multitask
 
 ### Zellij 設定ファイルのテンプレートを表示
 
-インストール済みのプラグインを元に Zellij の設定ファイルに追加する内容を表示します。
+インストール済みのプラグインを元に Zellij の設定ファイル（KDL形式）に追加する内容を表示します。
 
 ```bash
 zellij-bundler config-template
@@ -118,6 +118,15 @@ zellij-bundler config-template
 
 ```bash
 zellij-bundler config-template >> ~/.config/zellij/config.kdl
+```
+
+生成される設定の例：
+
+```kdl
+plugins {
+  multitask location="file:./plugins/multitask.wasm"
+  zellij-cb location="file:./plugins/zellij-cb.wasm"
+}
 ```
 
 ## WASM ファイルの自動検出
