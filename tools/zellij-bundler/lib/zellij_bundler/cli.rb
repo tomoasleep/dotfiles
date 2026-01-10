@@ -234,8 +234,6 @@ module ZellijBundler
         puts "   #{plugin['repo']}"
         puts "     Tag: #{plugin['tag']}"
         puts "     File: #{plugin['file']}"
-        puts "     Size: #{format_size(plugin['size'])}"
-        puts "     Downloaded: #{plugin['download_at'] || plugin['downloaded_at']}"
         puts ''
       end
     end
@@ -399,15 +397,6 @@ module ZellijBundler
       lines << '}'
 
       puts lines.join("\n")
-    end
-
-    def format_size(bytes)
-      return '0 B' if bytes.nil? || bytes.zero?
-
-      units = %w[B KB MB GB TB]
-      exp = Math.log(bytes, 1024).floor
-      exp = units.size - 1 if exp >= units.size
-      "#{format('%.2f', bytes / (1024.0**exp))} #{units[exp]}"
     end
   end
 end

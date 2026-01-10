@@ -23,18 +23,8 @@ module ZellijBundler
       @data['plugins'] << {
         'repo' => plugin_info[:repo],
         'tag' => plugin_info[:tag],
-        'file' => plugin_info[:file],
-        'downloaded_at' => plugin_info[:downloaded_at],
-        'size' => plugin_info[:size]
+        'file' => plugin_info[:file]
       }
-    end
-
-    def remove(repo)
-      @data['plugins'] = @data['plugins'].reject { |p| p['repo'] == repo }
-    end
-
-    def find_by_repo(repo)
-      @data['plugins'].find { |p| p['repo'] == repo }
     end
 
     def remove(repo)

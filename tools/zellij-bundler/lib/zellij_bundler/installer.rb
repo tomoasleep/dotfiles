@@ -85,9 +85,7 @@ module ZellijBundler
       {
         repo: @repo,
         tag: release_info['tagName'],
-        file: filename,
-        downloaded_at: Time.now.utc.iso8601,
-        size: File.size(output_path)
+        file: filename
       }
     end
 
