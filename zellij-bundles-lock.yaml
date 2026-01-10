@@ -1,0 +1,8 @@
+---
+version: '1.0'
+plugins:
+- repo: mostafaqanbaryan/zellij-switch
+  tag: 0.2.1
+  file: zellij-switch.wasm
+  downloaded_at: '2026-01-10T04:35:28Z'
+  size: 936240
