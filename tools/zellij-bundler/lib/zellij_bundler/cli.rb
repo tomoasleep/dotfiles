@@ -5,7 +5,7 @@ require_relative '../zellij_bundler'
 
 module ZellijBundler
   class CLI
-    COMMANDS = %w[bundle install list remove update init config-template]
+    COMMANDS = %w[bundle add install list remove update init config-template]
 
     def self.run
       new.run(ARGV)
@@ -66,6 +66,7 @@ module ZellijBundler
 
         Commands:
           bundle              Install/update all plugins from zellij-bundles.rb
+          add <repo>          Add plugin to zellij-bundles.rb and install
           install <repo>      Install a plugin from GitHub repository
           list                List installed plugins
           remove <plugin>     Remove a plugin
@@ -78,6 +79,7 @@ module ZellijBundler
 
         Examples:
           zellij-bundler bundle
+          zellij-bundler add leakec/multitask
           zellij-bundler install leakec/multitask
           zellij-bundler list
           zellij-bundler update all
@@ -88,6 +90,8 @@ module ZellijBundler
       case command
       when 'bundle'
         handle_bundle(options)
+      when 'add'
+        handle_add(options)
       when 'install'
         handle_install(options)
       when 'list'
@@ -141,6 +145,36 @@ module ZellijBundler
         puts ''
         puts "💡 Run 'zellij-bundler config-template' to see the Zellij configuration"
       end
+    end
+
+    def handle_add(options)
+      repo = options[:args].first
+
+      unless repo
+        puts '❌ Error: Repository required'
+        puts '   Usage: zellij-bundler add <owner/repo>'
+        exit 1
+      end
+
+      dsl_file = 'zellij-bundles.rb'
+
+      unless File.exist?(dsl_file)
+        puts "❌ Error: #{dsl_file} not found"
+        puts "   Run 'zellij-bundler init' to create a new #{dsl_file}"
+        exit 1
+      end
+
+      plugin_line = "plugin '#{repo}'"
+
+      File.open(dsl_file, 'a') do |file|
+        file.puts plugin_line
+      end
+
+      puts "✅ Added '#{repo}' to #{dsl_file}"
+      puts ''
+      puts '📦 Bundling plugins...'
+
+      handle_bundle(options)
     end
 
     def handle_install(options)

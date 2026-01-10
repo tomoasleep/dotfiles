@@ -64,9 +64,17 @@ plugin 'owner/repo' do
 end
 ```
 
-### プラグインをインストール
+### プラグインを追加・インストール
 
-定義されたすべてのプラグインをインストールします。
+zellij-bundles.rb にプラグインを追加して、インストールします。
+
+```bash
+zellij-bundler add leakec/multitask
+```
+
+### プラグインを一括インストール
+
+zellij-bundles.rb で定義されたすべてのプラグインをインストールします。
 
 ```bash
 zellij-bundler bundle
