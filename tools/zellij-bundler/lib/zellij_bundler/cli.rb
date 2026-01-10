@@ -107,6 +107,14 @@ module ZellijBundler
       end
     end
 
+    def find_dsl_file
+      if File.exist?('zellij-bundles.rb')
+        'zellij-bundles.rb'
+      elsif File.exist?(File.join('..', 'zellij-bundles.rb'))
+        File.join('..', 'zellij-bundles.rb')
+      end
+    end
+
     def handle_bundle(_options)
       dsl_file = 'zellij-bundles.rb'
 
@@ -155,6 +163,17 @@ module ZellijBundler
         puts '   Usage: zellij-bundler add <owner/repo>'
         exit 1
       end
+
+      puts "ℹ️  Checking for WASM files in #{repo}..."
+
+      unless Installer.check_wasm_available(repo)
+        puts "⚠️  No WASM files found in releases for #{repo}"
+        puts '   Cannot add this plugin'
+        exit 1
+      end
+
+      puts "✅ Found WASM files in #{repo}"
+      puts ''
 
       dsl_file = 'zellij-bundles.rb'
 

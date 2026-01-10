@@ -4,6 +4,21 @@ module ZellijBundler
       new(plugin, global_config).install
     end
 
+    def self.check_wasm_available(repo)
+      cmd = "gh release view -R #{repo} --json tagName,assets"
+      json = `#{cmd}`
+      return false unless $?.success?
+
+      release_info = JSON.parse(json)
+      repo.split('/').last
+      assets = release_info['assets'].map { |a| a['name'] }
+      wasm_files = assets.select { |name| name.end_with?('.wasm') }
+
+      !wasm_files.empty?
+    rescue StandardError
+      false
+    end
+
     def initialize(plugin, global_config)
       @plugin = plugin
       @global_config = global_config
