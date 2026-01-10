@@ -25,3 +25,5 @@ plugin "mostafaqanbaryan/zellij-switch"
 #   as "custom-name.wasm"
 # end
 plugin 'Nacho114/harpoon'
+plugin 'leakec/multitask'
+plugin 'yaroslavborbat/zellij-bookmarks'

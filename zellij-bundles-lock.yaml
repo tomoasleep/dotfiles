@@ -7,3 +7,9 @@ plugins:
 - repo: Nacho114/harpoon
   tag: v0.1.0
   file: harpoon.wasm
+- repo: leakec/multitask
+  tag: 0.43.1
+  file: multitask.wasm
+- repo: yaroslavborbat/zellij-bookmarks
+  tag: v0.5.0
+  file: zellij-bookmarks.wasm
