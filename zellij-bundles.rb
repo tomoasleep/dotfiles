@@ -24,3 +24,4 @@ plugin "mostafaqanbaryan/zellij-switch"
 #   to "./custom/path"
 #   as "custom-name.wasm"
 # end
+plugin 'Nacho114/harpoon'

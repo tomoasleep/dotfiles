@@ -4,5 +4,5 @@ plugins:
 - repo: mostafaqanbaryan/zellij-switch
   tag: 0.2.1
   file: zellij-switch.wasm
-  downloaded_at: '2026-01-10T04:35:28Z'
+  downloaded_at: '2026-01-10T04:53:53Z'
   size: 936240
