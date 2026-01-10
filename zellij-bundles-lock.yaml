@@ -4,5 +4,10 @@ plugins:
 - repo: mostafaqanbaryan/zellij-switch
   tag: 0.2.1
   file: zellij-switch.wasm
-  downloaded_at: '2026-01-10T04:53:53Z'
+  downloaded_at: '2026-01-10T05:29:11Z'
   size: 936240
+- repo: Nacho114/harpoon
+  tag: v0.1.0
+  file: harpoon.wasm
+  downloaded_at: '2026-01-10T05:29:13Z'
+  size: 2925019
