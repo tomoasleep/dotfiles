@@ -1,5 +1,6 @@
 require 'optparse'
 require 'yaml'
+require 'json'
 
 require_relative '../zellij_bundler'
 
@@ -134,6 +135,15 @@ module ZellijBundler
 
       dsl.plugins.each_with_index do |plugin, index|
         puts "[#{index + 1}/#{dsl.plugins.size}] #{plugin.repo}"
+
+        current = lockfile.find_by_repo(plugin.repo)
+        if current && tags_match?(current, plugin.tag) && file_exists?(plugin, current, dsl.config)
+          puts '   ⏭️  Already installed'
+          puts ''
+          next
+        elsif current && tags_match?(current, plugin.tag) && !file_exists?(plugin, current, dsl.config)
+          puts '   ⚠️  File missing, downloading...'
+        end
 
         result = Installer.install(plugin, dsl.config)
         if result
@@ -303,10 +313,14 @@ module ZellijBundler
         puts "[#{index + 1}/#{plugins_to_update.size}] #{plugin.repo}"
 
         current = lockfile.find_by_repo(plugin.repo)
-        if current && current['tag'] == plugin.tag
-          puts '   ⏭️  Already up to date'
-          puts ''
-          next
+        if current
+          if file_exists?(plugin, current, dsl.config) && up_to_date_with_latest?(current, plugin)
+            puts '   ⏭️  Already up to date'
+            puts ''
+            next
+          elsif !file_exists?(plugin, current, dsl.config)
+            puts '   ⚠️  File missing, downloading...'
+          end
         end
 
         result = Installer.install(plugin, dsl.config)
@@ -397,6 +411,35 @@ module ZellijBundler
       lines << '}'
 
       puts lines.join("\n")
+    end
+
+    def file_exists?(plugin, lockfile_entry, dsl_config)
+      output_dir = plugin.output_dir || dsl_config[:output_dir] || './plugins'
+      output_dir = File.expand_path(output_dir)
+      filepath = File.join(output_dir, lockfile_entry['file'])
+      File.exist?(filepath)
+    end
+
+    def tags_match?(lockfile_entry, plugin_tag)
+      plugin_tag.nil? || lockfile_entry['tag'] == plugin_tag
+    end
+
+    def up_to_date_with_latest?(lockfile_entry, plugin)
+      latest_tag = fetch_latest_tag(plugin.repo, plugin.tag)
+      latest_tag && lockfile_entry['tag'] == latest_tag
+    end
+
+    def fetch_latest_tag(repo, specified_tag)
+      return specified_tag if specified_tag
+
+      cmd = "gh release view -R #{repo} --json tagName"
+      json = `#{cmd}`
+      return nil unless $?.success?
+
+      data = JSON.parse(json)
+      data['tagName']
+    rescue StandardError
+      nil
     end
   end
 end
