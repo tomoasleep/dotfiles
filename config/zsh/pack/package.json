@@ -1,0 +1,15 @@
+{
+  "zsh-data": {  
+    "plugin-info": {  
+      "user": "_local",  
+      "plugin": "my-package" 
+    },  
+    "zinit-ices": {  
+      "default": {  
+        "as": "null",  
+        "pick": "/dev/null",
+        "multisrc": "functions/*.zsh"  
+      }
+    }  
+  }  
+}

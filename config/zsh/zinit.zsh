@@ -28,7 +28,7 @@ zinit light "olets/zsh-abbr"
 
 zinit snippet PZT::modules/prompt
 
-zinit ice from"local" pick"*.zsh"
-zinit load ~/.config/zsh/funcs
+zinit ice from"local" multisrc"functions/*.zsh" id-as"my-package"
+zinit load ~/.config/zsh/pack 
 
 # ----------------------------------------
