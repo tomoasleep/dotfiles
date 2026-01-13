@@ -14,3 +14,4 @@
 **/.claude/settings.local.json
 .plans/
 .plans
+.playwright-tests/
