@@ -234,6 +234,23 @@
           }
         }
       }
+    },
+    "lmstudio": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LM Studio (local)",
+      "options": {
+        "baseURL": "{file:./secrets/lmstudio_base_url}",
+        "apiKey": "{file:./secrets/lmstudio_api_key}"
+      },
+      "models": {
+        "qwen/qwen3-coder-30b": {
+          "name": "Qwen3 Coder 30B",
+          "limit": {
+            "context": 256000,
+            "output": 65536
+          },
+        }
+      }
     }
   },
   "mcp": {

@@ -11,13 +11,13 @@ function zellij-look() {
   ghq get $ghq_get_query || return 1
 
   zellij_dir=$(ghq list -p -e $ghq_look_query)
-  zellij_name=$(ghq list -e $ghq_look_query | sed -e 's/^github\.com\///' | tr '.' '_')
+  zellij_name=$(ghq list -e $ghq_look_query | sed -e 's/^github\.com\///' | tr './' '__')
   test $zellij_dir || return 1
 
   if test $ZELLIJ; then
-    zellij action new-tab -c $zellij_dir -n $zellij_name
+    zellij pipe --plugin zellij-switch -- "--session $zellij_name"
   else
-    zellij -l $zellij_dir -s $zellij_name
+    (cd $zellij_dir && zellij attach -c $zellij_name)
   fi
 }
 

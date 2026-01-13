@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ZELLIJ_BUNDLER_DIR="${SCRIPT_DIR}/../tools/zellij-bundler"
+
+if [ ! -d "${ZELLIJ_BUNDLER_DIR}" ]; then
+    echo "Error: zellij-bundler directory not found at ${ZELLIJ_BUNDLER_DIR}"
+    exit 1
+fi
+
+ruby -I "${ZELLIJ_BUNDLER_DIR}/lib" "${ZELLIJ_BUNDLER_DIR}/bin/zellij-bundler" "$@"
