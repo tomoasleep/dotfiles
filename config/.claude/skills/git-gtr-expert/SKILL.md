@@ -1,6 +1,7 @@
 ---
 name: git-gtr-expert
 description: Git GTR (Git Worktree Runner) の利用方法を熟知しています。 git worktree を使ったブランチの管理や操作は git-gtr を使ってください。
+license: 'MIT'
 ---
 
 # git-gtr Expert
