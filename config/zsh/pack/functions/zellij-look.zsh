@@ -15,7 +15,7 @@ function zellij-look() {
   test $zellij_dir || return 1
 
   if test $ZELLIJ; then
-    zellij pipe --plugin zellij-switch -- "--session $zellij_name"
+    zellij pipe --plugin file:$HOME/.config/zellij/plugins/zellij-switch.wasm -- "-s $zellij_name"
   else
     (cd $zellij_dir && zellij attach -c $zellij_name)
   fi
