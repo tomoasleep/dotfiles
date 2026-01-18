@@ -45,6 +45,6 @@ homebrew 'logi-options-plus' do
   cask true
 end
 
-homebrew 'homebrew/cask-fonts/font-hackgen'
-homebrew 'homebrew/cask-fonts/font-hackgen-nerd'
-homebrew 'homebrew/cask-fonts/font-ricty-diminished'
+homebrew 'font-hackgen'
+homebrew 'font-hackgen-nerd'
+homebrew 'font-ricty-diminished'
