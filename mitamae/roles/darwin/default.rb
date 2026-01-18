@@ -48,3 +48,6 @@ end
 homebrew 'font-hackgen'
 homebrew 'font-hackgen-nerd'
 homebrew 'font-ricty-diminished'
+
+homebrew 'd-kuro/tap/gwq'
+
