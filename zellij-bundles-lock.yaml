@@ -22,3 +22,6 @@ plugins:
 - repo: pirafrank/zellij-what-time
   tag: 0.1.1
   file: zellij-what-time.wasm
+- repo: cristiand391/zj-status-bar
+  tag: 0.3.0
+  file: zj-status-bar.wasm

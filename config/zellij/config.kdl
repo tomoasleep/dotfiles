@@ -283,6 +283,7 @@ plugins {
     zellij-sessionizer location="file:~/.config/zellij/plugins/zellij-sessionizer.wasm"
     zj-quit location="file:~/.config/zellij/plugins/zj-quit.wasm"
     zellij-what-time location="file:~/.config/zellij/plugins/zellij-what-time.wasm"
+    zj-status-bar location="file:~/.config/zellij/plugins/zj-status-bar.wasm"
 }
 
 // Plugins to load in the background when a new session starts

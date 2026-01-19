@@ -2,6 +2,7 @@ layout {
     pane size=1 split_direction="Vertical" {
         pane size="80%" borderless=true {
             plugin location="tab-bar"
+            // plugin location="zj-status-bar"
         }
         pane size="20%" borderless=true {
             plugin location="zellij-what-time"
