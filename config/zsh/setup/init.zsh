@@ -4,3 +4,6 @@ source ~/.config/zsh/setup/aqua.zsh
 source ~/.config/zsh/setup/anyenv.zsh
 source ~/.config/zsh/setup/asdf.zsh
 source ~/.config/zsh/setup/mise.zsh
+source ~/.config/zsh/setup/code.zsh
+source ~/.config/zsh/setup/pnpm.zsh
+source ~/.config/zsh/setup/opencode.zsh
