@@ -10,3 +10,6 @@
 /history.jsonl
 *.backup
 
+transcripts/
+cache/
+stats-cache.json
