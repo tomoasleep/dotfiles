@@ -1,0 +1,38 @@
+{
+  "agents": {
+    "Sisyphus": {
+      "model": "github-copilot/claude-sonnet-4.5",
+      "temperature": 0.3
+    },
+    "OpenCode-Builder": {
+      "model": "github-copilot/claude-opus-4.5"
+    },
+    "librarian": {
+      "model": "github-copilot/gpt-5.1-mini"
+    },
+    "explore": {
+      "model": "github-copilot/gpt-5.1-mini"
+    },
+    "frontend-ux-engieer": {
+      "model": "github-copilot/gpt-5.1-mini"
+    },
+    "document-writer": {
+      "model": "github-copilot/gpt-5.1-mini"
+    },
+    "multimodal-looker": {
+      "model": "github-copilot/gpt-5.1-mini"
+    },
+    "Metis (Plan Consultant)": {
+      "model": "github-copilot/gpt-5.1-mini"
+    },
+    "Metis (Plan Consultant)": {
+      "model": "github-copilot/gpt-5.1-mini"
+    },
+    "Prometheus (Planner)": {
+      "model": "github-copilot/claude-opus-4.5"
+    },
+    "orchestrator-sisyphus": {
+      "model": "github-copilot/claude-opus-4.5"
+    }
+  }
+}
