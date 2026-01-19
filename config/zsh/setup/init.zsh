@@ -7,3 +7,6 @@ source ~/.config/zsh/setup/mise.zsh
 source ~/.config/zsh/setup/code.zsh
 source ~/.config/zsh/setup/pnpm.zsh
 source ~/.config/zsh/setup/opencode.zsh
+source ~/.config/zsh/setup/docker.zsh
+source ~/.config/zsh/setup/lmstudio.zsh
+source ~/.config/zsh/setup/bun.zsh
