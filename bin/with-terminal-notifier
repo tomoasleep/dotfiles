@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [ $# -eq 0 ]; then
+  echo "Usage: with-terminal-notifier <command> [args...]" >&2
+  exit 1
+fi
+
+COMMAND="$*"
+
+if "$@"; then
+  terminal-notifier -title "✅ Command Success" -message "$COMMAND"
+  exit 0
+else
+  EXIT_CODE=$?
+  terminal-notifier -title "❌ Command Failure" -message "$COMMAND"
+  exit $EXIT_CODE
+fi
