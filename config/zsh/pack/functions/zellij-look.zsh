@@ -13,12 +13,40 @@ function zellij-look() {
 
   test "$query" || { echo "zellij-look: repository is required" >&2; return 1; }
 
-  ghq_get_query=$(echo "$query" | sed -e 's/^github\.com\///')
-  ghq_look_query=$(echo "$query" | sed -e 's/^https:\/\///' -e 's/^git@github\.com://' -e 's/^github\.com\///' -e 's/\.git$//')
+  local pr_number
+  local pr_owner
+  local pr_repo
+
+  if [[ $query =~ 'https?://github\.com/([^/]+)/([^/]+)/pull/([0-9]+)' ]] || [[ $query =~ 'github\.com/([^/]+)/([^/]+)/pull/([0-9]+)' ]]; then
+    pr_owner=$match[1]
+    pr_repo=$match[2]
+    pr_number=$match[3]
+  fi
+
+  if test "$pr_number"; then
+    command -v gh >/dev/null 2>&1 || { echo "zellij-look: gh not found" >&2; return 1; }
+
+    ghq_get_query="${pr_owner}/${pr_repo}"
+    ghq_look_query="${pr_owner}/${pr_repo}"
+  else
+    ghq_get_query=$(echo "$query" | sed -e 's/^github\.com\///')
+    ghq_look_query=$(echo "$query" | sed -e 's/^https:\/\///' -e 's/^git@github\.com://' -e 's/^github\.com\///' -e 's/\.git$//')
+  fi
+
   ghq get $ghq_get_query || { echo "zellij-look: ghq get failed: $ghq_get_query" >&2; return 1; }
 
   repo_dir=$(ghq list -p -e $ghq_look_query)
   test "$repo_dir" || { echo "zellij-look: ghq list failed: $ghq_look_query" >&2; return 1; }
+
+  if test "$pr_number" && ! test "$branch"; then
+    local pr_branch
+    pr_branch=$(cd "$repo_dir" && gh pr view "$pr_number" --json headRefName -q '.headRefName' 2>/dev/null)
+    if ! test "$pr_branch"; then
+      echo "zellij-look: gh pr view failed: $pr_number" >&2
+      return 1
+    fi
+    branch="$pr_branch"
+  fi
 
   if test "$branch"; then
     branch=${branch#origin/}
