@@ -4,11 +4,7 @@ description: Create a detailed plan for addressing a specific issue or task.
 
 引数で受け取った内容をもとに、実装プランを作成し、GitHub Issueを作成します。
 
-## ステップ1: デフォルトブランチへの移動
-
-デフォルトブランチに移動し、originをpullして最新状態にしてください。
-
-## ステップ2: 実装プランの作成
+## ステップ1: 実装プランの作成
 
 - task-requirement-analyzerエージェントを使用して、タスク内容に基づく実装プランを作成します
 
@@ -16,9 +12,9 @@ description: Create a detailed plan for addressing a specific issue or task.
 
 $ARGUMENTS
 
-## ステップ3: GitHub Issueの作成
+## ステップ2: GitHub Issueの作成
 
-ステップ2で作成した実装プランをもとに、GitHub Issueを作成してください。
+ステップ1で作成した実装プランをもとに、GitHub Issueを作成してください。
 
 ### Issue作成時の注意事項
 
