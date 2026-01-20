@@ -169,6 +169,13 @@ return require('lazy').setup({
         opts = {
           -- For details, see: https://github.com/yetone/avante.nvim
         },
+        provider = "opencode",
+        acp_providers = {
+          ["opencode"] = {
+            command = "opencode",
+            args = { "acp" }
+          }
+        },
         -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
         build = "make",
         enabled = not is_vscode,
