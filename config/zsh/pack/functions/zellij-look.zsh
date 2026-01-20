@@ -24,10 +24,18 @@ function zellij-look() {
   fi
 
   if test "$pr_number"; then
-    command -v gh >/dev/null 2>&1 || { echo "zellij-look: gh not found" >&2; return 1; }
-
     ghq_get_query="${pr_owner}/${pr_repo}"
     ghq_look_query="${pr_owner}/${pr_repo}"
+
+    if command -v gh >/dev/null 2>&1; then
+      repo_dir=$(ghq list -p -e "$ghq_look_query") 2>/dev/null
+      if test "$repo_dir" && ! test "$branch"; then
+        branch=$(cd "$repo_dir" && gh pr view "$pr_number" --json headRefName -q '.headRefName' 2>/dev/null)
+        if test "$branch"; then
+          (cd "$repo_dir" && git fetch origin "refs/pull/$pr_number/head:$branch" 2>/dev/null)
+        fi
+      fi
+    fi
   else
     ghq_get_query=$(echo "$query" | sed -e 's/^github\.com\///')
     ghq_look_query=$(echo "$query" | sed -e 's/^https:\/\///' -e 's/^git@github\.com://' -e 's/^github\.com\///' -e 's/\.git$//')
@@ -81,7 +89,8 @@ function zellij-look() {
 
   if test "$ZELLIJ"; then
     echo "zellij-look: switch session: $zellij_name" >&2
-    zellij pipe --plugin file:$HOME/.config/zellij/plugins/zellij-switch.wasm -- "-s $zellij_name"
+    echo "zellij-look: worktree dir: $zellij_dir" >&2
+    zellij pipe --plugin file:$HOME/.config/zellij/plugins/zellij-switch.wasm -- "-s $zellij_name --cwd $zellij_dir"
   else
     echo "zellij-look: attach in dir: $zellij_dir" >&2
     echo "zellij-look: session name: $zellij_name" >&2
@@ -106,7 +115,7 @@ function _zellij-look() {
     query=$words[2]
     test "$query" || { echo "zellij-look: repository is required" >&2; return 1; }
 
-    ghq_look_query=$(echo "$query" | sed -e 's/^https:\/\///' -e 's/^git@github\.com://' -e 's/^github\.com\///' -e 's/\.git$//')
+    ghq_look_query=$(echo "$query" | sed -e 's/^https:\/\///' -e 's/^git@github\.com://' -e 's/^github\.com\///' -e 's/\.git$//' -e 's/\/pull\/[0-9]*$//')
     repo_dir=$(ghq list -p -e $ghq_look_query 2>/dev/null)
     test "$repo_dir" || { echo "zellij-look: ghq list failed: $ghq_look_query" >&2; return 1; }
 
