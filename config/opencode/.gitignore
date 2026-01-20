@@ -2,3 +2,5 @@ node_modules
 package.json
 bun.lock
 secrets
+
+qiita-*
