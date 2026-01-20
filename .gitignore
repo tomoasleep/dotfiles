@@ -1,3 +1,4 @@
 node_modules/
 .install/
 /wasi/
+config/karabiner/karabiner.json
