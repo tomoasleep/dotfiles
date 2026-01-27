@@ -2,14 +2,15 @@
 description: Execute tasks based on GitHub Issue content using a git worktree
 ---
 
-GitHubのIssueの内容を確認し、タスクを実行する処理を行なってください。
+GitHubのIssueやコメントの内容を確認し、タスクを実行する処理を行なってください。
 実行する処理のステップは以下のとおりです。
 
 ## git-worktreeの準備
 
 以下のステップでgit-worktreeを準備してください。
 
-1. read-github-issue skillを用いて対象のIssueの内容を取得する
+1. web-researcherサブエージェントを呼び出し、対象のIssueの内容を確認する
+  - read-github-issue skillを用いて対象のIssueの内容やコメントを取得してもらうこと
 2. git-worktree-professional skillを用いてgit worktreeの作成と移動、環境のセットアップを行う
     - Issueの内容を元に、適切なブランチ名を決定する
     - ブランチ名には`/`は使用しないでください
@@ -30,4 +31,3 @@ GitHubのIssueの内容を確認し、タスクを実行する処理を行なっ
 - タスクはすべて作成したworktree内で行います
 - 作成したworktree以外の場所で作業を行わず、コードの変更も行わないでください
 - `cd`コマンドを利用する場合は`pwd`コマンドで現在のディレクトリを確認し、作成したworktree内であることを確認してください
-

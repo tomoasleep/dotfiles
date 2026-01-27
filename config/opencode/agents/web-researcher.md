@@ -7,6 +7,7 @@ permission:
   codesearch: allow
 tools:
   "exa*": true
+  "qiita-team*": true
 mode: subagent
 description: Use this agent when you want to research specific topics, gather information from various sources, and compile comprehensive reports from web.
 ---
