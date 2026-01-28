@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+command -v gwq >/dev/null 2>&1 || { echo "gwq not found" >&2; exit 1; }
+command -v git >/dev/null 2>&1 || { echo "git not found" >&2; exit 1; }
+command -v jq >/dev/null 2>&1 || { echo "jq not found" >&2; exit 1; }
+
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null || true)
+if [ -z "$repo_root" ]; then
+  echo "Not inside a git repository" >&2
+  exit 1
+fi
+
+candidates=()
+
+# determine default branch name for this repository (origin HEAD -> name), fallback main/master
+default=$(git -C "$repo_root" remote show origin 2>/dev/null | awk '/HEAD branch/ {print $NF}' || true)
+if [ -z "$default" ]; then
+  default_ref=$(git -C "$repo_root" symbolic-ref refs/remotes/origin/HEAD 2>/dev/null || true)
+  if [ -n "$default_ref" ]; then
+    default=${default_ref##*/}
+  else
+    default=main
+    if ! git -C "$repo_root" rev-parse --verify "refs/heads/$default" >/dev/null 2>&1; then
+      default=master
+    fi
+  fi
+fi
+
+# prefer remote tracking ref if available
+if git -C "$repo_root" rev-parse --verify "refs/remotes/origin/$default" >/dev/null 2>&1; then
+  target_ref="origin/$default"
+else
+  target_ref="$default"
+fi
+
+# list branches merged into target_ref (like cleanup-merged)
+mapfile -t MERGED < <(git -C "$repo_root" branch --merged "$target_ref" | sed 's/^..//' | sed 's/^ *//')
+
+# list worktrees in this repo: "branch<TAB>worktree-path"
+mapfile -t WT_LINES < <(git -C "$repo_root" worktree list --porcelain 2>/dev/null | awk '/^worktree /{p=$2} /^branch /{b=$2; sub("^refs/heads/","",b); print b "\t" p }')
+
+for line in "${WT_LINES[@]:-}"; do
+  IFS=$'\t' read -r branch path <<<"$line"
+  [ -n "$branch" ] || continue
+  [ -d "$path" ] || continue
+  # skip main worktree
+  if [ "$(cd "$path" && pwd -P)" = "$(cd "$repo_root" && pwd -P)" ]; then
+    continue
+  fi
+  # skip default branch itself
+  if [ "$branch" = "$default" ]; then
+    continue
+  fi
+  for m in "${MERGED[@]:-}"; do
+    if [ "$m" = "$branch" ]; then
+      repo=$(basename "$repo_root")
+      candidates+=("$repo|$branch|$path|merged into $target_ref")
+      break
+    fi
+  done
+done
+
+if [ "${#candidates[@]}" -eq 0 ]; then
+  echo "No merged linked worktrees found."
+  exit 0
+fi
+
+echo "The following linked worktrees appear merged and are candidates for removal:"
+i=0
+for c in "${candidates[@]}"; do
+  i=$((i+1))
+  IFS='|' read -r repo branch path note <<<"$c"
+  printf "* %s (%s)\n" "$branch" "$note"
+done
+
+read -r -p "Remove all above worktrees via gwq? [y/N] " ans
+case "$ans" in
+  [yY]|[yY][eE][sS])
+    i=0
+    for c in "${candidates[@]}"; do
+      i=$((i+1))
+      IFS='|' read -r repo branch path note <<<"$c"
+      echo "Removing ($i) $branch ..."
+      if gwq remove "${branch}"; then
+        echo "Removed $branch"
+      else
+        echo "gwq remove failed for $branch; skipping" >&2
+      fi
+    done
+    echo "Done."
+    ;;
+  *)
+    echo "Aborted. No worktrees removed."
+    ;;
+esac
