@@ -82,7 +82,7 @@ case "$ans" in
       i=$((i+1))
       IFS='|' read -r repo branch path note <<<"$c"
       echo "Removing ($i) $branch ..."
-      if gwq remove "${branch}"; then
+      if gwq remove -b "${branch}"; then
         echo "Removed $branch"
       else
         echo "gwq remove failed for $branch; skipping" >&2

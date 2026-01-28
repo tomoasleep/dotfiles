@@ -11,3 +11,4 @@ source ~/.config/zsh/setup/docker.zsh
 source ~/.config/zsh/setup/lmstudio.zsh
 source ~/.config/zsh/setup/bun.zsh
 source ~/.config/zsh/setup/gwq.zsh
+source ~/.config/zsh/setup/direnv.zsh

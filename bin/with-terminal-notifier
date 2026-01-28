@@ -15,5 +15,8 @@ if "$@"; then
 else
   EXIT_CODE=$?
   terminal-notifier -title "❌ Command Failure" -message "$COMMAND"
+  if [ -n "$ZELLIJ_PANE_ID" ]; then
+      zellij pipe --name zj-status-bar:cli:tab_alert --args "pane_id=$ZELLIJ_PANE_ID,exit_code=$EXIT_CODE"
+  fi
   exit $EXIT_CODE
 fi
