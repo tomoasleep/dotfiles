@@ -1,0 +1,6 @@
+#!/bin/bash
+
+BIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="${BIN_DIR}/../tools/gh-watch"
+
+ruby "${SCRIPT_DIR}/watch.rb" "$@"
