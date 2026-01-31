@@ -1,18 +1,13 @@
 layout {
-    pane size=1 split_direction="Vertical" {
-        pane size="80%" borderless=true {
-            // plugin location="tab-bar"
-            plugin location="zj-status-bar"
-        }
-        pane size="20%" borderless=true {
-            plugin location="zellij-what-time"
-        }
+    pane size=1 split_direction="Vertical" borderless=true{
+          plugin location="tab-bar"
     }
-    pane size=1 borderless=true {
+    pane size=1 borderless=true focus=false {
         command "gh-watch"
+        args "--watch"
     }
     pane split_direction="Vertical" {
-        pane {
+        pane focus=true {
             command "opencode"
         }
         pane
