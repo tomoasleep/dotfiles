@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  echo "Usage: new-worktree-tab [-l|--layout <layout>] <branch>" >&2
+  echo "  -l, --layout <layout>  Path to a zellij layout file" >&2
+  exit 1
+}
+
+layout=""
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -l|--layout)
+      if [[ -z "${2:-}" ]]; then
+        echo "new-worktree-tab: layout option requires an argument" >&2
+        exit 1
+      fi
+      layout="$2"
+      shift 2
+      ;;
+    -h|--help)
+      usage
+      ;;
+    -*)
+      echo "new-worktree-tab: unknown option: $1" >&2
+      usage
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+branch="${1:-}"
+if [ -z "$branch" ]; then
+  echo "new-worktree-tab: branch is required" >&2
+  usage
+fi
+
+if ! git rev-parse --git-dir >/dev/null 2>&1; then
+  echo "new-worktree-tab: not in a git repository" >&2
+  exit 1
+fi
+
+repo_root=$(git rev-parse --show-toplevel)
+if [ -z "$repo_root" ]; then
+  echo "new-worktree-tab: failed to get repository root" >&2
+  exit 1
+fi
+
+if ! command -v gwq >/dev/null 2>&1; then
+  echo "new-worktree-tab: gwq not found" >&2
+  exit 1
+fi
+
+worktree_dir=$(cd "$repo_root" && gwq get "$branch" 2>/dev/null)
+if [ -z "$worktree_dir" ]; then
+  if ! git -C "$repo_root" show-ref --verify --quiet "refs/heads/$branch"; then
+    echo "new-worktree-tab: branch not found: $branch" >&2
+    exit 1
+  fi
+
+  (cd "$repo_root" && gwq add "$branch") || { echo "new-worktree-tab: gwq add failed: $branch" >&2; exit 1; }
+  worktree_dir=$(cd "$repo_root" && gwq get "$branch" 2>/dev/null)
+fi
+
+if [ -z "$worktree_dir" ]; then
+  echo "new-worktree-tab: worktree directory not found" >&2
+  exit 1
+fi
+
+if ! command -v zellij >/dev/null 2>&1; then
+  echo "new-worktree-tab: zellij not found" >&2
+  exit 1
+fi
+
+zellij_args=("--cwd" "$worktree_dir" "--name" "$branch")
+
+if [ -n "$layout" ]; then
+  zellij_args+=("--layout" "$layout")
+fi
+
+zellij action new-tab "${zellij_args[@]}" || { echo "new-worktree-tab: zellij action new-tab failed" >&2; exit 1; }
