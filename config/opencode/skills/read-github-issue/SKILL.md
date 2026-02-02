@@ -8,6 +8,7 @@ description: GitHub Issueの内容を取得します。ghコマンドを使用�
 ## Instructions
 
 ### Issueの取得
+
 以下のコマンドでGitHub Issueの内容を取得します。
 scriptsディレクトリはプラグイン内のskills/create-git-worktree/配下に配置されています。
 
