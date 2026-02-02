@@ -8,7 +8,8 @@ layout {
     }
     pane split_direction="Vertical" {
         pane focus=true {
-            command "opencode"
+            command "shell-run"
+            args "opencode"
         }
         pane
     }
