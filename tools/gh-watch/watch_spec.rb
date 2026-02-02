@@ -64,6 +64,20 @@ class TestStatusChecker < Minitest::Test
     result = @checker.check_review_status(latest_reviews)
     assert_equal({ approved: 0, changes_requested: 0, commented: 0, dismissed: 0, pending: 0 }, result)
   end
+
+  def test_review_status_pending_from_review_requests_array
+    latest_reviews = []
+    review_requests = [ { 'requestedReviewer' => { 'login' => 'anon1' } } ]
+    result = @checker.check_review_status(latest_reviews, review_requests)
+    assert_equal({ approved: 0, changes_requested: 0, commented: 0, dismissed: 0, pending: 1 }, result)
+  end
+
+  def test_review_status_pending_from_review_requests_nodes
+    latest_reviews = [ { 'state' => 'APPROVED' }, { 'state' => 'COMMENTED' } ]
+    review_requests = { 'nodes' => [ { 'requestedReviewer' => { 'login' => 'anon2' } }, { 'requestedReviewer' => { 'login' => 'anon3' } } ] }
+    result = @checker.check_review_status(latest_reviews, review_requests)
+    assert_equal({ approved: 1, changes_requested: 0, commented: 1, dismissed: 0, pending: 2 }, result)
+  end
 end
 
 class TestTerminalRenderer < Minitest::Test
