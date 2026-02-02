@@ -13,7 +13,7 @@ description: GitHub Issueの内容を取得します。ghコマンドを使用�
 scriptsディレクトリはプラグイン内のskills/create-git-worktree/配下に配置されています。
 
 ```
-gh view issue [Issue番号]
+gh issue view [Issue番号]
 ```
 
 ### 画像のダウンロード

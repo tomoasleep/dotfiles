@@ -14,7 +14,13 @@ $ARGUMENTS
 
 ## ステップ2: GitHub Issue の更新
 
-ステップ1で作成した実装プランをもとに、GitHub Issue に Plan をコメントしてください。
+ステップ1で作成した実装プランをもとに、GitHub Issue を更新します。
+
+- Issue が作成されていなければ作成してください
+- Issue が作成されている場合、
+  - Issue の本文またはコメントに、 Plan セクションが存在するか確認してください
+    - 存在する場合、既存の Plan セクションをステップ1で作成した内容で上書きしてください
+    - 存在しない場合、Issue の本文に Plan セクションを追加してください
 
 ### Issue作成時の注意事項
 
@@ -22,19 +28,19 @@ $ARGUMENTS
 - 本文: 以下の構造で作成
 
 ```markdown
-## Order
-
-(ユーザーから依頼された内容)
-
-## What
+## Plan
 
 (タスクの目的と達成すべきゴール)
 
-## Requirements
+### Order
+
+(ユーザーから依頼された内容)
+
+### Requirements
 
 (機能要件と非機能要件のリスト)
 
-## Plan
+### Phases
 
 (task-requirement-analyzerが策定したフェーズごとの計画)
 

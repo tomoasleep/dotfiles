@@ -24,17 +24,25 @@ $ARGUMENTS
 ```markdown
 ## Why
 
-(ユーザーから依頼された内容)
+(ユーザーから背景を聞き出して入力する)
 
 ## What
 
+(ユーザーから依頼された内容を元に作成)
+
+## Plan
+
 (タスクの目的と達成すべきゴール)
 
-## Requirements
+### Order
+
+(ユーザーから依頼された内容)
+
+### Requirements
 
 (機能要件と非機能要件のリスト)
 
-## Plan
+### Phases
 
 (task-requirement-analyzerが策定したフェーズごとの計画)
 

@@ -1,6 +1,6 @@
 ---
 name: git-worktree-professional
-description: Create, Manage Git worktrees.
+description: Create, Manage Git worktrees. Read this when you use git worktree.
 ---
 
 ## How to access Git Worktree
@@ -33,4 +33,3 @@ description: Create, Manage Git worktrees.
 > ```
 >
 > from: https://github.com/d-kuro/gwq?tab=readme-ov-file#quick-start
-

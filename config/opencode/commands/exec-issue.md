@@ -5,29 +5,25 @@ description: Execute tasks based on GitHub Issue content using a git worktree
 GitHubのIssueやコメントの内容を確認し、タスクを実行する処理を行なってください。
 実行する処理のステップは以下のとおりです。
 
-## git-worktreeの準備
+## TODO
 
-以下のステップでgit-worktreeを準備してください。
+1. 対象のIssueの内容を確認する
+  - read-github-issue skillを用いて対象のIssueの内容やコメントを取得する
+2. 以下の手順で、Issue のタスクを遂行してください。
 
-1. web-researcherサブエージェントを呼び出し、対象のIssueの内容を確認する
-  - read-github-issue skillを用いて対象のIssueの内容やコメントを取得してもらうこと
-2. git-worktree-professional skillを用いてgit worktreeの作成と移動、環境のセットアップを行う
-    - Issueの内容を元に、適切なブランチ名を決定する
-    - ブランチ名には`/`は使用しないでください
-
-## Issueの内容確認とタスク遂行
+### タスク遂行
 
 以下のステップでIssueの内容に合わせたタスクの遂行、PRの作成を行ってください。
 
-1. read-github-issue skillを用いて対象のIssueの内容を再度取得する
-2. 取得した内容をもとにタスクを洗い出す
-3. 洗い出したタスクごとにgeneral-purpose-assistantサブエージェントを呼び出し、順番に実行する
-4. 全てのタスクが完了したら、high-quality-commit skillを用いて、変更内容を適切にコミットする
-5. create-pr skillを用いて、変更内容を反映したPRを作成する
-6. PRのURLを報告する
+1. 取得した内容をもとにタスクを洗い出す
+2. 洗い出したタスクごとに general サブエージェントを呼び出し、順番に実行する
+3. 以下の受け入れ検証作業と修正のステップを、受け入れ検証の agent が OK を出すまで繰り返してください。
+    - Issue の受け入れ要件を満たしているかの検証を general agent に依頼し、検証してください。
+    - 検証した結果、満たしていない場合は修正作業を general agent に依頼し修正作業を行います。その後、検証の依頼からやり直してください。
 
 ## 重要な制約
 
-- タスクはすべて作成したworktree内で行います
-- 作成したworktree以外の場所で作業を行わず、コードの変更も行わないでください
-- `cd`コマンドを利用する場合は`pwd`コマンドで現在のディレクトリを確認し、作成したworktree内であることを確認してください
+- タスクはすべて現在のworktree内で行います
+  - 現在の worktree以外の場所で作業を行わず、コードの変更も行わないでください
+  - `cd`コマンドを利用する場合は`pwd`コマンドで現在のディレクトリを確認し、開始時のworktree内であることを確認してください
+- タスク遂行や修正作業は自分では行わず、sub-agent に依頼します。
