@@ -48,7 +48,7 @@ class PRWatcher
     [
       'gh', 'pr', 'list',
       '--head', @branch_name,
-      '--json', 'number,state,mergeable,statusCheckRollup,latestReviews,title',
+      '--json', 'number,state,mergeable,statusCheckRollup,latestReviews,reviewRequests,title',
       '--limit', '1'
     ]
   end
@@ -110,14 +110,26 @@ module StatusChecker
     'PENDING' => :pending
   }.freeze
 
-  def check_review_status(latest_reviews)
+  def check_review_status(latest_reviews, review_requests = nil)
     result = { approved: 0, changes_requested: 0, commented: 0, dismissed: 0, pending: 0 }
 
-    return result unless latest_reviews && !latest_reviews.empty?
+    if latest_reviews && !latest_reviews.empty?
+      latest_reviews.each do |review|
+        state_key = REVIEW_STATES[review['state']]
+        result[state_key] += 1 if state_key
+      end
+    end
 
-    latest_reviews.each do |review|
-      state_key = REVIEW_STATES[review['state']]
-      result[state_key] += 1 if state_key
+    if review_requests
+      count = if review_requests.is_a?(Array)
+                review_requests.length
+              elsif review_requests.is_a?(Hash) && review_requests['nodes'].is_a?(Array)
+                review_requests['nodes'].length
+              else
+                0
+              end
+
+      result[:pending] += count if count.positive?
     end
 
     result
@@ -130,7 +142,7 @@ module TerminalRenderer
 
   def render(pr_data)
     ci_status = StatusChecker.check_ci_status(pr_data['statusCheckRollup'])
-    review_status = StatusChecker.check_review_status(pr_data['latestReviews'])
+    review_status = StatusChecker.check_review_status(pr_data['latestReviews'], pr_data['reviewRequests'])
 
     ci_part = format_ci_status(ci_status)
     review_part = format_review_status(review_status)
