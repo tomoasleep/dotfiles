@@ -48,7 +48,7 @@ class PRWatcher
     [
       'gh', 'pr', 'list',
       '--head', @branch_name,
-      '--json', 'number,state,mergeable,statusCheckRollup,latestReviews,reviewRequests,title',
+      '--json', 'number,state,mergeable,statusCheckRollup,latestReviews,reviewRequests,reviews,title',
       '--limit', '1'
     ]
   end
