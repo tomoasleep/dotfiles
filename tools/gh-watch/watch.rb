@@ -110,7 +110,11 @@ module StatusChecker
     'PENDING' => :pending
   }.freeze
 
-  def check_review_status(latest_reviews, review_requests = nil)
+  # Accepts:
+  # - latest_reviews: array of recent review events (`latestReviews`)
+  # - review_requests: either an array or a hash with 'nodes' => [] (`reviewRequests`)
+  # - reviews: (optional) full reviews list which may include the latest review states (`reviews`)
+  def check_review_status(latest_reviews, review_requests = nil, reviews = nil)
     result = { approved: 0, changes_requested: 0, commented: 0, dismissed: 0, pending: 0 }
 
     if latest_reviews && !latest_reviews.empty?
@@ -120,6 +124,7 @@ module StatusChecker
       end
     end
 
+    # Aggregate pending from review_requests
     if review_requests
       count = if review_requests.is_a?(Array)
                 review_requests.length
@@ -130,6 +135,17 @@ module StatusChecker
               end
 
       result[:pending] += count if count.positive?
+    end
+
+    # Some APIs expose 'reviews' which may contain CHANGES_REQUESTED entries that
+    # were submitted as 'COMMENTED' in latestReviews; count actual CHANGES_REQUESTED
+    # from the fuller 'reviews' list if provided to avoid treating them as comments.
+    if reviews && reviews.is_a?(Array) && !reviews.empty?
+      reviews.each do |r|
+        state_key = REVIEW_STATES[r['state']]
+        # If a CHANGES_REQUESTED is found in full reviews, ensure it's counted.
+        result[state_key] += 1 if state_key
+      end
     end
 
     result

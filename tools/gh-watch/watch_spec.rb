@@ -78,6 +78,14 @@ class TestStatusChecker < Minitest::Test
     result = @checker.check_review_status(latest_reviews, review_requests)
     assert_equal({ approved: 1, changes_requested: 0, commented: 1, dismissed: 0, pending: 2 }, result)
   end
+
+  def test_review_status_changes_requested_from_reviews_full_list
+    # Simulate where latestReviews may contain COMMENTED but full reviews has CHANGES_REQUESTED
+    latest_reviews = [ { 'author' => { 'login' => 'u1' }, 'state' => 'COMMENTED' } ]
+    reviews = [ { 'author' => { 'login' => 'u1' }, 'state' => 'CHANGES_REQUESTED' } ]
+    result = @checker.check_review_status(latest_reviews, nil, reviews)
+    assert_equal({ approved: 0, changes_requested: 1, commented: 1, dismissed: 0, pending: 0 }, result)
+  end
 end
 
 class TestTerminalRenderer < Minitest::Test
