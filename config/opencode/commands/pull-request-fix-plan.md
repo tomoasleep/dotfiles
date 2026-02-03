@@ -28,3 +28,7 @@ description: Suggest TODO from the given code review comments.
 1. gh pr checks コマンドなど用いて、実行した GitHub Actions の結果と詳細を確認する
   - すべての実行結果及び、失敗しているすべての GitHub Actions の詳細ログを取得する
 2. それらを解決するための具体的な修正タスクを提案する。なければ完了
+
+## ヒント
+
+- ユーザーに質問や確認を行いたい場合は question tool を使用してください。
