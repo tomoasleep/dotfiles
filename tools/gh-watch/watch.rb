@@ -225,6 +225,7 @@ class WatchModeRunner
     @interval = interval
     @output = output
     @first_run = true
+    @last_message = nil
   end
 
   def run
@@ -240,18 +241,28 @@ class WatchModeRunner
   private
 
   def refresh_display
-    clear_line unless @first_run
-    @first_run = false
-
     display_pr_status
   end
 
   def display_pr_status
     pr_data = @watcher.fetch_pr
     message = pr_data ? @watcher.format_pr(pr_data) : 'No PR found for branch'
+
+    clear_line unless @first_run
+    @first_run = false
+
+    @last_message = message
     output_with_timestamp(message)
   rescue PRWatcherError => e
-    output_with_timestamp("Error: #{e.message}")
+    if @first_run
+      @first_run = false
+      output_with_timestamp("Error: #{e.message}")
+    elsif @last_message
+      clear_line
+      output_with_timestamp("#{@last_message} [Error: #{e.message}]")
+    else
+      output_with_timestamp("Error: #{e.message}")
+    end
   end
 
   def output_with_timestamp(message)

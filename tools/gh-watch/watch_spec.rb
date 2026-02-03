@@ -291,4 +291,36 @@ class TestWatchModeRunner < Minitest::Test
 
     mock_watcher.verify
   end
+
+  def test_run_preserves_last_message_on_error
+    mock_watcher = Minitest::Mock.new
+    # First successful fetch
+    mock_watcher.expect :fetch_pr, {
+      'number' => 1,
+      'state' => 'OPEN',
+      'mergeable' => 'MERGEABLE',
+      'statusCheckRollup' => [],
+      'latestReviews' => [],
+      'title' => 'Test'
+    }
+    mock_watcher.expect :format_pr, '#1 [OPEN MERGEABLE Checks: – Review: –] Test', [Hash]
+    # Then error
+    mock_watcher.expect :fetch_pr, nil do
+      raise CommandExecutionError, 'Network error'
+    end
+
+    output = StringIO.new
+    runner = WatchModeRunner.new(mock_watcher, 0.1, output)
+
+    Thread.new { runner.run }
+    sleep 0.3
+
+    output_string = output.string
+    # Should show success message first
+    assert_match(/#1 \[OPEN MERGEABLE Checks: – Review: –\] Test/, output_string)
+    # Should preserve message with error indicator on error
+    assert_match(/#1 \[OPEN MERGEABLE Checks: – Review: –\] Test.*\[Error: Network error\]/, output_string)
+
+    mock_watcher.verify
+  end
 end
