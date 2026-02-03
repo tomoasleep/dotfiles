@@ -34,8 +34,21 @@ done
 
 branch="${1:-}"
 if [ -z "$branch" ]; then
-  echo "new-worktree-tab: branch is required" >&2
-  usage
+  if ! command -v fzf >/dev/null 2>&1 || ! command -v jq >/dev/null 2>&1; then
+    echo "new-worktree-tab: fzf and jq are required for interactive branch selection" >&2
+    usage
+  fi
+
+  if ! command -v gwq >/dev/null 2>&1; then
+    echo "new-worktree-tab: gwq not found" >&2
+    exit 1
+  fi
+
+  branch=$(gwq list --json 2>/dev/null | jq -r '.[].branch' | fzf --prompt="Select worktree branch: ")
+
+  if [ -z "$branch" ]; then
+    exit 0
+  fi
 fi
 
 if ! git rev-parse --git-dir >/dev/null 2>&1; then
@@ -46,11 +59,6 @@ fi
 repo_root=$(git rev-parse --show-toplevel)
 if [ -z "$repo_root" ]; then
   echo "new-worktree-tab: failed to get repository root" >&2
-  exit 1
-fi
-
-if ! command -v gwq >/dev/null 2>&1; then
-  echo "new-worktree-tab: gwq not found" >&2
   exit 1
 fi
 
