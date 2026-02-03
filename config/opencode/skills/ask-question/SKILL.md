@@ -23,4 +23,4 @@ question({
 
 ## 参考
 
-- [question tool ドキュメント](https://opencode.ai/docs/tools/question)
+- [question tool ドキュメント](https://opencode.ai/docs/tools/#question)
