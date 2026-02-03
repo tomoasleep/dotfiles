@@ -11,7 +11,9 @@ function zellij-look() {
   query=$1
   branch=$2
 
-  test "$query" || { echo "zellij-look: repository is required" >&2; return 1; }
+  test "$query" || {
+    query=$(ghq list | fzf --height=40% --reverse) || return 0
+  }
 
   local pr_number
   local pr_owner
@@ -113,11 +115,10 @@ function _zellij-look() {
 
   if (( CURRENT == 3 )); then
     query=$words[2]
-    test "$query" || { echo "zellij-look: repository is required" >&2; return 1; }
 
     ghq_look_query=$(echo "$query" | sed -e 's/^https:\/\///' -e 's/^git@github\.com://' -e 's/^github\.com\///' -e 's/\.git$//' -e 's/\/pull\/[0-9]*$//')
     repo_dir=$(ghq list -p -e $ghq_look_query 2>/dev/null)
-    test "$repo_dir" || { echo "zellij-look: ghq list failed: $ghq_look_query" >&2; return 1; }
+    test "$repo_dir" || return 1
 
     completions=($(cd "$repo_dir" && git for-each-ref --format='%(refname:short)' refs/heads 2>/dev/null))
     compadd $completions
