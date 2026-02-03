@@ -64,3 +64,7 @@ $ARGUMENTS
 
 - 実装プランが策定されていること
 - GitHub Issue Comment が追加され、その URL が報告されていること
+
+## ヒント
+
+- ユーザーに質問や確認を行いたい場合は question tool を使用してください。
