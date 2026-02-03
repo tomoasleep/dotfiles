@@ -4,7 +4,7 @@ layout {
     }
     pane size=1 borderless=true focus=false {
         command "gh-watch"
-        args "--watch"
+        args "--watch=60"
     }
     pane split_direction="Vertical" {
         pane focus=true {
