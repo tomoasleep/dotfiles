@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ -n "$ZELLIJ" ]; then
+  zellij run --close-on-exit --floating --cwd ~/.ghq/github.com/tomoasleep/kikitori -- zsh -lc "bun run dev | tee -a /dev/stderr | pbcopy"
+else
+  cd ~/.ghq/github.com/tomoasleep/kikitori
+  bun run dev | tee -a /dev/stderr | pbcopy
+fi
+
