@@ -46,3 +46,5 @@ font-family = "Noto Color Emoji"
 font-feature = -dlig
 font-size = 15
 
+keybind = global:cmd+backquote=toggle_quick_terminal
+
