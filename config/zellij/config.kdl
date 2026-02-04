@@ -237,6 +237,13 @@ keybinds clear-defaults=true {
         bind "t" { SwitchToMode "Tab"; }
         bind "h" { SwitchToMode "Move"; }
         bind "q" "b" { SwitchToMode "Tmux"; }
+        bind "v" {
+            Run "kiki" {
+                floating true
+                close_on_exit true
+            };
+            SwitchToMode "Locked";
+        }
     }
 
     shared {

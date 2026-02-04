@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd ~/.ghq/github.com/tomoasleep/kikitori
+bun run dev | tee -a /dev/stderr | pbcopy
