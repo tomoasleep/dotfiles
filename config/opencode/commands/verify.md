@@ -1,6 +1,6 @@
 ---
 name: verify
-description: 
+description: Verify task requirements and lint errors
 ---
 
 与えられた要件にあっているか、テスト、Linter 違反が無いかを検証してください。検証と修正は subagent に委託します。
