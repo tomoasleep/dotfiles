@@ -22,13 +22,15 @@ description: Suggest TODO from the given code review comments.
 2. Resolveしていないレビューコメントの内容を理解する
 3. 現状の差分と比較し、指摘が解消されているかを確認する。
 4. 解消されていない指摘があれば、それを解決するための具体的な修正タスクを提案する。なければ完了
+  - ask-question skill を利用して、提案してください。
 
 ### CI 対応提案
 
 1. gh pr checks コマンドなど用いて、実行した GitHub Actions の結果と詳細を確認する
   - すべての実行結果及び、失敗しているすべての GitHub Actions の詳細ログを取得する
 2. それらを解決するための具体的な修正タスクを提案する。なければ完了
-
+  - interactive-debug skill を参照し、修正アクションを提案してください。
+  
 ## ヒント
 
 - ユーザーに質問や確認を行いたい場合は question tool を使用してください。
