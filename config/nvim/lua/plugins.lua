@@ -86,6 +86,7 @@ return require('lazy').setup({
       enabled = not is_vscode,
       config = get_config("tmux")
     },
+    'lambdalisue/vim-fern',
 
     'vim-scripts/endwise.vim',
     'vim-scripts/matchit.zip',
