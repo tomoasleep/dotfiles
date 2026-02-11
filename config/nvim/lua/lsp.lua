@@ -76,24 +76,24 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 require("mason").setup()
 require("mason-lspconfig").setup {
   ensure_installed = { "sorbet" },
-
-  handlers = {
-    function (server_name) -- default handler (optional)
-      require("lspconfig")[server_name].setup({
-        on_attach = on_attach,
-        debounce_text_changes = 150,
-        capabilities = capabilities
-      })
-    end,
-    ["sorbet"] = function ()
-      require("lspconfig").sorbet.setup {
-        init_options = {
-          highlightUntyped = true
-        },
-        debounce_text_changes = 150,
-        capabilities = capabilities
-      }
-    end,
-  }
 }
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    on_attach(client, bufnr)
+  end,
+})
+
+vim.lsp.config("*", {
+  capabilities = capabilities,
+})
+
+vim.lsp.config("sorbet", {
+  capabilities = capabilities,
+  init_options = {
+    highlightUntyped = true
+  },
+})
 
