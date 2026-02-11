@@ -51,5 +51,6 @@
   "vim-airline-themes": { "branch": "master", "commit": "77aab8c6cf7179ddb8a05741da7e358a86b2c3ab" },
   "vim-fern": { "branch": "main", "commit": "d0b5befc0321126384981d6cf3c1b561014c65a2" },
   "vim-indent-guides": { "branch": "master", "commit": "a1e1390c0136e63e813d051de2003bf0ee18ae30" },
-  "vim-solarized8": { "branch": "master", "commit": "19fd5a93162e1014e8ea8c0fedce26392e63f7ae" }
+  "vim-solarized8": { "branch": "master", "commit": "19fd5a93162e1014e8ea8c0fedce26392e63f7ae" },
+  "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" }
 }

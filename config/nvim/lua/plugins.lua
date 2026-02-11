@@ -98,6 +98,8 @@ return require('lazy').setup({
     { 'nvim-treesitter/nvim-treesitter', config = get_config("treesitter") },
     -- use 'sheerun/vim-polyglot'
 
+    { "folke/which-key.nvim", event = "VeryLazy" },
+    
     { 
       'vim-airline/vim-airline',
       config = get_config("airline"),
