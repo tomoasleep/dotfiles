@@ -1,5 +1,5 @@
-require('plugins')
 require('core')
+require('plugins')
 require('config')
 require('lsp')
 
