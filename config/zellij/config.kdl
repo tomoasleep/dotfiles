@@ -276,6 +276,8 @@ plugins {
     plugin-manager location="zellij:plugin-manager"
     about location="zellij:about"
 
+    zellij-emotitle location="file:~/.config/zellij/plugins/zellij-emotitle.wasm"
+
     // Bundled plugins
     zellij-switch location="file:~/.config/zellij/plugins/zellij-switch.wasm"
     harpoon location="file:~/.config/zellij/plugins/harpoon.wasm"
@@ -291,6 +293,7 @@ plugins {
 load_plugins {
   // "file:/path/to/my-plugin.wasm"
   // "https://example.com/my-plugin.wasm"
+  zellij-emotitle
 }
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
