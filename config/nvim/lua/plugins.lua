@@ -152,6 +152,9 @@ return require('lazy').setup({
       { 'akinsho/bufferline.nvim', version = "*", dependencies = 'kyazdani42/nvim-web-devicons', enabled = not is_vscode },
       { 'Shougo/unite.vim', tag = 'ver.6.0', enabled = not is_vscode },
 
+      'junegunn/fzf',
+      'junegunn/fzf.vim',
+
       {
         "greggh/claude-code.nvim",
         dependencies = {
