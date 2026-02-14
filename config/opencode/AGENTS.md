@@ -6,9 +6,11 @@
   * terminal-notifier is a command line tool for sending macOS notifications.
   * Usage: `terminal-notifier -title "OpenCode" -subtitle "Sub Title" -message "Message"`
     * The title must be `OpenCode` for the user to be able to notice the message from OpenCode.
-* ユーザーに質問したいこと、相談したいこと、確認してもらいたいことがある場合は、必ず `question` tool を使ってください。
+* ユーザーに質問したいこと、相談したいこと、確認してもらいたいこと、承認してもらいたいことがある場合は、必ず `question` tool を使ってください。
   * 利用方法は ask-question skill で見れます。
   * Plan mode でも question は利用可能です。
+* 現在の作業に関連する Agent Skills を参照してください。
+  * コードの書き方などが Agent Skills に記載されている場合は、必ずそちらに従うこと。
 
 ## Development Style
 

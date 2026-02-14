@@ -30,6 +30,7 @@ description: Suggest TODO from the given code review comments.
   - すべての実行結果及び、失敗しているすべての GitHub Actions の詳細ログを取得する
 2. それらを解決するための具体的な修正タスクを提案する。なければ完了
   - interactive-debug skill を参照し、修正アクションを提案してください。
+  - 修正タスク完了後に、修正されていることを確認するための手順も提案してください。
   
 ## ヒント
 
