@@ -29,7 +29,7 @@ time_format = "%Y/%m/%d %T"
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character] # The name of the module we are configuring is 'character'
-success_symbol = '[\(ρ _-\)ノ](green)'
+success_symbol = '[\(p_-\)/](green)'
 error_symbol = '[_\(:3」\[＿\]](red)'
 
 [docker_context]
