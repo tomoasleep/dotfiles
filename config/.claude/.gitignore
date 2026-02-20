@@ -8,6 +8,8 @@
 /file-history/
 /.claude.json
 /history.jsonl
+/backups/
+/telemetry/
 *.backup
 
 transcripts/
