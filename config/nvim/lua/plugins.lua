@@ -213,5 +213,9 @@ return require('lazy').setup({
         },
       },
     },
+
+    {
+      "tomoasleep/navigator.nvim",
+    },
   },
 })
