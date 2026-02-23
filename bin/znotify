@@ -3,7 +3,7 @@
 EMOJI=$1
 
 if [ -n "$ZELLIJ" ]; then
-  zellij --session "$ZELLIJ_SESSION_NAME" pipe --name emotitle --plugin zellij-emotitle --args target=tab,pane_id=$ZELLIJ_PANE_ID,emojis=$EMOJI
-  zellij --session "$ZELLIJ_SESSION_NAME" pipe --name emotitle --plugin zellij-emotitle --args target=pane,pane_id=$ZELLIJ_PANE_ID,emojis=$EMOJI
+  zellij --session "$ZELLIJ_SESSION_NAME" pipe --name emotitle --plugin zellij-emotitle --args target=tab,pane_id=$ZELLIJ_PANE_ID,emojis=$EMOJI > /dev/null
+  zellij --session "$ZELLIJ_SESSION_NAME" pipe --name emotitle --plugin zellij-emotitle --args target=pane,pane_id=$ZELLIJ_PANE_ID,emojis=$EMOJI > /dev/null
 fi
 
