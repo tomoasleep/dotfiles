@@ -15,11 +15,14 @@ autoload -Uz _zinit
 
 # ----------------------------------------
 
-zinit ice as"plugin" hook-load"source ~/.config/zsh/config/zsh-autosuggestions.zsh"
-zinit light zsh-users/zsh-autosuggestions
 
-zinit ice as"plugin"
-zinit light zsh-users/zsh-syntax-highlighting
+if [ -z "$ZSH_SIMPLE" ]; then
+  zinit ice as"plugin" hook-load"source ~/.config/zsh/config/zsh-autosuggestions.zsh"
+  zinit light zsh-users/zsh-autosuggestions
+   
+  zinit ice as"plugin"
+  zinit light zsh-users/zsh-syntax-highlighting
+fi
 
 zinit ice as"plugin"
 zinit light unixorn/fzf-zsh-plugin

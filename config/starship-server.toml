@@ -2,12 +2,18 @@
 # Plain text symbols, no nerd fonts
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """$directory$git_branch$git_state$character"""
+format = """
+$directory\
+$git_branch\
+$git_state\
+$character
+"""
 
 # No newline between prompts for compact display
 add_newline = false
 
 [directory]
+format = "$path $read_only"
 truncation_length = 4
 truncation_symbol = ".../"
 truncate_to_repo = false
