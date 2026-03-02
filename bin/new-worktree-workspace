@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  echo "Usage: new-worktree-workspace <branch>" >&2
+  exit 1
+}
+
+if [[ $# -gt 0 ]]; then
+  case $1 in
+    -h|--help)
+      usage
+      ;;
+    -*)
+      echo "new-worktree-workspace: unknown option: $1" >&2
+      usage
+      ;;
+  esac
+fi
+
+branch="${1:-}"
+if [ -z "$branch" ]; then
+  if ! command -v fzf >/dev/null 2>&1 || ! command -v jq >/dev/null 2>&1; then
+    echo "new-worktree-workspace: fzf and jq are required for interactive branch selection" >&2
+    usage
+  fi
+
+  if ! command -v gwq >/dev/null 2>&1; then
+    echo "new-worktree-workspace: gwq not found" >&2
+    exit 1
+  fi
+
+  branch=$(gwq list --json 2>/dev/null | jq -r '.[].branch' | fzf --prompt="Select worktree branch: ")
+
+  if [ -z "$branch" ]; then
+    exit 0
+  fi
+fi
+
+if ! git rev-parse --git-dir >/dev/null 2>&1; then
+  echo "new-worktree-workspace: not in a git repository" >&2
+  exit 1
+fi
+
+repo_root=$(git rev-parse --show-toplevel)
+if [ -z "$repo_root" ]; then
+  echo "new-worktree-workspace: failed to get repository root" >&2
+  exit 1
+fi
+
+worktree_dir=$(cd "$repo_root" && gwq get "$branch" 2>/dev/null)
+if [ -z "$worktree_dir" ]; then
+  if ! git -C "$repo_root" show-ref --verify --quiet "refs/heads/$branch"; then
+    echo "new-worktree-workspace: branch not found: $branch" >&2
+    exit 1
+  fi
+
+  (cd "$repo_root" && gwq add "$branch") || { echo "new-worktree-workspace: gwq add failed: $branch" >&2; exit 1; }
+  worktree_dir=$(cd "$repo_root" && gwq get "$branch" 2>/dev/null)
+fi
+
+if [ -z "$worktree_dir" ]; then
+  echo "new-worktree-workspace: worktree directory not found" >&2
+  exit 1
+fi
+
+if ! command -v cmux >/dev/null 2>&1; then
+  echo "new-worktree-workspace: cmux not found" >&2
+  exit 1
+fi
+
+cmux new-workspace --cwd "$worktree_dir" || { echo "new-worktree-workspace: cmux new-workspace failed" >&2; exit 1; }
