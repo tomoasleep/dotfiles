@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  printf '%s\n' "Usage: gh-project-items <project-number> --owner <owner> [--column <name>] [--limit <n>]" >&2
+  exit 1
+}
+
+project_number=''
+owner=''
+column=''
+limit='30'
+
+if [[ $# -eq 0 ]]; then
+  usage
+fi
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h|--help)
+      usage
+      ;;
+    --owner)
+      owner="$2"
+      shift 2
+      ;;
+    --column)
+      column="$2"
+      shift 2
+      ;;
+    --limit)
+      limit="$2"
+      shift 2
+      ;;
+    --*)
+      printf '%s\n' "gh-project-items: unknown option: $1" >&2
+      usage
+      ;;
+    *)
+      if [[ -z "$project_number" ]]; then
+        project_number="$1"
+        shift 1
+      else
+        printf '%s\n' "gh-project-items: unexpected argument: $1" >&2
+        usage
+      fi
+      ;;
+  esac
+done
+
+if [[ -z "$project_number" || -z "$owner" ]]; then
+  usage
+fi
+
+if ! command -v gh >/dev/null 2>&1; then
+  printf '%s\n' 'gh is required' >&2
+  exit 1
+fi
+
+if ! command -v jq >/dev/null 2>&1; then
+  printf '%s\n' 'jq is required' >&2
+  exit 1
+fi
+
+query_args=()
+if [[ -n "$column" ]]; then
+  query_value="${column// /\\ }"
+  query_args=(--query "status:${query_value}")
+fi
+
+gh project item-list "$project_number" --owner "$owner" --format json --limit "$limit" "${query_args[@]}" \
+  | jq 'map({id, title, url, status})'

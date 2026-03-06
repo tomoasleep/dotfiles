@@ -43,6 +43,20 @@ gh project field-list 3 --owner @me
 | `-t, --template` | Go テンプレートでフォーマット |
 | `-w, --web` | ブラウザで開く |
 
+## Helper Scripts
+
+このスキルの配置場所 (SKILL.md があるディレクトリ) からの相対パスでアクセス:
+
+```bash
+$SKILL_DIR/scripts/gh-project-items <project-number> --owner <owner> [--column <name>]
+```
+
+| スクリプト | 用途 |
+|-----------|------|
+| `scripts/gh-project-items` | カラム名でアイテムをフィルタして取得 |
+
+詳細は [gh-project-items.md](references/gh-project-items.md) を参照。
+
 ## Quick Commands
 
 ### プロジェクト情報
