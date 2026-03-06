@@ -1,0 +1,81 @@
+#!/bin/bash
+set -eu
+
+INTERVAL=10
+MODE=""
+
+usage() {
+  cat <<EOF
+Usage: wait-until [OPTIONS] -- COMMAND [ARGS...]
+
+Options:
+  --until-success   Wait until command succeeds (exit code 0)
+  --until-failure   Wait until command fails (exit code non-zero)
+  --interval SEC    Interval between attempts (default: 10)
+  --help            Show this help
+
+Examples:
+  wait-until --until-success -- curl -s http://localhost:8080/health
+  wait-until --until-failure --interval 5 -- some-command
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --until-success)
+      MODE="success"
+      shift
+      ;;
+    --until-failure)
+      MODE="failure"
+      shift
+      ;;
+    --interval)
+      INTERVAL="$2"
+      shift 2
+      ;;
+    --help)
+      usage
+      exit 0
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      usage >&2
+      exit 1
+      ;;
+  esac
+done
+
+if [[ -z "$MODE" ]]; then
+  echo "Error: --until-success or --until-failure is required" >&2
+  usage >&2
+  exit 1
+fi
+
+if [[ $# -eq 0 ]]; then
+  echo "Error: No command specified" >&2
+  usage >&2
+  exit 1
+fi
+
+while true; do
+  if "$@"; then
+    exit_code=0
+  else
+    exit_code=$?
+  fi
+
+  if [[ "$MODE" == "success" && "$exit_code" -eq 0 ]]; then
+    exit 0
+  fi
+
+  if [[ "$MODE" == "failure" && "$exit_code" -ne 0 ]]; then
+    exit "$exit_code"
+  fi
+
+  sleep "$INTERVAL"
+done
