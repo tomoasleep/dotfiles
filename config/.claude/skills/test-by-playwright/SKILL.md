@@ -13,7 +13,7 @@ license: 'MIT'
 1. 行うべき動作確認のケースをリストアップします。
 1. `.playwright-tests/` 内にテストを動作させるための設定がない場合は、このディレクトリに `package.json` や `playwright.config.ts` などの設定ファイルを生成し、 Playwright テストが動作するようにしてください。
 1. 各ケースに対して以下の手順、でテストを作成します
-    1. Playwright MCP を使用して、実際にブラウザ上で動作をさせてみて、Playwright 上で動作確認方法を把握します
+    1. agent-browser CLI (または playwright CLI) を使用して、実際にブラウザ上で動作をさせてみて、動作確認方法を把握します
     1. 行った内容を元に Playwright テストコードを `.playwright-tests/YYMMDD-FEATURENAME/TESTCASENAME` ディレクトリ内に生成します。
     1. テストコードを実際に実行し、動作確認を行います。正しく動作するまで終了します。
 1. すべてのテストコードが実装し、正しく動作することを再度確認してください。正しく動作しない場合は、そのケースの作成をやり直してください。
