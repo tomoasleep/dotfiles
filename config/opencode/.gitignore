@@ -4,3 +4,9 @@ bun.lock
 secrets
 
 qiita-*
+journal/
+memory/
+logs/
+scheduler/
+
+*.bak*
