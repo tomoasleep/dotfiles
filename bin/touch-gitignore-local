@@ -1,0 +1,17 @@
+#!/bin/bash
+set -eu
+
+root="$(git rev-parse --show-toplevel)"
+exclude="${root}/.git/info/exclude"
+link="${root}/.gitignore.local"
+
+if [[ ! -f "$exclude" ]]; then
+  echo "Error: $exclude does not exist" >&2
+  exit 1
+fi
+
+if [[ -L "$link" ]]; then
+  exit 0
+fi
+
+ln -s .git/info/exclude "$link"
