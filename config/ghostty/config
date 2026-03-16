@@ -37,7 +37,8 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = Everforest Light Med
+# theme = Everforest Light Med
+theme = "iTerm2 Solarized Light"
 
 font-family = "HackGen Console NF"
 font-family = "JetBrains Mono"

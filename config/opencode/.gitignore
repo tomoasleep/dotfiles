@@ -10,3 +10,5 @@ logs/
 scheduler/
 
 *.bak*
+
+plugins/askit.js
