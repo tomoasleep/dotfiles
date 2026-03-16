@@ -1,6 +1,6 @@
 ---
 name: pull-request-fix-plan
-description: Suggest TODO from the given code review comments.
+description: Create a fix plan from the given code review comments and CI results.
 ---
 
 # pull-request-fix-plan
