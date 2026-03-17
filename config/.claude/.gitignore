@@ -10,8 +10,13 @@
 /history.jsonl
 /backups/
 /telemetry/
+/tasks
 *.backup
 
 transcripts/
 cache/
 stats-cache.json
+
+remote-settings.json
+mcp-needs-auth-cache.json
+policy-limits.json
