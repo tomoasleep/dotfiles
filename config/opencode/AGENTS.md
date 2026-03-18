@@ -9,6 +9,8 @@
 * ユーザーに質問したいこと、相談したいこと、確認してもらいたいこと、承認してもらいたいことがある場合は、必ず `question` tool を使ってください。
   * 利用方法は ask-question skill で見れます。
   * Plan mode でも question は利用可能です。
+* 計画の提出および確認は必ず `submit_plan` tool を利用してください。
+  * `~/.local/share/opencode/plans` への書き込みは Plan mode でも可能です。
 * 現在の作業に関連する Agent Skills を参照してください。
   * コードの書き方などが Agent Skills に記載されている場合は、必ずそちらに従うこと。
 
