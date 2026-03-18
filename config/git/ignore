@@ -14,5 +14,9 @@
 **/.claude/settings.local.json
 .plans/
 .plans
+plans./
+plans/
 .playwright-tests/
 .vibedump.jsonl
+
+*.local.md
