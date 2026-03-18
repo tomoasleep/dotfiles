@@ -5,3 +5,6 @@ config/karabiner/karabiner.json
 
 plannotator-annotate.md
 plannotator-review.md
+
+config/.claude/settings.json
+config/opencode/opencode.json

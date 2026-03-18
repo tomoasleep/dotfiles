@@ -17,6 +17,16 @@
     "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); model=$(echo \"$input\" | jq -r '.model.display_name'); git_branch=$(cd \"$current_dir\" 2>/dev/null && git branch --show-current 2>/dev/null || echo ''); time=$(date '+%Y/%m/%d %T'); short_dir=$(basename \"$current_dir\"); if [ -n \"$git_branch\" ]; then printf \"📁 %s  %s │ 🤖 %s │ 🕐 %s\" \"$short_dir\" \"$git_branch\" \"$model\" \"$time\"; else printf \"📁 %s │ 🤖 %s │ 🕐 %s\" \"$short_dir\" \"$model\" \"$time\"; fi"
   },
   "enabledPlugins": {
-    "claude-mem@thedotmack": true
+    "claude-mem@thedotmack": true,
+    "slack@claude-plugins-official": true,
+    "plannotator@plannotator": true
+  },
+  "extraKnownMarketplaces": {
+    "plannotator": {
+      "source": {
+        "source": "github",
+        "repo": "backnotprop/plannotator"
+      }
+    }
   }
 }
