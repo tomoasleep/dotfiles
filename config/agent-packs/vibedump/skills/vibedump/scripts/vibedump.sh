@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eux
+set -eu
 
 task_id=''
 task_name=''
