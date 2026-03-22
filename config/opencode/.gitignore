@@ -12,3 +12,4 @@ scheduler/
 *.bak*
 
 plugins/askit.js
+plugins/yolo.js
