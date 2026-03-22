@@ -41,9 +41,6 @@
     "show_parameter_hints": true,
     "show_other_hints": true,
   },
-  "lsp": {
-    "steep": {},
-  },
   "languages": {
     "Ruby": {
       "language_servers": ["ruby-lsp", "rubocop", "!solargraph", "steep"],
