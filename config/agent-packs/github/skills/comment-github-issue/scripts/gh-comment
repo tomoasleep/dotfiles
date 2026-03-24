@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: gh-comment <type> <number> [--repo <owner/repo>]
+
+Arguments:
+  type    Target type: issue or pr
+  number  Issue or PR number
+
+Options:
+  --repo  Repository in owner/repo format (defaults to current repo)
+
+The comment body is read from stdin.
+
+Examples:
+  echo "Hello!" | gh-comment issue 42
+  echo "LGTM" | gh-comment pr 10 --repo owner/repo
+  cat comment.md | gh-comment issue 42
+EOF
+  exit 1
+}
+
+TYPE=""
+NUMBER=""
+REPO_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    issue|pr)
+      TYPE="$1"
+      shift
+      ;;
+    --repo)
+      REPO_ARGS=("--repo" "$2")
+      shift 2
+      ;;
+    --help|-h)
+      usage
+      ;;
+    *)
+      if [[ -z "$NUMBER" ]]; then
+        NUMBER="$1"
+        shift
+      else
+        echo "Error: Unexpected argument: $1" >&2
+        usage
+      fi
+      ;;
+  esac
+done
+
+if [[ -z "$TYPE" || -z "$NUMBER" ]]; then
+  echo "Error: type and number are required" >&2
+  usage
+fi
+
+if [[ -t 0 ]]; then
+  echo "Error: Comment body must be provided via stdin" >&2
+  usage
+fi
+
+case "$TYPE" in
+  issue)
+    gh issue comment "$NUMBER" "${REPO_ARGS[@]}" --body-file -
+    ;;
+  pr)
+    gh pr comment "$NUMBER" "${REPO_ARGS[@]}" --body-file -
+    ;;
+  *)
+    echo "Error: type must be 'issue' or 'pr'" >&2
+    usage
+    ;;
+esac
