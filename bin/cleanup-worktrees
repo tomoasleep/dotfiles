@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+auto_yes=false
+for arg in "$@"; do
+  case "$arg" in
+    --yes|-y) auto_yes=true ;;
+  esac
+done
+
 command -v gwq >/dev/null 2>&1 || { echo "gwq not found" >&2; exit 1; }
 command -v git >/dev/null 2>&1 || { echo "git not found" >&2; exit 1; }
 command -v jq >/dev/null 2>&1 || { echo "jq not found" >&2; exit 1; }
@@ -123,7 +130,11 @@ if [ "${#skipped[@]}" -gt 0 ]; then
   done
 fi
 
-read -r -p "Remove all above worktrees via gwq? [y/N] " ans
+if [ "$auto_yes" = true ]; then
+  ans="y"
+else
+  read -r -p "Remove all above worktrees via gwq? [y/N] " ans
+fi
 case "$ans" in
   [yY]|[yY][eE][sS])
     i=0
