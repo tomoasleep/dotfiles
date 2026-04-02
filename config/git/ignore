@@ -20,3 +20,4 @@ plans/
 .vibedump.jsonl
 
 *.local.md
+.playwright-cli/
