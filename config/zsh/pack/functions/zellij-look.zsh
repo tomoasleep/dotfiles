@@ -92,7 +92,7 @@ function zellij-look() {
   if test "$ZELLIJ"; then
     echo "zellij-look: switch session: $zellij_name" >&2
     echo "zellij-look: worktree dir: $zellij_dir" >&2
-    zellij pipe --plugin file:$HOME/.config/zellij/plugins/zellij-switch.wasm -- "-s $zellij_name --cwd $zellij_dir"
+    zellij action switch-session "$zellij_name" --cwd "$zellij_dir"
   else
     echo "zellij-look: attach in dir: $zellij_dir" >&2
     echo "zellij-look: session name: $zellij_name" >&2
