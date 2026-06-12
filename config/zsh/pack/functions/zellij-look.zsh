@@ -6,7 +6,6 @@ function zellij-look() {
   local repo_dir
   local zellij_dir
   local zellij_name
-  local branch_sanitized
 
   query=$1
   branch=$2
@@ -79,12 +78,12 @@ function zellij-look() {
       zellij_dir=$(cd "$repo_dir" && gwq get "$branch" 2>/dev/null)
     fi
 
-    branch_sanitized=$(printf '%s' "$branch" | tr './' '__')
-    zellij_name=$(ghq list -e $ghq_look_query | sed -e 's/^github\.com\///' | tr './' '__')
-    zellij_name="${zellij_name}__${branch_sanitized}"
+    local owner_repo=$(ghq list -e $ghq_look_query | sed -e 's/^github\.com\///')
+    zellij_name=$(_zellij_session_name "$owner_repo" "$branch")
   else
     zellij_dir="$repo_dir"
-    zellij_name=$(ghq list -e $ghq_look_query | sed -e 's/^github\.com\///' | tr './' '__')
+    local owner_repo=$(ghq list -e $ghq_look_query | sed -e 's/^github\.com\///')
+    zellij_name=$(_zellij_session_name "$owner_repo")
   fi
 
   test "$zellij_dir" || { echo "zellij-look: worktree directory not found" >&2; return 1; }
