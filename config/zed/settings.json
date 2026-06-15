@@ -7,7 +7,57 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          // "updateImportsOnFileMove": {
+          //   "enabled": "always",
+          // },
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+        "javascript": {
+          // "updateImportsOnFileMove": {
+          //   "enabled": "always",
+          // },
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+      },
+      "enable_lsp_tasks": true,
+    },
+  },
+  "cli_default_open_behavior": "existing_window",
+  "edit_predictions": {
+    "ollama": {
+      "model": "qwen2.5-coder:0.5b"
+    },
+    "provider": "ollama",
+  },
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
   "agent_servers": {
+    "opencode": {
+      "type": "registry"
+    },
     "Example Agent": {
       "type": "custom",
       "command": "npx",
@@ -19,19 +69,21 @@
     },
   },
   "agent": {
-    "play_sound_when_agent_done": true,
+    "dock": "right",
+    "play_sound_when_agent_done": "always",
     "default_model": {
       "provider": "copilot_chat",
       "model": "gpt-5-mini",
     },
   },
-  "theme": "Everforest Light Medium (material)",
+  "theme": {
+    "mode": "light",
+    "light": "Everforest Light Medium (regular)",
+    "dark": "Everforest Dark Medium (blur)",
+  },
   "buffer_font_size": 14,
   "ui_font_family": "HackGen35 Console",
   "vim_mode": true,
-  "features": {
-    "edit_prediction_provider": "copilot",
-  },
   "terminal": {
     "dock": "right",
   },
@@ -55,7 +107,7 @@
     },
     "TypeScript": {
       "code_actions_on_format": {
-        "source.organizeImports": true,
+        // "source.organizeImports": true,
         "source.fixAll.eslint": true,
         "source.fixAll.biome": true,
         "source.organizeImports.biome": true,
