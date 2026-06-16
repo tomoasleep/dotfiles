@@ -11,6 +11,7 @@ unless devcontainer?
 end
 
 dotconfig 'aquaproj-aqua'
+dotconfig 'fence'
 dotconfig 'nvim'
 dotconfig 'nyaovim'
 dotconfig 'fish'

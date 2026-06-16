@@ -186,3 +186,5 @@ gh api graphql \
 - GraphQL APIは `issueId`/`subIssueId`（ID, node_id）を要求する
 - Sub Issueの作成にはWrite権限が必要です
 - REST APIの追加では「sub-issueは親issueと同じリポジトリオーナー配下」である必要がある（例: 同一ユーザー/同一Organization配下）
+- REST APIに issue 番号を `sub_issue_id` に渡すと失敗する。必ず `.id`（データベースID）を取得してから `-F` で渡すこと
+- REST API（`/issues/{number}/sub_issues`）が 404 を返す場合は GraphQL の `addSubIssue` mutation を使う
