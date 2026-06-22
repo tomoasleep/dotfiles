@@ -23,6 +23,7 @@ dotconfig 'starship.toml'
 dotconfig 'starship-server.toml'
 dotconfig 'karabiner.edn'
 dotconfig 'ghostty'
+dotconfig 'herdr'
 dotconfig 'zellij'
 
 dotfile '.atom'

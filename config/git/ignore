@@ -15,7 +15,8 @@
 .plans/
 .plans
 plans./
-plans/
+# plans/
+.opencode/plans/
 .playwright-tests/
 .vibedump.jsonl
 
