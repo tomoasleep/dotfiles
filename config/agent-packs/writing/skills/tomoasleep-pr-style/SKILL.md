@@ -1,6 +1,6 @@
 ---
 name: tomoasleep-pr-style
-description: tomoasleep が書くような Pull Request の書き方を教えます。
+description: tomoasleep が書くような Pull Request の書き方を教えます。PR の説明文を書く・直す・レビューする・What/How/Why を整える・flaky 修正やバグ修正の説明を書くときは必ず使ってください。特に How が実装詳細に寄りすぎている場合や、Why に「なぜこの変更で直るのか」を検証可能に書く必要がある場合に使います。
 ---
 
 # Pull Request 説明文の特徴レポート
@@ -130,6 +130,84 @@ CI で xxx を忘れて怒られることまあまああり、毎回どのタス
  Why
 Ref: [Agent Skills をどんどん書いていきませんか - Internal Docs](https://internal-docs.example.com/items/12345)
 ```
+
+#### flaky 修正やバグ修正では、コードから分からない理由を検証可能に書く
+
+`How` にはコードを読めば分かる実装詳細を並べない。アプローチを一言で書く。
+
+`Why` には、レビュワーがコードや CI ログを辿って検証できる形で「なぜ落ちていたのか」「なぜこの変更で直るのか」を書く。
+
+以下を意識する。
+
+- 失敗条件を具体的に書く
+- 該当するソースコード URL を添える
+- 「対象外のつもり」「たまたま」「依存している」などの曖昧な表現だけで済ませない
+- 具体的な値や作成順が重要なら例を出す
+- 最近落ちやすくなった理由が推測できるなら、推測であることが分かる文で書く
+- 将来的な改善案と今回の修正方針を分けて書く
+
+例:
+
+```
+## How
+
+この spec 内で作った campaign の id だけを Tech Festa 2026 の対象 campaign id として扱うようにする。
+
+## Why
+
+### flaky が起きていた理由
+
+修正前の spec では、Tech Festa 2026 対象の campaign を `tech_festa2026.posting_campaign_ids` の固定 id で作り、対象外 campaign は id を指定せず通常の factory で作っていた。
+
+- 対象 campaign を固定 id で作っている箇所
+  https://github.com/example/repo/blob/<sha>/path/to/spec.rb#L10-L11
+
+- 対象外 campaign を id 未指定で作っている箇所
+  https://github.com/example/repo/blob/<sha>/path/to/spec.rb#L12
+
+たとえば、対象 campaign として `id: 155` / `id: 156` を作ったあと、次に id 未指定で対象外 campaign を作る。DB sequence がまだ 156 未満だった場合、次の id として `157` が採番されやすい。
+
+`157` が対象 id の一覧に含まれている場合、spec 上は対象外として作った campaign が、実際の集計条件では対象 campaign として扱われる。
+
+- 集計条件
+  https://github.com/example/repo/blob/<sha>/path/to/model.rb#L20-L23
+
+そのため、対象外記事に付けた likes が ranking に混ざり、期待している件数より多く返って flaky になる。
+
+### 最近落ちやすかった理由
+
+今回の flaky は「対象外 campaign がたまたま対象 id に被る」だけではなく、修正前の作成順だと `157` が採番されやすい条件になっていた。
+
+```text
+id: 155 の target_campaign を作る
+id: 156 の other_campaign を作る
+次に id 未指定で non_target_campaign を作る
+DB sequence が 156 未満なら 157 が採番される
+157 は対象 campaign id に含まれる
+```
+
+この spec が auto increment がまだ十分に進んでいない DB worker で実行されると、高確率で失敗条件を踏む。最近落ちる確率が高く見えたのは、CI の test split や並列 worker の割り当てによって、この spec がそういう DB sequence 状態で実行されやすくなったためだと考えている。
+
+### なぜこの変更で直るのか
+
+今回の変更では、固定 id を test data として直接使うのではなく、この spec 内で factory により作った record の id を対象 id として扱うようにする。
+
+- 変更後の対象 id の定義
+  https://github.com/example/repo/blob/<sha>/path/to/spec.rb#L30-L33
+
+これにより、集計で対象になる id が spec 内で作った record に限定される。対象外 record の id は対象 id に含まれないので、DB sequence の状態に依存しなくなる。
+
+なお、本来は固定 id を spec に直接持ち込まない形にしていく方が望ましい。今回は flaky の原因になっている spec に閉じて、対象 id のリストを spec 内の test data に合わせることで修正する。
+```
+
+チェックリスト:
+
+- `How` は実装詳細の羅列ではなく、アプローチを一文で説明しているか
+- `Why` はサブ見出しで読みやすく分割しているか
+- ソースコード URL があり、レビュワーが該当箇所を開いて確認できるか
+- 失敗条件を具体的な値や作成順で説明しているか
+- 「なぜこの変更で直るのか」が、変更後の条件と失敗条件の関係で説明されているか
+- 今回対応しない将来的な改善案を、今回の修正方針と混ぜずに補足として書いているか
 
 ***
 
