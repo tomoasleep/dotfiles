@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec bun run "$(herdr plugin list --plugin official.browser --json | jq -r '.result.plugins[0].plugin_root')/src/cli.ts" "$@"
