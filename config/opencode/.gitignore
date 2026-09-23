@@ -13,3 +13,4 @@ scheduler/
 
 plugins/askit.js
 plugins/yolo.js
+tui.jsonc

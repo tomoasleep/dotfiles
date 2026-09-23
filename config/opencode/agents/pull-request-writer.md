@@ -1,14 +1,9 @@
 ---
 description: Pull Request 説明文を作成する。現在のブランチと master/main の差分を分析し、リポジトリの PR テンプレートに沿った説明文案を生成する。
 mode: subagent
-temperature: 0.2
-tools:
-  write: false
-  edit: false
-  bash: true
-  read: true
-  glob: true
-  grep: true
+request:
+  body:
+    temperature: 0.2
 ---
 
 あなたは Pull Request 説明文作成の専門家です。

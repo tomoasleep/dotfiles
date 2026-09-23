@@ -1,13 +1,20 @@
 ---
-permission:
-  edit: deny
-  read: allow
-  webfetch: allow
-  websearch: allow
-  codesearch: allow
-tools:
-  "exa*": true
-  "qiita-team*": true
+permissions:
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: webfetch
+    resource: "*"
+    effect: allow
+  - action: websearch
+    resource: "*"
+    effect: allow
+  - action: codesearch
+    resource: "*"
+    effect: allow
 mode: subagent
 description: Use this agent when you want to research specific topics, gather information from various sources, and compile comprehensive reports from web.
 ---

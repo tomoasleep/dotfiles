@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "theme": {
+    "name": "everforest",
+    "mode": "dark"
+  },
+  "diffs": {
+    "wrap": "word",
+    "single": false
+  },
+  "session": {
+    "sidebar": "hide",
+    "scrollbar": true,
+    "thinking": "hide",
+    "image_preview": true
+  },
+  "animations": true,
+  "debug": {
+    "devtools": false
+  },
+  "plugins": ["./herdr-opencode"]
+}
