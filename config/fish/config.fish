@@ -1,3 +1,7 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+export PATH="$PATH:/Users/tomoya/.docker/bin"
+# End of Docker Desktop section.
+
 set -g fish_prompt_pwd_dir_length 0
 set -g fish_prompt_pwd_full_dirs 3
 set -U FZF_TMUX 1
