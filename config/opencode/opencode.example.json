@@ -1,28 +1,30 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "share": "disabled",
-  "plugin": [
+  "plugins": [
     "@plannotator/opencode@latest",
     "opencode-agent-memory",
     "opencode-zellij-namer"
   ],
-  "provider": {
+  "providers": {
     "openai": {
       "name": "OpenAI",
-      "options": {
+      "settings": {
         "reasoningEffort": "medium",
         "reasoningSummary": "auto",
-        "textVerbosity": "medium",
+        "textVerbosity": "medium"
+      },
+      "body": {
         "include": [
           "reasoning.encrypted_content"
         ],
         "store": false
-      },
+      }
     },
     "lmstudio": {
-      "npm": "@ai-sdk/openai-compatible",
+      "package": "aisdk:@ai-sdk/openai-compatible",
       "name": "LM Studio (local)",
-      "options": {
+      "settings": {
         "baseURL": "{file:./secrets/lmstudio_base_url}",
         "apiKey": "{file:./secrets/lmstudio_api_key}"
       },
@@ -37,31 +39,43 @@
       }
     }
   },
-  "permission": {
-    "external_directory": {
-      "~/.ghq/**": "allow",
-      "~/worktrees/**": "allow",
-      "/tmp/**": "allow"
+  "permissions": [
+    {
+      "action": "external_directory",
+      "resource": "~/.ghq/**",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "~/worktrees/**",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "/tmp/**",
+      "effect": "allow"
     }
-  },
+  ],
   "mcp": {
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "headers": {
-        "CONTEXT7_API_KEY": "{file:./secrets/context7_api_key}",
-        "Accept": "application/json, text/event-stream"
+    "servers": {
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp",
+        "headers": {
+          "CONTEXT7_API_KEY": "{file:./secrets/context7_api_key}",
+          "Accept": "application/json, text/event-stream"
+        },
+        "disabled": false
       },
-      "enabled": true
-    },
-    "exa": {
-      "type": "remote",
-      "url": "https://mcp.exa.ai/mcp",
-      "headers": {}
-    },
-    "deepwiki": {
-      "type": "remote",
-      "url": "https://mcp.deepwiki.com/mcp"
+      "exa": {
+        "type": "remote",
+        "url": "https://mcp.exa.ai/mcp",
+        "headers": {}
+      },
+      "deepwiki": {
+        "type": "remote",
+        "url": "https://mcp.deepwiki.com/mcp"
+      }
     }
   }
 }
