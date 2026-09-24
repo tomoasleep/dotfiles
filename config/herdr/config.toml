@@ -1,5 +1,13 @@
+onboarding = false
 [theme]
-name = "solarized"
+name = "gruvbox"
 
+auto_switch = false
 [keys]
 prefix = "ctrl+g"
+
+[experimental]
+kitty_graphics = true
+
+[ui.toast]
+delivery = "herdr"
