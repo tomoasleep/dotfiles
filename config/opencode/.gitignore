@@ -14,3 +14,5 @@ scheduler/
 plugins/askit.js
 plugins/yolo.js
 tui.jsonc
+service.json
+package-lock.json
