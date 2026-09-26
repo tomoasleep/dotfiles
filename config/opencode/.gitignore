@@ -12,6 +12,7 @@ scheduler/
 *.bak*
 
 plugins/askit.js
+plugins/dgxspark-models.ts
 plugins/yolo.js
 tui.jsonc
 service.json
