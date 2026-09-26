@@ -1,5 +1,4 @@
 ---
-name: interactive-debug
 description: Provide a way to debug complex problem (such as test failures)
 ---
 

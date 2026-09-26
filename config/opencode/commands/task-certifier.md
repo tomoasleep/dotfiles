@@ -1,5 +1,4 @@
 ---
-name: task-certifier
 description: タスクが完了したかどうかを第三者の目線で検証し、不正があれば報告します。
 ---
 

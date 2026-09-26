@@ -1,5 +1,4 @@
 ---
-name: interactive-fix-planner
 description: Plan to fix problem
 ---
 

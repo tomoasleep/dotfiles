@@ -1,5 +1,4 @@
 ---
-name: exec-plan
 description: 決まった Plan を agent に委託しながら実施します
 ---
 

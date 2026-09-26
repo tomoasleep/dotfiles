@@ -1,5 +1,4 @@
 ---
-name: verify
 description: Verify task requirements and lint errors
 ---
 

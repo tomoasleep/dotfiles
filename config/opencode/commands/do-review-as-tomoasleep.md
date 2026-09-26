@@ -1,5 +1,4 @@
 ---
-name: do-review-as-tomoasleep
 description: Review the target as tomoasleep
 ---
 
