@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  echo "Usage: onotify [-title TITLE] [-subtitle SUBTITLE] -message MESSAGE" >&2
+  exit 1
+}
+
+TITLE=""
+SUBTITLE=""
+MESSAGE=""
+
+while [ $# -gt 0 ]; do
+  case $1 in
+    -title) TITLE=$2; shift 2 ;;
+    -subtitle) SUBTITLE=$2; shift 2 ;;
+    -message) MESSAGE=$2; shift 2 ;;
+    *) usage ;;
+  esac
+done
+
+if [ -z "$MESSAGE" ]; then
+  usage
+fi
+
+ps_quote() {
+  sed "s/'/''/g" <<< "$1"
+}
+
+case "$(uname -s)" in
+  Darwin)
+    if [ -n "$SUBTITLE" ]; then
+      exec terminal-notifier -title "$TITLE" -subtitle "$SUBTITLE" -message "$MESSAGE"
+    else
+      exec terminal-notifier -title "$TITLE" -message "$MESSAGE"
+    fi
+    ;;
+  Linux)
+    if grep -qi microsoft /proc/version 2>/dev/null; then
+      powershell=$(command -v powershell.exe || echo /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe)
+      if [ ! -x "$powershell" ]; then
+        echo "onotify: powershell.exe not found for WSL toast" >&2
+        exit 1
+      fi
+      template_type=ToastText02
+      texts=("$TITLE" "$MESSAGE")
+      if [ -n "$SUBTITLE" ]; then
+        template_type=ToastText04
+        texts=("$TITLE" "$SUBTITLE" "$MESSAGE")
+      fi
+
+      ps_texts=""
+      for text in "${texts[@]}"; do
+        if [ -n "$ps_texts" ]; then
+          ps_texts+=", "
+        fi
+        ps_texts+="'$(ps_quote "$text")'"
+      done
+
+      ps_script=$(cat <<EOF
+[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] | Out-Null
+\$template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::$template_type)
+\$textNodes = \$template.GetElementsByTagName('text')
+\$texts = @($ps_texts)
+for (\$i = 0; \$i -lt \$texts.Count; \$i++) {
+  \$textNodes.Item(\$i).AppendChild(\$template.CreateTextNode(\$texts[\$i])) | Out-Null
+}
+\$toast = [Windows.UI.Notifications.ToastNotification]::new(\$template)
+[Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('{1AC14E77-02E7-4E5D-B744-2EB1AE5198B7}\Windows PowerShell\powershell.exe').Show(\$toast)
+EOF
+)
+
+      encoded=$(printf '%s' "$ps_script" | iconv -f UTF-8 -t UTF-16LE | base64 -w 0)
+      exec "$powershell" -NoProfile -NonInteractive -EncodedCommand "$encoded"
+    else
+      exec notify-send "$TITLE" "$MESSAGE"
+    fi
+    ;;
+  *)
+    echo "onotify: unsupported platform: $(uname -s)" >&2
+    exit 1
+    ;;
+esac

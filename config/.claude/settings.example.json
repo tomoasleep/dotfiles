@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.message | @sh' | xargs -n 1 sh -c 'terminal-notifier -title \"Claude Code\" -message $0'"
+            "command": "jq -r '.message | @sh' | xargs -n 1 sh -c 'onotify -title \"Claude Code\" -message $0'"
           }
         ]
       }

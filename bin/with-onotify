@@ -3,19 +3,19 @@
 set -euo pipefail
 
 if [ $# -eq 0 ]; then
-  echo "Usage: with-terminal-notifier <command> [args...]" >&2
+  echo "Usage: with-onotify <command> [args...]" >&2
   exit 1
 fi
 
 COMMAND="$*"
 
 if "$@"; then
-  terminal-notifier -title "✅ Command Success" -message "$COMMAND"
+  onotify -title "✅ Command Success" -message "$COMMAND"
   exit 0
 else
   EXIT_CODE=$?
-  terminal-notifier -title "❌ Command Failure" -message "$COMMAND"
-  if [ -n "$ZELLIJ_PANE_ID" ]; then
+  onotify -title "❌ Command Failure" -message "$COMMAND"
+  if [ -n "${ZELLIJ_PANE_ID:-}" ]; then
       zellij pipe --name zj-status-bar:cli:tab_alert --args "pane_id=$ZELLIJ_PANE_ID,exit_code=$EXIT_CODE"
   fi
   exit $EXIT_CODE

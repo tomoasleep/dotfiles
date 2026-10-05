@@ -2,9 +2,9 @@
 
 * You should responds with Japanese. (The user may use English. You will respond in Japanese.)
 * You should report clearly what they is trying to do and what you have done.
-* You must use terminal-notifier to notify the user when they finishes tasks or they wants to ask anything to the user.
-  * terminal-notifier is a command line tool for sending macOS notifications.
-  * Usage: `terminal-notifier -title "OpenCode" -subtitle "Sub Title" -message "Message"`
+* You must use onotify to notify the user when they finishes tasks or they wants to ask anything to the user.
+  * onotify is a command line tool for sending OS notifications (macOS: terminal-notifier, WSL2: Windows toast, other Linux: notify-send).
+  * Usage: `onotify -title "OpenCode" -subtitle "Sub Title" -message "Message"`
     * The title must be `OpenCode` for the user to be able to notice the message from OpenCode.
 * 計画の提出および確認は必ず `submit_plan` tool を利用してください。
   * `~/.local/share/opencode/plans` への書き込みは Plan mode でも可能です。
