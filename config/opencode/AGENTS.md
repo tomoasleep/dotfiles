@@ -10,6 +10,8 @@
   * `~/.local/share/opencode/plans` への書き込みは Plan mode でも可能です。
 * 現在の作業に関連する Agent Skills を参照してください。 Agent Skills は積極的に参照してください。
   * コードの書き方などが Agent Skills に記載されている場合は、必ずそちらに従うこと。
+* 技術調査やレポートの作成・提出には research-report Skill を参照してください。
+  * 調査開始前の読者要件と解像度の確定を省略しないこと。提出前の4チェック(読者・独りよがり・鮮度・解像度)はサブエージェントによるレビューで実施すること。
 
 ## Development Style
 
