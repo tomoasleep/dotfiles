@@ -6,8 +6,11 @@
   * onotify is a command line tool for sending OS notifications (macOS: terminal-notifier, WSL2: Windows toast, other Linux: notify-send).
   * Usage: `onotify -title "OpenCode" -subtitle "Sub Title" -message "Message"`
     * The title must be `OpenCode` for the user to be able to notice the message from OpenCode.
-* 計画の提出および確認は必ず `submit_plan` tool を利用してください。
-  * `~/.local/share/opencode/plans` への書き込みは Plan mode でも可能です。
+* 計画の提出・確認と、ユーザーへの質問は Plannotator Inbox 経由で行ってください。
+  * Inbox URL: `https://nemai-plannotator.drake-in.ts.net`
+  * `plannotator_inbox` tool があればそれを、なければ stdio MCP (`plannotator inbox mcp`) を使う。
+  * plan は `attachments` に添付し（保存先は `~/.local/share/opencode/plans/`）、判断が必要な箇所は `:::question` ブロックで質問する。返信はセッション idle 後に次のターンとして届く。
+  * blocking なレビュー session（`plannotator annotate --gate` / `plannotator review`）は開かない。plan の承認も Inbox の返信で行う。
 * 現在の作業に関連する Agent Skills を参照してください。 Agent Skills は積極的に参照してください。
   * コードの書き方などが Agent Skills に記載されている場合は、必ずそちらに従うこと。
 * 技術調査やレポートの作成・提出には research-report Skill を参照してください。
